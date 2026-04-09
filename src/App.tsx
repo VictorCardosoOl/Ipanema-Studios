@@ -206,6 +206,71 @@ export default function App() {
         </div>
       </section>
 
+      {/* Section 4: Process */}
+      <section className="min-h-screen flex flex-col md:flex-row bg-sage text-charcoal border-t border-charcoal/20">
+        {/* Image Column */}
+        <div className="w-full md:w-[25%] h-[40vh] md:h-screen">
+          <img 
+            src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?q=80&w=1000&auto=format&fit=crop" 
+            alt="Studio moodboard" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
+        {/* Vertical Title Column */}
+        <div className="w-full md:w-[15%] border-b md:border-b-0 md:border-r border-charcoal/20 flex items-center justify-center py-12 md:py-0">
+          <h2 
+            className="text-6xl md:text-8xl lg:text-9xl font-medium tracking-widest uppercase"
+            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+          >
+            Process
+          </h2>
+        </div>
+
+        {/* Content Column */}
+        <div className="w-full md:w-[60%] flex flex-col min-h-[50vh] md:min-h-screen">
+          <div className="flex justify-between p-8 md:p-12 text-[10px] uppercase tracking-widest opacity-70">
+            <span>Studio Insider</span>
+            <span>Page 04</span>
+          </div>
+          
+          <div className="flex-grow flex items-end p-8 md:p-12 pb-12 md:pb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+              
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+                <h3 className="text-xs font-bold tracking-widest uppercase mb-4">01 / Discovery & Vision</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  We start by understanding your brand's core identity, target audience, and primary objectives. This deep dive ensures our strategic direction aligns perfectly with your business goals.
+                </p>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}>
+                <h3 className="text-xs font-bold tracking-widest uppercase mb-4">02 / Technical Scoping</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  Next, we map out the functional requirements. From CMS preferences and third-party integrations to performance benchmarks, we define the technical architecture that will power your platform.
+                </p>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
+                <h3 className="text-xs font-bold tracking-widest uppercase mb-4">03 / Aesthetic Direction</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  We curate moodboards and visual references to establish the look and feel. This collaborative phase helps us lock in the typography, color palettes, and overall editorial vibe before design begins.
+                </p>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}>
+                <h3 className="text-xs font-bold tracking-widest uppercase mb-4">04 / Roadmap & Proposal</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  Finally, we synthesize our findings into a comprehensive project roadmap. You'll receive a detailed timeline, clear deliverables, and a structured plan outlining exactly how we will bring your vision to life.
+                </p>
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
