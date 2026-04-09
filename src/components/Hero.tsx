@@ -12,12 +12,12 @@ export default function Hero() {
         <nav className="w-full max-w-md mt-24 md:mt-0" aria-label="Main Navigation">
           <ul className="text-sm font-medium tracking-wide">
             {[
-              { name: 'about', link: '#about', page: '03' },
-              { name: 'values', link: '#values', page: '09' },
-              { name: 'mission', link: '#mission', page: '16' },
-              { name: 'process', link: '#process', page: '19' },
-              { name: 'portfolio', link: '#portfolio', page: '22' },
-              { name: 'contact', link: '#contact', page: '24' },
+              { name: 'sobre', link: '#about', page: '03' },
+              { name: 'valores', link: '#values', page: '09' },
+              { name: 'missão', link: '#mission', page: '16' },
+              { name: 'processo', link: '#process', page: '19' },
+              { name: 'portfólio', link: '#portfolio', page: '22' },
+              { name: 'contato', link: '#contact', page: '24' },
             ].map((item, i) => (
               <li key={i} className="border-b border-charcoal/30 last:border-0">
                 <a href={item.link} className="flex justify-between py-3 hover:opacity-60 transition-opacity">
@@ -33,7 +33,7 @@ export default function Hero() {
       {/* Right Panel - Charcoal */}
       <div className="bg-charcoal text-cream p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen relative pt-24">
         <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-70">
-          <span>Agency Profile</span>
+          <span>Perfil da Agência</span>
           <span>2026</span>
           <span>01 / 06</span>
         </div>

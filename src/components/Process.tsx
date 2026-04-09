@@ -7,7 +7,7 @@ export default function Process() {
       <div className="md:col-span-4 relative h-[50vh] md:h-screen bg-[#dcdcd2] overflow-hidden">
         {/* Top Left Label */}
         <div className="absolute top-8 left-8 z-20 text-[9px] uppercase tracking-widest font-medium opacity-80">
-          Studio Insider
+          Bastidores do Estúdio
         </div>
         
         {/* Moodboard Composition */}
@@ -60,7 +60,7 @@ export default function Process() {
           className="text-7xl md:text-8xl lg:text-[10rem] font-sans font-medium tracking-[0.15em] uppercase text-charcoal"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          Process
+          Processo
         </h2>
       </div>
 
@@ -68,7 +68,7 @@ export default function Process() {
       <div className="md:col-span-6 flex flex-col min-h-[50vh] md:min-h-screen bg-sage relative">
         {/* Top Right Label */}
         <div className="absolute top-8 right-8 text-[9px] uppercase tracking-widest font-medium opacity-80">
-          Page 04 / 06
+          Página 04 / 06
         </div>
         
         {/* Text Grid at the bottom */}
@@ -76,30 +76,30 @@ export default function Process() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 w-full max-w-3xl">
             
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">01 / Discovery & Vision</h3>
+              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">01 / Descoberta & Visão</h3>
               <p className="text-xs leading-relaxed opacity-80 text-justify">
-                We start by understanding your brand's core identity, target audience, and primary objectives. This deep dive ensures our strategic direction aligns perfectly with your business goals.
+                Começamos entendendo a identidade central da sua marca, público-alvo e objetivos principais. Esse mergulho profundo garante que nossa direção estratégica esteja perfeitamente alinhada com seus objetivos de negócios.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}>
-              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">02 / Technical Scoping</h3>
+              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">02 / Escopo Técnico</h3>
               <p className="text-xs leading-relaxed opacity-80 text-justify">
-                Next, we map out the functional requirements. From CMS preferences and third-party integrations to performance benchmarks, we define the technical architecture that will power your platform.
+                Em seguida, mapeamos os requisitos funcionais. Desde preferências de CMS e integrações de terceiros até benchmarks de performance, definimos a arquitetura técnica que impulsionará sua plataforma.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">03 / Aesthetic Direction</h3>
+              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">03 / Direção Estética</h3>
               <p className="text-xs leading-relaxed opacity-80 text-justify">
-                We curate moodboards and visual references to establish the look and feel. This collaborative phase helps us lock in the typography, color palettes, and overall editorial vibe before design begins.
+                Curamos moodboards e referências visuais para estabelecer a identidade visual. Esta fase colaborativa nos ajuda a definir a tipografia, paletas de cores e a vibração editorial geral antes do início do design.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}>
-              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">04 / Roadmap & Proposal</h3>
+              <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4">04 / Cronograma & Proposta</h3>
               <p className="text-xs leading-relaxed opacity-80 text-justify">
-                Finally, we synthesize our findings into a comprehensive project roadmap. You'll receive a detailed timeline, clear deliverables, and a structured plan outlining exactly how we will bring your vision to life.
+                Por fim, sintetizamos nossas descobertas em um cronograma de projeto abrangente. Você receberá um cronograma detalhado, entregáveis claros e um plano estruturado descrevendo exatamente como daremos vida à sua visão.
               </p>
             </motion.div>
 

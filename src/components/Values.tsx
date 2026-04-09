@@ -7,7 +7,7 @@ export default function Values() {
       <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-sm">
           <h2 className="font-medium tracking-tight">Ipanema Studios</h2>
-          <span className="opacity-70">Core Values</span>
+          <span className="opacity-70">Valores Fundamentais</span>
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16">
@@ -32,7 +32,7 @@ export default function Values() {
       {/* Right Panel */}
       <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-70">
-          <span>Agency Profile</span>
+          <span>Perfil da Agência</span>
           <span>2026</span>
           <span>02 / 06</span>
         </div>
@@ -40,9 +40,9 @@ export default function Values() {
         <div className="flex-grow flex flex-col justify-center items-end text-right">
           <ul className="space-y-2 md:space-y-4" aria-label="Core Values List">
             {[
-              'Strategy', 'Engineering', 'Design', 'Performance', 
-              'Scalability', 'Innovation', 'Elegance', 'Precision', 
-              'Reliability', 'Vision', 'Impact'
+              'Estratégia', 'Engenharia', 'Design', 'Desempenho', 
+              'Escalabilidade', 'Inovação', 'Elegância', 'Precisão', 
+              'Confiabilidade', 'Visão', 'Impacto'
             ].map((keyword, i) => (
               <motion.li 
                 key={i}

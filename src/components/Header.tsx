@@ -13,7 +13,7 @@ export default function Header() {
         href="#contact" 
         className="pointer-events-auto border border-cream rounded-full px-6 py-2 text-sm hover:bg-cream hover:text-charcoal transition-colors"
       >
-        Start a Project
+        Iniciar um Projeto
       </a>
     </motion.header>
   );

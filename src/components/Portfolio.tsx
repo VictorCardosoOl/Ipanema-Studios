@@ -4,12 +4,12 @@ export default function Portfolio() {
   const projects = [
     {
       title: "Lumina Residences",
-      category: "Real Estate Platform",
+      category: "Plataforma Imobiliária",
       image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop"
     },
     {
       title: "Aura Skincare",
-      category: "E-Commerce Experience",
+      category: "Experiência de E-Commerce",
       image: "https://images.unsplash.com/photo-1615397323758-1e0e4179323c?q=80&w=1200&auto=format&fit=crop"
     }
   ];
@@ -18,8 +18,8 @@ export default function Portfolio() {
     <section id="portfolio" className="min-h-screen bg-charcoal text-cream py-24 px-8 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-end mb-16 border-b border-cream/20 pb-8">
-          <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight">Selected Works</h2>
-          <span className="text-[10px] uppercase tracking-widest opacity-70">Page 05 / 06</span>
+          <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight">Trabalhos Selecionados</h2>
+          <span className="text-[10px] uppercase tracking-widest opacity-70">Página 05 / 06</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">

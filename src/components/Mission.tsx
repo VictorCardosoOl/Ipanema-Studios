@@ -7,7 +7,7 @@ export default function Mission() {
       <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-sm">
           <h2 className="font-medium tracking-tight">Ipanema Studios</h2>
-          <span className="opacity-70">Our Mission</span>
+          <span className="opacity-70">Nossa Missão</span>
         </div>
         
         <div className="flex-grow flex flex-col justify-end pb-12 md:pb-24 max-w-xl">
@@ -50,7 +50,7 @@ export default function Mission() {
       {/* Right Panel */}
       <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-70">
-          <span>Agency Profile</span>
+          <span>Perfil da Agência</span>
           <span>2026</span>
           <span>03 / 06</span>
         </div>
