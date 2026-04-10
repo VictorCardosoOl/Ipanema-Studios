@@ -11,6 +11,7 @@ import Process from './components/Process';
 import Portfolio from './components/Portfolio';
 import FAQSection from './components/FAQSection';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       <Portfolio />
       <FAQSection />
       <Contact />
+      <Footer />
     </main>
   );
 }
