@@ -18,8 +18,8 @@ export default function Portfolio() {
     <section id="portfolio" className="min-h-screen bg-charcoal text-cream py-32 px-8 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-end mb-24 border-b border-cream/10 pb-12">
-          <h2 className="text-5xl md:text-8xl font-serif font-light tracking-tight">Trabalhos <br/><span className="italic opacity-40">Selecionados</span></h2>
-          <span className="text-[10px] uppercase tracking-widest opacity-50 mb-4">Página 05 / 06</span>
+          <h2 className="text-5xl md:text-8xl font-serif font-light tracking-tight">Trabalhos <br/><span className="italic opacity-60">Selecionados</span></h2>
+          <span className="text-[10px] uppercase tracking-widest opacity-80 font-semibold mb-4">Página 05 / 06</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
@@ -45,7 +45,7 @@ export default function Portfolio() {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-3xl font-serif mb-2">{project.title}</h3>
-                  <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">{project.category}</p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] opacity-80 font-semibold">{project.category}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full border border-cream/20 flex items-center justify-center group-hover:bg-cream group-hover:text-charcoal transition-all duration-500 transform group-hover:rotate-45">
                   <span className="text-xl" aria-hidden="true">↗</span>

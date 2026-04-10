@@ -16,7 +16,7 @@ const Footer = () => {
 
       {/* 2. Background Typography */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 pointer-events-none select-none z-0">
-        <span className="font-display text-[20vw] leading-none text-white/5 uppercase tracking-tighter whitespace-nowrap">
+        <span className="font-display text-[20vw] leading-none text-white/10 uppercase tracking-tighter whitespace-nowrap">
           IPANEMA
         </span>
       </div>
@@ -25,23 +25,23 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-0">
           
           {/* Col 1: Identity */}
-          <div className="lg:pr-12 lg:border-r border-white/10">
+          <div className="lg:pr-12 lg:border-r border-white/20">
             <h2 className="font-display text-5xl text-white mb-6">Ipanema Studios</h2>
-            <p className="font-serif italic text-xl text-white/40 leading-relaxed">
+            <p className="font-serif italic text-2xl text-white/80 leading-relaxed">
               Elevando o padrão digital através de design editorial e engenharia de precisão.
             </p>
           </div>
 
           {/* Col 2: Local/CTA */}
-          <div className="lg:px-12 lg:border-r border-white/10">
-            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/30 mb-8 block">Localização</span>
-            <p className="text-sm text-white/60 mb-10 leading-loose">
+          <div className="lg:px-12 lg:border-r border-white/20">
+            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 block">Localização</span>
+            <p className="text-sm text-white/90 mb-10 leading-loose font-medium">
               Rio de Janeiro, Brasil<br />
               Atendimento Global / Remoto
             </p>
             <a 
               href="#contact" 
-              className="group flex items-center gap-3 text-white hover:text-white/70 transition-all text-xs uppercase tracking-widest"
+              className="group flex items-center gap-3 text-white hover:text-white/80 transition-all text-xs uppercase tracking-widest font-bold"
             >
               Vamos conversar
               <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -49,8 +49,8 @@ const Footer = () => {
           </div>
 
           {/* Col 3: Social */}
-          <div className="lg:px-12 lg:border-r border-white/10">
-            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/30 mb-8 block">Social</span>
+          <div className="lg:px-12 lg:border-r border-white/20">
+            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 block">Social</span>
             <ul className="space-y-6">
               {[
                 { name: 'Instagram', icon: <Instagram size={16} />, url: '#' },
@@ -61,7 +61,7 @@ const Footer = () => {
                 <li key={social.name}>
                   <a 
                     href={social.url} 
-                    className="flex items-center gap-4 text-white/50 hover:text-white transition-all group"
+                    className="flex items-center gap-4 text-white/80 hover:text-white transition-all group font-medium"
                   >
                     <span className="group-hover:scale-110 transition-transform">
                       {social.icon}
@@ -75,7 +75,7 @@ const Footer = () => {
 
           {/* Col 4: Menu/Credits */}
           <div className="lg:pl-12">
-            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/30 mb-8 block">Navegação</span>
+            <span className="text-[10px] font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 block">Navegação</span>
             <ul className="space-y-4 mb-16">
               {[
                 { name: 'Sobre', url: '#about' },
@@ -86,7 +86,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a 
                     href={link.url} 
-                    className="text-xs uppercase tracking-widest text-white/50 hover:text-white transition-all hover:translate-x-2 inline-block"
+                    className="text-xs uppercase tracking-widest text-white/80 hover:text-white transition-all hover:translate-x-2 inline-block font-bold"
                   >
                     {link.name}
                   </a>
@@ -94,8 +94,8 @@ const Footer = () => {
               ))}
             </ul>
             
-            <div className="pt-10 border-t border-white/10">
-              <p className="text-[9px] uppercase tracking-[0.3em] text-white/20 leading-relaxed">
+            <div className="pt-10 border-t border-white/20">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 leading-relaxed font-medium">
                 &copy; {currentYear} Ipanema Studios.<br />
                 Desenvolvido com excelência técnica.
               </p>

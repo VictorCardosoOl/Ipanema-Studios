@@ -76,7 +76,7 @@ export default function Hero() {
 
       {/* Right Panel - Charcoal */}
       <div className="bg-charcoal text-cream p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen relative pt-24">
-        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-50">
+        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
           <span>01 / 06</span>

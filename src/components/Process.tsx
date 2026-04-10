@@ -6,7 +6,7 @@ export default function Process() {
       {/* Image Column (Left) */}
       <div className="md:col-span-4 relative h-[50vh] md:h-screen bg-sage overflow-hidden">
         {/* Top Left Label */}
-        <div className="absolute top-8 left-8 z-20 text-[9px] uppercase tracking-widest font-medium opacity-80">
+        <div className="absolute top-8 left-8 z-20 text-[10px] uppercase tracking-widest font-bold opacity-90">
           Bastidores do Estúdio
         </div>
         
@@ -57,7 +57,7 @@ export default function Process() {
       {/* Vertical Title Column (Middle) */}
       <div className="md:col-span-2 border-y md:border-y-0 md:border-r border-charcoal/10 flex items-center justify-center py-16 md:py-0 bg-cream">
         <h2 
-          className="text-7xl md:text-8xl lg:text-[10rem] font-sans font-medium tracking-[0.15em] uppercase text-charcoal opacity-10"
+          className="text-7xl md:text-8xl lg:text-[10rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-20"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
           Processo
@@ -67,7 +67,7 @@ export default function Process() {
       {/* Content Column (Right) */}
       <div className="md:col-span-6 flex flex-col min-h-[50vh] md:min-h-screen bg-cream relative">
         {/* Top Right Label */}
-        <div className="absolute top-8 right-8 text-[9px] uppercase tracking-widest font-medium opacity-80">
+        <div className="absolute top-8 right-8 text-[10px] uppercase tracking-widest font-bold opacity-90">
           Página 04 / 06
         </div>
         
@@ -77,28 +77,28 @@ export default function Process() {
             
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4 border-b border-charcoal/10 pb-2">01 / Descoberta & Visão</h3>
-              <p className="text-xs leading-relaxed opacity-80 text-justify">
+              <p className="text-sm leading-relaxed opacity-90 text-justify font-medium">
                 Começamos entendendo a identidade central da sua marca, público-alvo e objetivos principais. Esse mergulho profundo garante que nossa direção estratégica esteja perfeitamente alinhada com seus objetivos de negócios.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}>
               <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4 border-b border-charcoal/10 pb-2">02 / Escopo Técnico</h3>
-              <p className="text-xs leading-relaxed opacity-80 text-justify">
+              <p className="text-sm leading-relaxed opacity-90 text-justify font-medium">
                 Em seguida, mapeamos os requisitos funcionais. Desde preferências de CMS e integrações de terceiros até benchmarks de performance, definimos a arquitetura técnica que impulsionará sua plataforma.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
               <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4 border-b border-charcoal/10 pb-2">03 / Direção Estética</h3>
-              <p className="text-xs leading-relaxed opacity-80 text-justify">
+              <p className="text-sm leading-relaxed opacity-90 text-justify font-medium">
                 Curamos moodboards e referências visuais para estabelecer a identidade visual. Esta fase colaborativa nos ajuda a definir a tipografia, paletas de cores e a vibração editorial geral antes do início do design.
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}>
               <h3 className="text-[10px] font-bold tracking-widest uppercase mb-4 border-b border-charcoal/10 pb-2">04 / Cronograma & Proposta</h3>
-              <p className="text-xs leading-relaxed opacity-80 text-justify">
+              <p className="text-sm leading-relaxed opacity-90 text-justify font-medium">
                 Por fim, sintetizamos nossas descobertas em um cronograma de projeto abrangente. Você receberá um cronograma detalhado, entregáveis claros e um plano estruturado descrevendo exatamente como daremos vida à sua visão.
               </p>
             </motion.div>

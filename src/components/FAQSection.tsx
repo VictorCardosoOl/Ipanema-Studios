@@ -89,16 +89,16 @@ const FAQSection = () => {
         <div className="lg:col-span-4 relative">
           <div className="sticky-content lg:sticky lg:top-32">
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase mb-4 block opacity-60">Suporte</span>
-            <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl leading-[0.85] mb-8">
+            <h2 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.85] mb-8">
               Dúvidas <br/> 
               <span className="italic opacity-50">Frequentes</span>
             </h2>
-            <p className="text-sm max-w-xs mb-10 opacity-70 leading-relaxed">
+            <p className="text-sm max-w-xs mb-10 opacity-70 leading-relaxed font-sans">
               Encontre respostas para as perguntas mais comuns sobre nosso processo criativo e técnico.
             </p>
             <a 
               href="#contact" 
-              className="inline-flex items-center gap-3 border border-charcoal/20 dark:border-cream/20 rounded-full px-8 py-4 text-xs uppercase tracking-widest hover:bg-charcoal hover:text-cream dark:hover:bg-cream dark:hover:text-charcoal transition-all group"
+              className="inline-flex items-center gap-3 border border-charcoal/20 rounded-full px-8 py-4 text-xs uppercase tracking-widest hover:bg-charcoal hover:text-cream transition-all group"
             >
               Falar com Especialista
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -114,7 +114,7 @@ const FAQSection = () => {
           {FAQ_ITEMS.map((item, idx) => (
             <div 
               key={item.id} 
-              className="faq-item border-b border-charcoal/10 dark:border-white/10 last:border-0"
+              className="faq-item border-b border-charcoal/10 last:border-0"
             >
               <button 
                 onClick={() => toggleItem(idx)}
@@ -122,7 +122,7 @@ const FAQSection = () => {
                 aria-expanded={openIndex === idx}
               >
                 <h3 className={`text-2xl md:text-3xl font-serif transition-all duration-500 flex items-start gap-4 ${
-                  openIndex === idx ? 'translate-x-4 text-charcoal dark:text-cream' : 'text-charcoal/60 dark:text-cream/60'
+                  openIndex === idx ? 'translate-x-4 text-charcoal' : 'text-charcoal/60'
                 }`}>
                   <span className="text-xs font-sans tracking-widest mt-2 opacity-40">{(idx + 1).toString().padStart(2, '0')}</span>
                   {item.question}
