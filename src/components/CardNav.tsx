@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
@@ -21,7 +21,6 @@ interface CardNavProps {
   logoText?: string;
   items: NavItem[];
   className?: string;
-  ease?: string;
   baseColor?: string;
   menuColor?: string;
   buttonBgColor?: string;
@@ -33,7 +32,6 @@ const CardNav: React.FC<CardNavProps> = ({
   logoText = 'Ipanema',
   items,
   className = '',
-  ease = 'power3.out',
   baseColor = '#fff',
   menuColor = '#000',
   buttonBgColor = '#111',
@@ -41,134 +39,61 @@ const CardNav: React.FC<CardNavProps> = ({
   ctaText = 'Iniciar Projeto'
 }) => {
   const { scrollDirection, isAtTop } = useScrollDirection();
-
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  // Hide if scrolling down and not at the very top, but ONLY if not expanded
-  const isHidden = scrollDirection === 'down' && !isAtTop && !isExpanded;
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  
   const navRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  const calculateHeight = () => {
-    const navEl = navRef.current;
-    if (!navEl) return 260;
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      const contentEl = navEl.querySelector('.card-nav-content') as HTMLElement;
-      if (contentEl) {
-        const wasVisible = contentEl.style.visibility;
-        const wasPointerEvents = contentEl.style.pointerEvents;
-        const wasPosition = contentEl.style.position;
-        const wasHeight = contentEl.style.height;
-
-        contentEl.style.visibility = 'visible';
-        contentEl.style.pointerEvents = 'auto';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
-
-        // Trigger reflow
-        contentEl.offsetHeight;
-
-        const topBar = 60;
-        const padding = 16;
-        const contentHeight = contentEl.scrollHeight;
-
-        contentEl.style.visibility = wasVisible;
-        contentEl.style.pointerEvents = wasPointerEvents;
-        contentEl.style.position = wasPosition;
-        contentEl.style.height = wasHeight;
-
-        return topBar + contentHeight + padding;
-      }
-    }
-    return 320; // Desktop expanded height
-  };
-
-  const createTimeline = () => {
-    const navEl = navRef.current;
-    if (!navEl) return null;
-
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
-    gsap.set(cardsRef.current, { y: 50, opacity: 0 });
-
-    const tl = gsap.timeline({ paused: true });
-
-    tl.to(navEl, {
-      height: calculateHeight,
-      duration: 0.4,
-      ease
-    });
-
-    tl.to(cardsRef.current, { 
-      y: 0, 
-      opacity: 1, 
-      duration: 0.4, 
-      ease, 
-      stagger: 0.08 
-    }, '-=0.1');
-
-    return tl;
-  };
+  const isHidden = scrollDirection === 'down' && !isAtTop && !isExpanded;
 
   useLayoutEffect(() => {
-    const tl = createTimeline();
-    tlRef.current = tl;
+    if (!navRef.current || !contentRef.current) return;
 
-    return () => {
-      tl?.kill();
-      tlRef.current = null;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ease, items]);
+    const ctx = gsap.context(() => {
+      gsap.set(navRef.current, { height: 60, overflow: 'hidden' });
+      gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (!tlRef.current) return;
+      timelineRef.current = gsap.timeline({ paused: true })
+        .to(navRef.current, {
+          height: "auto",
+          duration: 0.4,
+          ease: "power3.out"
+        })
+        .to(cardsRef.current, { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.4, 
+          ease: "power3.out", 
+          stagger: 0.08 
+        }, '-=0.2');
+    }, navRef);
 
-      if (isExpanded) {
-        const newHeight = calculateHeight();
-        gsap.set(navRef.current, { height: newHeight });
+    return () => ctx.revert();
+  }, []);
 
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          newTl.progress(1);
-          tlRef.current = newTl;
-        }
-      } else {
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          tlRef.current = newTl;
-        }
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  const toggleMenu = useCallback(() => {
+    if (!timelineRef.current) return;
+    
+    if (isExpanded) {
+      timelineRef.current.reverse().then(() => setIsExpanded(false));
+    } else {
+      setIsExpanded(true);
+      timelineRef.current.play();
+    }
   }, [isExpanded]);
 
-  const toggleMenu = () => {
-    const tl = tlRef.current;
-    if (!tl) return;
-    if (!isExpanded) {
-      setIsHamburgerOpen(true);
-      setIsExpanded(true);
-      tl.play(0);
-    } else {
-      setIsHamburgerOpen(false);
-      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
-      tl.reverse();
-    }
-  };
+  const handleCtaClick = useCallback(() => {
+    const contactSection = document.getElementById('contact');
+    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
-  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
-    cardsRef.current[i] = el;
-  };
+  const handleLinkClick = useCallback((href?: string) => {
+    if (href?.startsWith('#')) {
+      toggleMenu();
+    }
+  }, [toggleMenu]);
 
   return (
     <div className={`card-nav-container ${className} ${isHidden ? 'hidden' : ''}`}>
@@ -178,18 +103,17 @@ const CardNav: React.FC<CardNavProps> = ({
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top">
-          <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm`}
+          <button
+            type="button"
+            className={`hamburger-menu ${isExpanded ? 'open' : ''} focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm`}
             onClick={toggleMenu}
-            role="button"
             aria-label={isExpanded ? 'Fechar menu' : 'Abrir menu'}
-            tabIndex={0}
+            aria-expanded={isExpanded}
             style={{ color: menuColor }}
-            onKeyDown={(e) => e.key === 'Enter' && toggleMenu()}
           >
             <div className="hamburger-line" />
             <div className="hamburger-line" />
-          </div>
+          </button>
 
           <div className="logo-container">
             <span className="logo-text" style={{ color: menuColor }}>{logoText}</span>
@@ -199,39 +123,32 @@ const CardNav: React.FC<CardNavProps> = ({
             type="button"
             className="card-nav-cta-button focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-            onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={handleCtaClick}
           >
             {ctaText}
           </button>
         </div>
 
-        <div className="card-nav-content" aria-hidden={!isExpanded}>
-          {(items || []).slice(0, 3).map((item, idx) => (
+        <div ref={contentRef} className="card-nav-content" aria-hidden={!isExpanded}>
+          {items.slice(0, 3).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
               className="nav-card"
-              ref={setCardRef(idx)}
+              ref={(el) => { cardsRef.current[idx] = el; }}
               style={{ backgroundColor: item.bgColor, color: item.textColor }}
             >
               <div className="nav-card-label">{item.label}</div>
               <div className="nav-card-links">
-                {item.links?.map((lnk, i) => (
+                {item.links.map((link, i) => (
                   <a 
-                    key={`${lnk.label}-${i}`} 
+                    key={`${link.label}-${i}`} 
                     className="nav-card-link focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none rounded-sm" 
-                    href={lnk.href || '#'} 
-                    aria-label={lnk.ariaLabel}
-                    onClick={() => {
-                      if (lnk.href?.startsWith('#')) {
-                        toggleMenu();
-                      }
-                    }}
+                    href={link.href || '#'} 
+                    aria-label={link.ariaLabel}
+                    onClick={() => handleLinkClick(link.href)}
                   >
                     <ArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                    {lnk.label}
+                    {link.label}
                   </a>
                 ))}
               </div>

@@ -1,7 +1,9 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,18 +28,20 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const validateEmail = (email: string): boolean => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const isValidEmail = useCallback((email: string): boolean => {
+    return EMAIL_REGEX.test(email);
+  }, []);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const budget = formData.get('budget') as string;
-    const details = formData.get('details') as string;
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
+    
+    const name = formData.get('name')?.toString().trim();
+    const email = formData.get('email')?.toString().trim();
+    const budget = formData.get('budget')?.toString().trim();
+    const details = formData.get('details')?.toString().trim();
 
     if (!name || !email || !budget || !details) {
       setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
@@ -45,7 +49,7 @@ export default function Contact() {
       return;
     }
 
-    if (!validateEmail(email)) {
+    if (!isValidEmail(email)) {
       setErrorMessage('Por favor, insira um endereço de e-mail válido.');
       setFormState('error');
       return;
@@ -55,21 +59,20 @@ export default function Contact() {
     setErrorMessage('');
     
     try {
+      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setFormState('success');
       
       setTimeout(() => {
         setFormState('idle');
-        if (event.target instanceof HTMLFormElement) {
-          event.target.reset();
-        }
+        formElement.reset();
       }, 3000);
     } catch (error) {
       setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.');
       setFormState('error');
     }
-  };
+  }, [isValidEmail]);
 
   return (
     <section id="contact" ref={containerRef} className="min-h-screen bg-cream text-charcoal py-24 3xl:py-40 px-8 md:px-12 3xl:px-24 flex flex-col justify-center">
