@@ -6,12 +6,12 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade in hero content
-      gsap.from(".hero-content-anim", {
-        y: 20,
+      // Fade in nav items one by one
+      gsap.from("nav li", {
+        x: -20,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.15,
+        stagger: 0.1,
         ease: "power3.out",
         delay: 0.5
       });
@@ -51,22 +51,24 @@ export default function Hero() {
           <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Ipanema Studios</h1>
         </header>
         
-        <div className="w-full max-w-md 3xl:max-w-xl mt-24 md:mt-0 flex flex-col gap-8 3xl:gap-12">
-          <h2 className="hero-content-anim text-5xl md:text-6xl 3xl:text-8xl font-serif font-light tracking-tight leading-tight">
-            Criamos <br/>
-            <span className="italic opacity-60">experiências</span> <br/>
-            digitais únicas.
-          </h2>
-          <p className="hero-content-anim text-sm 3xl:text-lg opacity-80 leading-relaxed font-medium">
-            Elevando o padrão digital através de design editorial e engenharia de precisão para marcas que buscam se destacar no mercado.
-          </p>
-          <a 
-            href="#contact" 
-            className="hero-content-anim inline-flex items-center justify-center gap-3 bg-charcoal text-cream rounded-full px-8 py-4 3xl:px-12 3xl:py-6 text-xs 3xl:text-sm uppercase tracking-widest hover:bg-charcoal/90 transition-all group focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none self-start"
-          >
-            Iniciar Projeto
-          </a>
-        </div>
+        <nav className="w-full max-w-md 3xl:max-w-xl mt-24 md:mt-0" aria-label="Main Navigation">
+          <ul className="text-sm 3xl:text-lg font-medium tracking-wide">
+            {[
+              { name: 'trabalhos', link: '#portfolio', page: '02' },
+              { name: 'serviços', link: '#services', page: '03' },
+              { name: 'quem somos', link: '#mission', page: '04' },
+              { name: 'valores', link: '#values', page: '05' },
+              { name: 'contato', link: '#contact', page: '06' },
+            ].map((item, i) => (
+              <li key={i} className="border-b border-charcoal/30 last:border-0">
+                <a href={item.link} className="flex justify-between py-3 hover:opacity-60 transition-opacity focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm">
+                  <span>{item.name}</span>
+                  <span>{item.page}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
       {/* Right Panel - Charcoal */}
@@ -74,7 +76,7 @@ export default function Hero() {
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
-          <span>01 / 05</span>
+          <span>01 / 06</span>
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">

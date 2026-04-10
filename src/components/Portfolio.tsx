@@ -54,7 +54,7 @@ export default function Portfolio() {
       <div className="max-w-7xl 3xl:max-w-screen-3xl mx-auto">
         <div className="flex justify-between items-end mb-24 3xl:mb-32 border-b border-cream/10 pb-12 3xl:pb-16">
           <h2 className="text-5xl md:text-8xl 3xl:text-[10rem] font-serif font-light tracking-tight">Trabalhos <br/><span className="italic opacity-60">Selecionados</span></h2>
-          <span className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-semibold mb-4 3xl:mb-8">Página 02 / 05</span>
+          <span className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-semibold mb-4 3xl:mb-8">Página 02 / 06</span>
         </div>
 
         <div className="portfolio-grid grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 3xl:gap-48">

@@ -103,7 +103,7 @@ export default function Process() {
       <div className="md:col-span-6 flex flex-col min-h-[50vh] md:min-h-screen bg-cream relative">
         {/* Top Right Label */}
         <div className="absolute top-8 right-8 text-[10px] 3xl:text-xs uppercase tracking-widest font-bold opacity-90">
-          Página 03 / 05
+          Página 03 / 06
         </div>
         
         {/* Text Grid at the bottom */}

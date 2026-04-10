@@ -79,7 +79,7 @@ export default function Mission() {
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
-          <span>04 / 05</span>
+          <span>04 / 06</span>
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">
