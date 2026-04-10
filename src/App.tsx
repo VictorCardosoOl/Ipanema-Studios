@@ -12,6 +12,7 @@ import FAQSection from './components/FAQSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CardNav from './components/CardNav';
+import SmoothScroll from './components/SmoothScroll';
 
 export default function App() {
   const navItems = [
@@ -48,6 +49,7 @@ export default function App() {
 
   return (
     <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
+      <SmoothScroll />
       <CardNav 
         items={navItems}
         logoText="Ipanema"

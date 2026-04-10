@@ -1,12 +1,55 @@
 import { motion } from 'motion/react';
+import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Fade in nav items one by one
+      gsap.from("nav li", {
+        x: -20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+        delay: 0.5
+      });
+
+      // Parallax effect for images
+      gsap.to(".hero-image-main", {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      gsap.to(".hero-image-sub", {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" className="min-h-screen grid grid-cols-1 md:grid-cols-2">
+    <section id="about" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Panel - Cream */}
       <div className="bg-cream p-8 md:p-12 flex flex-col justify-between min-h-[50vh] md:min-h-screen pt-24">
         <header>
-          <h1 className="text-xl font-medium tracking-tight opacity-0">Ipanema Studios</h1>
+          <h1 className="text-xl font-medium tracking-tight">Ipanema Studios</h1>
         </header>
         
         <nav className="w-full max-w-md mt-24 md:mt-0" aria-label="Main Navigation">
@@ -40,31 +83,24 @@ export default function Hero() {
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative w-full max-w-sm aspect-[3/4]"
-          >
+          <div className="relative w-full max-w-sm aspect-[3/4] overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
               alt="Minimalist Architecture" 
-              className="w-full h-full object-cover"
+              className="hero-image-main w-full h-full object-cover scale-110"
               referrerPolicy="no-referrer"
-              // LCP image, no lazy loading
             />
             {/* Overlapping smaller image for editorial feel */}
-            <div className="absolute -bottom-12 -left-12 w-2/3 aspect-square border-4 border-charcoal" aria-hidden="true">
+            <div className="absolute -bottom-12 -left-12 w-2/3 aspect-square border-4 border-charcoal z-10" aria-hidden="true">
               <img 
                 src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800&auto=format&fit=crop" 
                 alt="" 
-                className="w-full h-full object-cover"
+                className="hero-image-sub w-full h-full object-cover scale-110"
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
