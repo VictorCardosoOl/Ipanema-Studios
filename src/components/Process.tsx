@@ -49,12 +49,12 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-cream text-charcoal border-t border-charcoal/10">
+    <section id="services" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-cream text-charcoal border-t border-charcoal/10">
       {/* Image Column (Left) */}
       <div className="md:col-span-4 relative h-[50vh] md:h-screen bg-sage overflow-hidden">
         {/* Top Left Label */}
         <div className="absolute top-8 left-8 z-20 text-[10px] uppercase tracking-widest font-bold opacity-90">
-          Bastidores do Estúdio
+          Nossas Especialidades
         </div>
         
         {/* Moodboard Composition */}
@@ -95,7 +95,7 @@ export default function Process() {
           className="text-7xl md:text-8xl lg:text-[10rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-20"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          Processo
+          Serviços
         </h2>
       </div>
 
@@ -103,7 +103,7 @@ export default function Process() {
       <div className="md:col-span-6 flex flex-col min-h-[50vh] md:min-h-screen bg-cream relative">
         {/* Top Right Label */}
         <div className="absolute top-8 right-8 text-[10px] 3xl:text-xs uppercase tracking-widest font-bold opacity-90">
-          Página 04 / 06
+          Página 03 / 05
         </div>
         
         {/* Text Grid at the bottom */}
@@ -111,30 +111,30 @@ export default function Process() {
           <div className="process-steps-container grid grid-cols-1 md:grid-cols-2 gap-x-12 3xl:gap-x-24 gap-y-16 3xl:gap-y-24 w-full max-w-3xl 3xl:max-w-5xl">
             
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">01 / Descoberta & Visão</h3>
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">01 / Desenvolvimento Web</h3>
               <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Começamos entendendo a identidade central da sua marca, público-alvo e objetivos principais. Esse mergulho profundo garante que nossa direção estratégica esteja perfeitamente alinhada com seus objetivos de negócios.
+                Criamos plataformas digitais robustas, escaláveis e de alta performance. Utilizamos as tecnologias mais modernas para garantir que seu site seja rápido, seguro e perfeitamente adaptado a qualquer dispositivo.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">02 / Escopo Técnico</h3>
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">02 / Design UI/UX</h3>
               <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Em seguida, mapeamos os requisitos funcionais. Desde preferências de CMS e integrações de terceiros até benchmarks de performance, definimos a arquitetura técnica que impulsionará sua plataforma.
+                Desenhamos interfaces intuitivas e memoráveis. Nosso foco é criar jornadas de usuário fluidas que não apenas encantam visualmente, mas também convertem e engajam seu público-alvo de forma eficaz.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">03 / Direção Estética</h3>
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">03 / Identidade Visual</h3>
               <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Curamos moodboards e referências visuais para estabelecer a identidade visual. Esta fase colaborativa nos ajuda a definir a tipografia, paletas de cores e a vibração editorial geral antes do início do design.
+                Construímos marcas com propósito e presença. Desde a criação de logotipos até sistemas de design completos, garantimos que sua identidade visual comunique seus valores e se destaque no mercado.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">04 / Cronograma & Proposta</h3>
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">04 / Otimização & SEO</h3>
               <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Por fim, sintetizamos nossas descobertas em um cronograma de projeto abrangente. Você receberá um cronograma detalhado, entregáveis claros e um plano estruturado descrevendo exatamente como daremos vida à sua visão.
+                Maximizamos a visibilidade do seu projeto. Aplicamos as melhores práticas de SEO técnico e otimização de performance para garantir que sua plataforma seja facilmente encontrada e ranqueada pelos motores de busca.
               </p>
             </div>
 

@@ -63,7 +63,7 @@ export default function Values() {
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
-          <span>02 / 06</span>
+          <span>05 / 05</span>
         </div>
         
         <div className="flex-grow flex flex-col justify-center items-end text-right">

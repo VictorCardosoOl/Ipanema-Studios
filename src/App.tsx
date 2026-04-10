@@ -4,11 +4,10 @@
  */
 
 import Hero from './components/Hero';
-import Values from './components/Values';
-import Mission from './components/Mission';
-import Process from './components/Process';
 import Portfolio from './components/Portfolio';
-import FAQSection from './components/FAQSection';
+import Process from './components/Process';
+import Mission from './components/Mission';
+import Values from './components/Values';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CardNav from './components/CardNav';
@@ -17,22 +16,21 @@ import SmoothScroll from './components/SmoothScroll';
 export default function App() {
   const navItems = [
     {
+      label: "Trabalhos", 
+      bgColor: "#111111",
+      textColor: "#FFFFFF",
+      links: [
+        { label: "Projetos Selecionados", ariaLabel: "Projetos em Destaque", href: "#portfolio" },
+        { label: "Serviços", ariaLabel: "Nossos Serviços", href: "#services" }
+      ]
+    },
+    {
       label: "Sobre",
       bgColor: "#000000",
       textColor: "#FFFFFF",
       links: [
-        { label: "Nossa História", ariaLabel: "Sobre a Empresa", href: "#about" },
-        { label: "Missão", ariaLabel: "Nossa Missão", href: "#mission" },
+        { label: "Quem Somos", ariaLabel: "Quem Somos", href: "#mission" },
         { label: "Valores", ariaLabel: "Nossos Valores", href: "#values" }
-      ]
-    },
-    {
-      label: "Projetos", 
-      bgColor: "#111111",
-      textColor: "#FFFFFF",
-      links: [
-        { label: "Destaques", ariaLabel: "Projetos em Destaque", href: "#portfolio" },
-        { label: "Processo", ariaLabel: "Nosso Processo", href: "#process" }
       ]
     },
     {
@@ -41,7 +39,6 @@ export default function App() {
       textColor: "#FFFFFF",
       links: [
         { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@ipanemastudios.com" },
-        { label: "FAQ", ariaLabel: "Dúvidas Frequentes", href: "#faq" },
         { label: "Instagram", ariaLabel: "Siga-nos no Instagram", href: "#" }
       ]
     }
@@ -59,11 +56,10 @@ export default function App() {
         buttonTextColor="#FFFFFF"
       />
       <Hero />
-      <Values />
-      <Mission />
-      <Process />
       <Portfolio />
-      <FAQSection />
+      <Process />
+      <Mission />
+      <Values />
       <Contact />
       <Footer />
     </main>

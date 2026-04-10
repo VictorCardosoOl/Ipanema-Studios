@@ -44,7 +44,7 @@ export default function Mission() {
       <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
           <h2 className="font-medium tracking-tight">Ipanema Studios</h2>
-          <span className="opacity-90">Nossa Missão</span>
+          <span className="opacity-90">Quem Somos</span>
         </div>
         
         <div className="flex-grow flex flex-col justify-end pb-12 md:pb-24 3xl:pb-32 max-w-xl 3xl:max-w-3xl">
@@ -79,7 +79,7 @@ export default function Mission() {
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
-          <span>03 / 06</span>
+          <span>04 / 05</span>
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">

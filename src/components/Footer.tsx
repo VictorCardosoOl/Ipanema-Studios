@@ -70,10 +70,10 @@ const Footer = () => {
             <span className="text-[10px] 3xl:text-xs font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 3xl:mb-12 block">Navegação</span>
             <ul className="space-y-4 3xl:space-y-6 mb-16 3xl:mb-24">
               {[
-                { name: 'Sobre', url: '#about' },
-                { name: 'Processo', url: '#process' },
-                { name: 'Portfólio', url: '#portfolio' },
-                { name: 'FAQ', url: '#faq' },
+                { name: 'Trabalhos', url: '#portfolio' },
+                { name: 'Serviços', url: '#services' },
+                { name: 'Quem Somos', url: '#mission' },
+                { name: 'Contato', url: '#contact' },
               ].map((link) => (
                 <li key={link.name}>
                   <a 
