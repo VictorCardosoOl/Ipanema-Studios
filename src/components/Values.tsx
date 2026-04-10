@@ -50,7 +50,7 @@ export default function Values() {
             <img 
               src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop" 
               alt="Team working" 
-              className="values-image w-full h-full object-cover opacity-90 scale-110"
+              className="values-image w-full h-full object-cover opacity-90 scale-110 grayscale hover:grayscale-0 transition-all duration-1000"
               referrerPolicy="no-referrer"
               loading="lazy"
             />

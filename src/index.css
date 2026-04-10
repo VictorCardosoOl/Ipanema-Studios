@@ -6,12 +6,12 @@
   --font-serif: "Cormorant+Garamond", ui-serif, Georgia, serif;
   --font-display: "Playfair Display", serif;
   
-  --color-cream: #F2EFE9;
-  --color-charcoal: #3A3532;
-  --color-sage: #D2D3C4;
-  --color-stone-950: #0c0a09;
-  --color-stone-900: #1c1917;
-  --color-stone-800: #292524;
+  --color-cream: #FFFFFF;
+  --color-charcoal: #000000;
+  --color-sage: #F5F5F5;
+  --color-stone-950: #000000;
+  --color-stone-900: #111111;
+  --color-stone-800: #222222;
 }
 
 body {

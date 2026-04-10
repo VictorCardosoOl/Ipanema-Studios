@@ -76,26 +76,26 @@ export default function Hero() {
 
       {/* Right Panel - Charcoal */}
       <div className="bg-charcoal text-cream p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen relative pt-24">
-        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-70">
+        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-50">
           <span>Perfil da Agência</span>
           <span>2026</span>
           <span>01 / 06</span>
         </div>
         
         <div className="flex-grow flex items-center justify-center p-8 md:p-16">
-          <div className="relative w-full max-w-sm aspect-[3/4] overflow-hidden">
+          <div className="relative w-full max-w-sm aspect-[3/4] overflow-hidden bg-stone-900">
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
               alt="Minimalist Architecture" 
-              className="hero-image-main w-full h-full object-cover scale-110"
+              className="hero-image-main w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-1000"
               referrerPolicy="no-referrer"
             />
             {/* Overlapping smaller image for editorial feel */}
-            <div className="absolute -bottom-12 -left-12 w-2/3 aspect-square border-4 border-charcoal z-10" aria-hidden="true">
+            <div className="absolute -bottom-12 -left-12 w-2/3 aspect-square border-4 border-charcoal z-10 shadow-2xl overflow-hidden bg-stone-800">
               <img 
                 src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800&auto=format&fit=crop" 
                 alt="" 
-                className="hero-image-sub w-full h-full object-cover scale-110"
+                className="hero-image-sub w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-1000"
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />

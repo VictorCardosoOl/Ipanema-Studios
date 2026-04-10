@@ -87,7 +87,7 @@ export default function Mission() {
             <img 
               src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=1000&auto=format&fit=crop" 
               alt="Abstract minimal" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
               referrerPolicy="no-referrer"
               loading="lazy"
             />

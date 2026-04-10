@@ -18,8 +18,8 @@ export default function App() {
   const navItems = [
     {
       label: "Sobre",
-      bgColor: "#0D0716",
-      textColor: "#fff",
+      bgColor: "#000000",
+      textColor: "#FFFFFF",
       links: [
         { label: "Nossa História", ariaLabel: "Sobre a Empresa", href: "#about" },
         { label: "Missão", ariaLabel: "Nossa Missão", href: "#mission" },
@@ -28,8 +28,8 @@ export default function App() {
     },
     {
       label: "Projetos", 
-      bgColor: "#170D27",
-      textColor: "#fff",
+      bgColor: "#111111",
+      textColor: "#FFFFFF",
       links: [
         { label: "Destaques", ariaLabel: "Projetos em Destaque", href: "#portfolio" },
         { label: "Processo", ariaLabel: "Nosso Processo", href: "#process" }
@@ -37,8 +37,8 @@ export default function App() {
     },
     {
       label: "Contato",
-      bgColor: "#271E37", 
-      textColor: "#fff",
+      bgColor: "#222222", 
+      textColor: "#FFFFFF",
       links: [
         { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@ipanemastudios.com" },
         { label: "FAQ", ariaLabel: "Dúvidas Frequentes", href: "#faq" },
@@ -53,10 +53,10 @@ export default function App() {
       <CardNav 
         items={navItems}
         logoText="Ipanema"
-        baseColor="#F2EFE9"
-        menuColor="#3A3532"
-        buttonBgColor="#3A3532"
-        buttonTextColor="#F2EFE9"
+        baseColor="#FFFFFF"
+        menuColor="#000000"
+        buttonBgColor="#000000"
+        buttonTextColor="#FFFFFF"
       />
       <Hero />
       <Values />

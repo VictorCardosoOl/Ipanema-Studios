@@ -81,7 +81,7 @@ const FAQSection = () => {
     <section 
       id="faq"
       ref={containerRef} 
-      className="py-32 px-6 bg-[#EBE9E4] dark:bg-[#0a0a0a] text-charcoal dark:text-cream transition-colors duration-500"
+      className="py-32 px-6 bg-cream text-charcoal transition-colors duration-500"
     >
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
         
