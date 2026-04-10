@@ -81,24 +81,24 @@ const FAQSection = () => {
     <section 
       id="faq"
       ref={containerRef} 
-      className="py-32 px-6 bg-cream text-charcoal transition-colors duration-500"
+      className="py-32 3xl:py-48 px-6 3xl:px-24 bg-cream text-charcoal transition-colors duration-500"
     >
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-[1440px] 3xl:max-w-screen-3xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 3xl:gap-24">
         
         {/* COLUNA ESQUERDA (Sticky) */}
         <div className="lg:col-span-4 relative">
-          <div className="sticky-content lg:sticky lg:top-32">
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase mb-4 block opacity-60">Suporte</span>
-            <h2 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.85] mb-8">
+          <div className="sticky-content lg:sticky lg:top-32 3xl:top-48">
+            <span className="text-[10px] 3xl:text-xs font-bold tracking-[0.2em] uppercase mb-4 3xl:mb-8 block opacity-60">Suporte</span>
+            <h2 className="font-display text-6xl md:text-7xl lg:text-8xl 3xl:text-[10rem] leading-[0.85] mb-8 3xl:mb-12">
               Dúvidas <br/> 
               <span className="italic opacity-50">Frequentes</span>
             </h2>
-            <p className="text-sm max-w-xs mb-10 opacity-70 leading-relaxed font-sans">
+            <p className="text-sm 3xl:text-lg max-w-xs 3xl:max-w-md mb-10 3xl:mb-16 opacity-70 leading-relaxed font-sans">
               Encontre respostas para as perguntas mais comuns sobre nosso processo criativo e técnico.
             </p>
             <a 
               href="#contact" 
-              className="inline-flex items-center gap-3 border border-charcoal/20 rounded-full px-8 py-4 text-xs uppercase tracking-widest hover:bg-charcoal hover:text-cream transition-all group"
+              className="inline-flex items-center gap-3 border border-charcoal/20 rounded-full px-8 py-4 3xl:px-12 3xl:py-6 text-xs 3xl:text-sm uppercase tracking-widest hover:bg-charcoal hover:text-cream transition-all group focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"
             >
               Falar com Especialista
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -118,28 +118,28 @@ const FAQSection = () => {
             >
               <button 
                 onClick={() => toggleItem(idx)}
-                className="w-full py-10 flex justify-between items-center text-left group outline-none"
+                className="w-full py-10 3xl:py-16 flex justify-between items-center text-left group outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream rounded-sm"
                 aria-expanded={openIndex === idx}
               >
-                <h3 className={`text-2xl md:text-3xl font-serif transition-all duration-500 flex items-start gap-4 ${
+                <h3 className={`text-2xl md:text-3xl 3xl:text-5xl font-serif transition-all duration-500 flex items-start gap-4 ${
                   openIndex === idx ? 'translate-x-4 text-charcoal' : 'text-charcoal/60'
                 }`}>
-                  <span className="text-xs font-sans tracking-widest mt-2 opacity-40">{(idx + 1).toString().padStart(2, '0')}</span>
+                  <span className="text-xs 3xl:text-sm font-sans tracking-widest mt-2 3xl:mt-4 opacity-40">{(idx + 1).toString().padStart(2, '0')}</span>
                   {item.question}
                 </h3>
-                <div className={`relative w-6 h-6 flex items-center justify-center transition-transform duration-500 ${openIndex === idx ? 'rotate-45' : ''}`}>
-                   <Plus size={24} strokeWidth={1.5} />
+                <div className={`relative w-6 h-6 3xl:w-10 3xl:h-10 flex items-center justify-center transition-transform duration-500 ${openIndex === idx ? 'rotate-45' : ''}`}>
+                   <Plus className="w-6 h-6 3xl:w-10 3xl:h-10" strokeWidth={1.5} />
                 </div>
               </button>
               
               {/* Área de Resposta (Expandable) */}
               <div 
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openIndex === idx ? 'max-h-96 opacity-100 pb-10' : 'max-h-0 opacity-0'
+                  openIndex === idx ? 'max-h-96 opacity-100 pb-10 3xl:pb-16' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="pl-12">
-                  <p className="text-base md:text-lg opacity-70 max-w-2xl leading-relaxed font-sans">
+                <div className="pl-12 3xl:pl-16">
+                  <p className="text-base md:text-lg 3xl:text-2xl opacity-70 max-w-2xl 3xl:max-w-4xl leading-relaxed font-sans">
                     {item.answer}
                   </p>
                 </div>

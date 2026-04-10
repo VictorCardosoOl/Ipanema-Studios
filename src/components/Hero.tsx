@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
@@ -47,13 +46,13 @@ export default function Hero() {
   return (
     <section id="about" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Panel - Cream */}
-      <div className="bg-cream p-8 md:p-12 flex flex-col justify-between min-h-[50vh] md:min-h-screen pt-24">
+      <div className="bg-cream p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col justify-between min-h-[50vh] md:min-h-screen pt-24 3xl:pt-32">
         <header>
-          <h1 className="text-xl font-medium tracking-tight">Ipanema Studios</h1>
+          <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Ipanema Studios</h1>
         </header>
         
-        <nav className="w-full max-w-md mt-24 md:mt-0" aria-label="Main Navigation">
-          <ul className="text-sm font-medium tracking-wide">
+        <nav className="w-full max-w-md 3xl:max-w-xl mt-24 md:mt-0" aria-label="Main Navigation">
+          <ul className="text-sm 3xl:text-lg font-medium tracking-wide">
             {[
               { name: 'sobre', link: '#about', page: '03' },
               { name: 'valores', link: '#values', page: '09' },
@@ -75,15 +74,15 @@ export default function Hero() {
       </div>
 
       {/* Right Panel - Charcoal */}
-      <div className="bg-charcoal text-cream p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen relative pt-24">
-        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-80 font-bold">
+      <div className="bg-charcoal text-cream p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen relative pt-24 3xl:pt-32">
+        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
           <span>01 / 06</span>
         </div>
         
-        <div className="flex-grow flex items-center justify-center p-8 md:p-16">
-          <div className="relative w-full max-w-sm aspect-[3/4] overflow-hidden bg-stone-900">
+        <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">
+          <div className="relative w-full max-w-sm 3xl:max-w-lg 4xl:max-w-2xl aspect-[3/4] overflow-hidden bg-stone-900">
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
               alt="Minimalist Architecture" 

@@ -179,7 +179,7 @@ const CardNav: React.FC<CardNavProps> = ({
       >
         <div className="card-nav-top">
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm`}
             onClick={toggleMenu}
             role="button"
             aria-label={isExpanded ? 'Fechar menu' : 'Abrir menu'}
@@ -197,7 +197,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
           <button
             type="button"
-            className="card-nav-cta-button"
+            className="card-nav-cta-button focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
             onClick={() => {
               const contactSection = document.getElementById('contact');
@@ -221,7 +221,7 @@ const CardNav: React.FC<CardNavProps> = ({
                 {item.links?.map((lnk, i) => (
                   <a 
                     key={`${lnk.label}-${i}`} 
-                    className="nav-card-link" 
+                    className="nav-card-link focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none rounded-sm" 
                     href={lnk.href || '#'} 
                     aria-label={lnk.ariaLabel}
                     onClick={() => {

@@ -41,14 +41,14 @@ export default function Mission() {
   return (
     <section id="mission" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-cream text-charcoal overflow-hidden">
       {/* Left Panel */}
-      <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
-        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-80 font-bold mb-8">
+      <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
+        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
           <h2 className="font-medium tracking-tight">Ipanema Studios</h2>
           <span className="opacity-90">Nossa Missão</span>
         </div>
         
-        <div className="flex-grow flex flex-col justify-end pb-12 md:pb-24 max-w-xl">
-          <div className="mission-text grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-sm leading-relaxed font-medium opacity-90">
+        <div className="flex-grow flex flex-col justify-end pb-12 md:pb-24 3xl:pb-32 max-w-xl 3xl:max-w-3xl">
+          <div className="mission-text grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 3xl:gap-16 text-sm 3xl:text-lg leading-relaxed font-medium opacity-90">
             <div>
               <p className="mb-6 relative">
                 <span className="absolute -left-4 top-0 text-charcoal/70" aria-hidden="true">•</span>
@@ -75,15 +75,15 @@ export default function Mission() {
       </div>
 
       {/* Right Panel */}
-      <div className="p-8 md:p-12 flex flex-col min-h-[50vh] md:min-h-screen">
-        <div className="flex justify-between text-[10px] uppercase tracking-widest opacity-80 font-bold">
+      <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
+        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
           <span>2026</span>
           <span>03 / 06</span>
         </div>
         
-        <div className="flex-grow flex items-center justify-center p-8 md:p-16">
-          <div className="mission-image-container w-full max-w-md aspect-[4/5] overflow-hidden">
+        <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">
+          <div className="mission-image-container w-full max-w-md 3xl:max-w-lg 4xl:max-w-2xl aspect-[4/5] overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=1000&auto=format&fit=crop" 
               alt="Abstract minimal" 
