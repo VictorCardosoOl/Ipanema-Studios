@@ -42,32 +42,31 @@ const CardNav: React.FC<CardNavProps> = ({
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   
   const navRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   const isHidden = scrollDirection === 'down' && !isAtTop && !isExpanded;
 
   useLayoutEffect(() => {
-    if (!navRef.current || !contentRef.current) return;
+    if (!navRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.set(navRef.current, { height: 60, overflow: 'hidden' });
-      gsap.set(cardsRef.current, { y: 50, opacity: 0 });
+      gsap.set(cardsRef.current, { y: 30, opacity: 0 });
 
       timelineRef.current = gsap.timeline({ paused: true })
         .to(navRef.current, {
           height: "auto",
-          duration: 0.4,
-          ease: "power3.out"
+          duration: 0.5,
+          ease: "power3.inOut"
         })
         .to(cardsRef.current, { 
           y: 0, 
           opacity: 1, 
           duration: 0.4, 
           ease: "power3.out", 
-          stagger: 0.08 
-        }, '-=0.2');
+          stagger: 0.05 
+        }, "-=0.2");
     }, navRef);
 
     return () => ctx.revert();
@@ -77,7 +76,8 @@ const CardNav: React.FC<CardNavProps> = ({
     if (!timelineRef.current) return;
     
     if (isExpanded) {
-      timelineRef.current.reverse().then(() => setIsExpanded(false));
+      setIsExpanded(false);
+      timelineRef.current.reverse();
     } else {
       setIsExpanded(true);
       timelineRef.current.play();
@@ -87,7 +87,8 @@ const CardNav: React.FC<CardNavProps> = ({
   const handleCtaClick = useCallback(() => {
     const contactSection = document.getElementById('contact');
     contactSection?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+    if (isExpanded) toggleMenu();
+  }, [isExpanded, toggleMenu]);
 
   const handleLinkClick = useCallback((href?: string) => {
     if (href?.startsWith('#')) {
@@ -99,7 +100,7 @@ const CardNav: React.FC<CardNavProps> = ({
     <div className={`card-nav-container ${className} ${isHidden ? 'hidden' : ''}`}>
       <nav 
         ref={navRef} 
-        className={`card-nav ${isExpanded ? 'open' : ''}`} 
+        className={`card-nav overflow-hidden ${isExpanded ? 'open' : ''}`} 
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top">
@@ -129,7 +130,7 @@ const CardNav: React.FC<CardNavProps> = ({
           </button>
         </div>
 
-        <div ref={contentRef} className="card-nav-content" aria-hidden={!isExpanded}>
+        <div className="card-nav-content" aria-hidden={!isExpanded}>
           {items.slice(0, 3).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
