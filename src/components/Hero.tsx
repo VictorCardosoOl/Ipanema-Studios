@@ -17,6 +17,7 @@ export default function Hero() {
               { name: 'missão', link: '#mission', page: '16' },
               { name: 'processo', link: '#process', page: '19' },
               { name: 'portfólio', link: '#portfolio', page: '22' },
+              { name: 'faq', link: '#faq', page: '23' },
               { name: 'contato', link: '#contact', page: '24' },
             ].map((item, i) => (
               <li key={i} className="border-b border-charcoal/30 last:border-0">
