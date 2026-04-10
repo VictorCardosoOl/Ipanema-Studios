@@ -1,9 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
+type FormState = 'idle' | 'loading' | 'success' | 'error';
+
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [formState, setFormState] = useState<FormState>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -23,16 +26,49 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormState('loading');
+  const validateEmail = (email: string): boolean => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     
-    // Simulate API call
-    setTimeout(() => {
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const budget = formData.get('budget') as string;
+    const details = formData.get('details') as string;
+
+    if (!name || !email || !budget || !details) {
+      setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
+      setFormState('error');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setErrorMessage('Por favor, insira um endereço de e-mail válido.');
+      setFormState('error');
+      return;
+    }
+
+    setFormState('loading');
+    setErrorMessage('');
+    
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       setFormState('success');
-      // Reset form after 3 seconds
-      setTimeout(() => setFormState('idle'), 3000);
-    }, 1500);
+      
+      setTimeout(() => {
+        setFormState('idle');
+        if (event.target instanceof HTMLFormElement) {
+          event.target.reset();
+        }
+      }, 3000);
+    } catch (error) {
+      setErrorMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.');
+      setFormState('error');
+    }
   };
 
   return (
@@ -56,7 +92,7 @@ export default function Contact() {
 
         {/* Right: Form */}
         <div className="contact-form-container bg-charcoal text-cream p-8 md:p-12 3xl:p-20 relative overflow-hidden">
-          {formState === 'success' ? (
+          {formState === 'success' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-charcoal text-center p-8 z-10">
               <div className="w-16 h-16 rounded-full border-2 border-cream flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-cream" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,22 +102,29 @@ export default function Contact() {
               <h3 className="text-2xl font-serif mb-2">Mensagem Enviada</h3>
               <p className="text-sm opacity-70">Entraremos em contato em breve.</p>
             </div>
-          ) : null}
+          )}
 
-          <form className={`flex flex-col gap-8 3xl:gap-12 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit}>
+          <form className={`flex flex-col gap-8 3xl:gap-12 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit} noValidate>
+            
+            {formState === 'error' && (
+              <div className="bg-red-500/10 border border-red-500/50 text-red-200 px-4 py-3 rounded-sm text-sm">
+                {errorMessage}
+              </div>
+            )}
+
             <div className="flex flex-col gap-2 3xl:gap-4">
               <label htmlFor="name" className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-90 font-bold">Nome</label>
-              <input type="text" id="name" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl" placeholder="João Silva" required />
+              <input type="text" id="name" name="name" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl" placeholder="João Silva" required />
             </div>
             
             <div className="flex flex-col gap-2 3xl:gap-4">
               <label htmlFor="email" className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-90 font-bold">E-mail</label>
-              <input type="email" id="email" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl" placeholder="joao@exemplo.com" required />
+              <input type="email" id="email" name="email" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl" placeholder="joao@exemplo.com" required />
             </div>
 
             <div className="flex flex-col gap-2 3xl:gap-4">
               <label htmlFor="budget" className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-90 font-bold">Orçamento</label>
-              <select id="budget" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl appearance-none rounded-none">
+              <select id="budget" name="budget" className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl appearance-none rounded-none" required>
                 <option value="" className="bg-charcoal text-cream">Selecione uma faixa</option>
                 <option value="10k-25k" className="bg-charcoal text-cream">R$ 10k - R$ 25k</option>
                 <option value="25k-50k" className="bg-charcoal text-cream">R$ 25k - R$ 50k</option>
@@ -91,7 +134,7 @@ export default function Contact() {
 
             <div className="flex flex-col gap-2 3xl:gap-4">
               <label htmlFor="details" className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-90 font-bold">Detalhes do Projeto</label>
-              <textarea id="details" rows={3} className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl resize-none" placeholder="Conte-nos sobre sua visão..." required></textarea>
+              <textarea id="details" name="details" rows={3} className="bg-transparent border-b border-cream/50 pb-2 3xl:pb-4 focus:outline-none focus:border-cream transition-colors text-base 3xl:text-xl resize-none" placeholder="Conte-nos sobre sua visão..." required></textarea>
             </div>
 
             <button type="submit" disabled={formState === 'loading'} className="mt-4 3xl:mt-8 border border-cream rounded-full px-8 py-3 3xl:px-12 3xl:py-5 text-sm 3xl:text-base hover:bg-cream hover:text-charcoal transition-colors self-start font-bold focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none disabled:opacity-50 flex items-center gap-2">
