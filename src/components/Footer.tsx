@@ -9,7 +9,7 @@ const Footer = () => {
       {/* 2. Background Typography */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 pointer-events-none select-none z-0">
         <span className="font-display text-[20vw] leading-none text-white/10 uppercase tracking-tighter whitespace-nowrap">
-          IPANEMA
+          FORMOSA
         </span>
       </div>
 
@@ -18,7 +18,7 @@ const Footer = () => {
           
           {/* Col 1: Identity */}
           <div className="lg:pr-12 3xl:pr-24 lg:border-r border-white/20">
-            <h2 className="font-display text-5xl 3xl:text-7xl text-white mb-6 3xl:mb-10">Ipanema Studios</h2>
+            <h2 className="font-display text-5xl 3xl:text-7xl text-white mb-6 3xl:mb-10">Formosa Studios</h2>
             <p className="font-serif italic text-2xl 3xl:text-4xl text-white/80 leading-relaxed">
               Elevando o padrão digital através de design editorial e engenharia de precisão.
             </p>
@@ -88,7 +88,7 @@ const Footer = () => {
             
             <div className="pt-10 border-t border-white/20">
               <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 leading-relaxed font-medium">
-                &copy; {currentYear} Ipanema Studios.<br />
+                &copy; {currentYear} Formosa Studios.<br />
                 Desenvolvido com excelência técnica.
               </p>
             </div>

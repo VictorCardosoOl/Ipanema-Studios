@@ -48,7 +48,7 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col justify-between min-h-[50vh] md:min-h-screen pt-24 3xl:pt-32">
         <header>
-          <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Ipanema Studios</h1>
+          <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Formosa Studios</h1>
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-24 md:mt-0" aria-label="Main Navigation">

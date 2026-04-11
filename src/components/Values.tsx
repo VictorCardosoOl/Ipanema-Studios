@@ -41,7 +41,7 @@ export default function Values() {
       {/* Left Panel */}
       <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
-          <h2 className="font-medium tracking-tight">Ipanema Studios</h2>
+          <h2 className="font-medium tracking-tight">Formosa Studios</h2>
           <span className="opacity-90">Valores Fundamentais</span>
         </div>
         

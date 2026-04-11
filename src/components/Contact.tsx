@@ -85,7 +85,7 @@ export default function Contact() {
             <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12 lg:mt-32">
               <div>
                 <span className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-50 font-bold mb-4 block">Novos Negócios</span>
-                <a href="mailto:hello@ipanemastudios.com" className="text-lg 3xl:text-2xl hover:opacity-70 transition-opacity font-medium">hello@ipanemastudios.com</a>
+                <a href="mailto:hello@formosastudios.com" className="text-lg 3xl:text-2xl hover:opacity-70 transition-opacity font-medium">hello@formosastudios.com</a>
               </div>
               <div>
                 <span className="text-[10px] 3xl:text-xs uppercase tracking-widest opacity-50 font-bold mb-4 block">Localização</span>

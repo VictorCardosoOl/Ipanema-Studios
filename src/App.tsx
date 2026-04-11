@@ -38,7 +38,7 @@ export default function App() {
       bgColor: "#222222", 
       textColor: "#FFFFFF",
       links: [
-        { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@ipanemastudios.com" },
+        { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@formosastudios.com" },
         { label: "Instagram", ariaLabel: "Siga-nos no Instagram", href: "#" }
       ]
     }
@@ -49,7 +49,7 @@ export default function App() {
       <SmoothScroll />
       <CardNav 
         items={navItems}
-        logoText="Ipanema"
+        logoText="Formosa"
         baseColor="#FFFFFF"
         menuColor="#000000"
         buttonBgColor="#000000"

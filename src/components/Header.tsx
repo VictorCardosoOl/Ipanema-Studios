@@ -29,7 +29,7 @@ export default function Header() {
         isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
-      <div className="text-xl 3xl:text-3xl font-medium tracking-tight pointer-events-auto">Ipanema Studios</div>
+      <div className="text-xl 3xl:text-3xl font-medium tracking-tight pointer-events-auto">Formosa Studios</div>
       <a 
         href="#contact" 
         className="pointer-events-auto border border-cream rounded-full px-6 py-2 3xl:px-10 3xl:py-4 text-sm 3xl:text-lg hover:bg-cream hover:text-charcoal transition-colors focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"

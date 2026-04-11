@@ -29,7 +29,7 @@ interface CardNavProps {
 }
 
 const CardNav: React.FC<CardNavProps> = ({
-  logoText = 'Ipanema',
+  logoText = 'Formosa',
   items,
   className = '',
   baseColor = '#fff',
