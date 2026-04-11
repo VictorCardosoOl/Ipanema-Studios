@@ -56,63 +56,65 @@ export default function Portfolio() {
   }, [currentSlide]);
 
   return (
-    <section id="portfolio" ref={sectionRef} className="relative w-full h-screen bg-charcoal overflow-hidden">
-      {/* Background Images */}
-      {projects.map((project, idx) => (
-        <div
-          key={idx}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
-        >
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            loading={idx === 0 ? "eager" : "lazy"}
-          />
-        </div>
-      ))}
-
-      {/* Content */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 lg:px-32 max-w-[1920px] mx-auto w-full">
-        <div className="max-w-2xl" ref={contentRef}>
-          <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-sans font-bold text-white mb-8 tracking-tight">
-            {projects[currentSlide].title}
-          </h2>
-          <p className="text-xl md:text-2xl text-white mb-12 font-sans font-bold leading-snug max-w-2xl">
-            {projects[currentSlide].description}
-          </p>
-          <a
-            href={projects[currentSlide].link}
-            className="inline-flex items-center justify-center px-8 py-3 border border-white text-white rounded-md hover:bg-white hover:text-charcoal transition-colors duration-300 text-sm font-sans font-medium tracking-wide focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"
-          >
-            view project
-          </a>
-        </div>
-      </div>
-
-      {/* Carousel Indicators */}
-      <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 flex items-center gap-3 z-20">
-        {projects.map((_, idx) => (
-          <button
+    <section id="portfolio" ref={sectionRef} className="relative w-full h-screen bg-[#0a0a0a] flex items-center justify-center p-8 md:p-12 lg:p-16">
+      <div className="relative w-full h-full overflow-hidden">
+        {/* Background Images */}
+        {projects.map((project, idx) => (
+          <div
             key={idx}
-            onClick={() => setCurrentSlide(idx)}
-            className="relative flex items-center justify-center w-6 h-6 focus:outline-none group"
-            aria-label={`Ir para o projeto ${idx + 1}`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
           >
-            {currentSlide === idx && (
-              <span className="absolute inset-0 border border-white rounded-full" />
-            )}
-            <span 
-              className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
-                currentSlide === idx ? 'bg-white' : 'bg-white/50 group-hover:bg-white/80'
-              }`} 
+            {/* Dark overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/20 z-10" />
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              loading={idx === 0 ? "eager" : "lazy"}
             />
-          </button>
+          </div>
         ))}
+
+        {/* Content */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full">
+          <div className="max-w-2xl" ref={contentRef}>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-6 tracking-tight">
+              {projects[currentSlide].title}
+            </h2>
+            <p className="text-lg md:text-xl text-white mb-10 font-sans font-bold leading-snug max-w-xl">
+              {projects[currentSlide].description}
+            </p>
+            <a
+              href={projects[currentSlide].link}
+              className="inline-flex items-center justify-center px-6 py-2 border border-white text-white rounded-sm hover:bg-white hover:text-charcoal transition-colors duration-300 text-xs font-sans font-medium tracking-wide focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"
+            >
+              view project
+            </a>
+          </div>
+        </div>
+
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-center gap-3 z-20">
+          {projects.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className="relative flex items-center justify-center w-6 h-6 focus:outline-none group"
+              aria-label={`Ir para o projeto ${idx + 1}`}
+            >
+              {currentSlide === idx && (
+                <span className="absolute inset-0 border border-white rounded-full" />
+              )}
+              <span 
+                className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
+                  currentSlide === idx ? 'bg-white' : 'bg-white/50 group-hover:bg-white/80'
+                }`} 
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
