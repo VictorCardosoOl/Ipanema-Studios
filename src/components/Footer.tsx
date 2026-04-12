@@ -1,100 +1,105 @@
 import React from 'react';
-import { Instagram, Linkedin, Twitter, ArrowUpRight, Github } from 'lucide-react';
+import { ArrowUp, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="relative bg-charcoal text-white py-32 3xl:py-48 px-6 3xl:px-24 overflow-hidden border-t border-white/10">
-      {/* 2. Background Typography */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 pointer-events-none select-none z-0">
-        <span className="font-display text-[20vw] leading-none text-white/10 uppercase tracking-tighter whitespace-nowrap">
-          FORMOSA
-        </span>
-      </div>
-
-      <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 3xl:gap-24 lg:gap-0">
-          
-          {/* Col 1: Identity */}
-          <div className="lg:pr-12 3xl:pr-24 lg:border-r border-white/20">
-            <h2 className="font-display text-5xl 3xl:text-7xl text-white mb-6 3xl:mb-10">Formosa Studios</h2>
-            <p className="font-serif italic text-2xl 3xl:text-4xl text-white/80 leading-relaxed">
-              Elevando o padrão digital através de design editorial e engenharia de precisão.
-            </p>
-          </div>
-
-          {/* Col 2: Local/CTA */}
-          <div className="lg:px-12 3xl:px-24 lg:border-r border-white/20">
-            <span className="text-[10px] 3xl:text-xs font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 3xl:mb-12 block">Localização</span>
-            <p className="text-sm 3xl:text-lg text-white/90 mb-10 3xl:mb-16 leading-loose font-medium">
-              Rio de Janeiro, Brasil<br />
-              Atendimento Global / Remoto
-            </p>
-            <a 
-              href="#contact" 
-              className="group flex items-center gap-3 text-white hover:text-white/80 transition-all text-xs uppercase tracking-widest font-bold focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none rounded-sm"
-            >
-              Vamos conversar
-              <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Col 3: Social */}
-          <div className="lg:px-12 3xl:px-24 lg:border-r border-white/20">
-            <span className="text-[10px] 3xl:text-xs font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 3xl:mb-12 block">Social</span>
-            <ul className="space-y-6 3xl:space-y-8">
-              {[
-                { name: 'Instagram', icon: <Instagram size={16} />, url: '#' },
-                { name: 'LinkedIn', icon: <Linkedin size={16} />, url: '#' },
-                { name: 'Twitter', icon: <Twitter size={16} />, url: '#' },
-                { name: 'GitHub', icon: <Github size={16} />, url: '#' },
-              ].map((social) => (
-                <li key={social.name}>
-                  <a 
-                    href={social.url} 
-                    className="flex items-center gap-4 text-white/80 hover:text-white transition-all group font-medium focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none rounded-sm"
-                  >
-                    <span className="group-hover:scale-110 transition-transform">
-                      {social.icon}
-                    </span>
-                    <span className="text-xs uppercase tracking-widest">{social.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4: Menu/Credits */}
-          <div className="lg:pl-12 3xl:pl-24">
-            <span className="text-[10px] 3xl:text-xs font-sans uppercase tracking-[0.4em] text-white/60 font-bold mb-8 3xl:mb-12 block">Navegação</span>
-            <ul className="space-y-4 3xl:space-y-6 mb-16 3xl:mb-24">
-              {[
-                { name: 'Trabalhos', url: '#portfolio' },
-                { name: 'Serviços', url: '#services' },
-                { name: 'Quem Somos', url: '#mission' },
-                { name: 'Contato', url: '#contact' },
-              ].map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.url} 
-                    className="text-xs uppercase tracking-widest text-white/80 hover:text-white transition-all hover:translate-x-2 inline-block font-bold focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none rounded-sm"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            
-            <div className="pt-10 border-t border-white/20">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 leading-relaxed font-medium">
-                &copy; {currentYear} Formosa Studios.<br />
-                Desenvolvido com excelência técnica.
-              </p>
+    <footer className="bg-cream text-charcoal pt-16 pb-8 px-8 md:px-12 lg:px-16 flex flex-col justify-between min-h-screen border-t border-charcoal/10">
+      {/* Top Section */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1920px] mx-auto">
+        {/* Col 1: Social & Contact (Span 4) */}
+        <div className="md:col-span-4 flex flex-col gap-4">
+          <div className="flex items-baseline gap-4">
+            <span className="text-sm text-charcoal/50 w-24">social media:</span>
+            <div className="flex gap-4 text-sm">
+              <a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a>
+              <a href="#" className="hover:opacity-70 transition-opacity">GitHub</a>
+              <a href="#" className="hover:opacity-70 transition-opacity">Instagram</a>
             </div>
           </div>
-
+          <div className="flex items-baseline gap-4">
+            <span className="text-sm text-charcoal/50 w-24">say hello:</span>
+            <a href="mailto:hello@formosastudios.com" className="text-sm hover:opacity-70 transition-opacity">hello@formosastudios.com</a>
+          </div>
         </div>
+
+        {/* Col 2: Studio (Span 2) */}
+        <div className="md:col-span-2 flex flex-col gap-4">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">O ESTÚDIO</span>
+          <div className="text-sm leading-relaxed">
+            <p className="font-serif text-base mb-1">Estúdio Formosa</p>
+            <p className="text-charcoal/70">Vila Formosa, São Paulo</p>
+            <p className="text-charcoal/70">Brasil</p>
+          </div>
+        </div>
+
+        {/* Col 3: Office (Span 2) */}
+        <div className="md:col-span-2 flex flex-col gap-4">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">ESCRITÓRIO</span>
+          <div className="text-sm leading-relaxed">
+            <p className="font-serif text-base mb-1">Escritório do Tatuapé</p>
+            <p className="text-charcoal/70">Tatuapé, São Paulo</p>
+            <p className="text-charcoal/70">Brasil</p>
+          </div>
+        </div>
+
+        {/* Col 4: Navigation (Span 4) */}
+        <div className="md:col-span-4 flex flex-wrap justify-start md:justify-end gap-x-6 gap-y-2 text-sm uppercase tracking-wide">
+          <a href="#" className="hover:opacity-70 transition-opacity">HOME</a>
+          <a href="#portfolio" className="hover:opacity-70 transition-opacity">PROJECTS</a>
+          <a href="#mission" className="hover:opacity-70 transition-opacity">ABOUT</a>
+          <a href="#services" className="hover:opacity-70 transition-opacity">SERVICES</a>
+          <a href="#faq" className="hover:opacity-70 transition-opacity">FAQ</a>
+        </div>
+      </div>
+
+      {/* Middle Section: Huge Typography */}
+      <div className="flex-grow flex items-center justify-center py-12 md:py-24 w-full overflow-hidden">
+        <h2 className="font-serif text-[22vw] leading-none tracking-tight text-charcoal select-none text-center w-full">
+          Formosa
+        </h2>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="flex justify-between items-end w-full max-w-[1920px] mx-auto">
+        {/* Left: Logo */}
+        <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center shrink-0">
+          <div className="w-5 h-5 border-[1.5px] border-white rounded-full flex items-center justify-center">
+            <div className="w-1.5 h-1.5 border-[1.5px] border-white rounded-full"></div>
+          </div>
+        </div>
+
+        {/* Center: Copyright */}
+        <div className="text-xs text-charcoal/40 pb-4 text-center hidden md:block">
+          &copy; {currentYear} Formosa Studios | Design & Engenharia
+        </div>
+
+        {/* Right: Buttons */}
+        <div className="flex gap-4 shrink-0">
+          <button 
+            onClick={scrollToTop}
+            className="w-16 h-16 rounded-full border border-charcoal/10 bg-white flex items-center justify-center hover:bg-charcoal/5 transition-colors focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp size={20} className="text-charcoal stroke-[1.5]" />
+          </button>
+          <button 
+            className="w-16 h-16 rounded-full bg-black flex items-center justify-center hover:bg-black/80 transition-colors focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"
+            aria-label="Chat"
+          >
+            <MessageCircle size={24} className="text-white stroke-[1.5]" />
+          </button>
+        </div>
+      </div>
+      
+      {/* Mobile Copyright */}
+      <div className="text-xs text-charcoal/40 mt-8 text-center md:hidden">
+        &copy; {currentYear} Formosa Studios | Design & Engenharia
       </div>
     </footer>
   );
