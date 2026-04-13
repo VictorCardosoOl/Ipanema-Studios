@@ -46,22 +46,22 @@ export default function Hero() {
   return (
     <section id="hero" ref={containerRef} className="h-[100dvh] w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 overflow-hidden">
       {/* Left Panel - Cream */}
-      <div className="bg-cream p-6 md:p-12 3xl:p-24 flex flex-col justify-between h-full pt-24 md:pt-32 3xl:pt-40 min-h-0">
+      <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0">
         <header className="shrink-0">
           <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Formosa Studios</h1>
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
-          <ul className="text-sm 3xl:text-lg font-medium tracking-wide">
+          <ul className="text-xs md:text-sm 3xl:text-base font-medium tracking-wide">
             {[
-              { name: 'trabalhos', link: '#portfolio', page: '02' },
-              { name: 'serviços', link: '#services', page: '03' },
-              { name: 'quem somos', link: '#mission', page: '04' },
-              { name: 'valores', link: '#values', page: '05' },
-              { name: 'contato', link: '#contact', page: '06' },
+              { name: 'Trabalhos', link: '#portfolio', page: '02' },
+              { name: 'Serviços', link: '#services', page: '03' },
+              { name: 'Quem Somos', link: '#mission', page: '04' },
+              { name: 'Valores', link: '#values', page: '05' },
+              { name: 'Contato', link: '#contact', page: '06' },
             ].map((item, i) => (
               <li key={i} className="border-b border-charcoal/30 last:border-0">
-                <a href={item.link} className="flex justify-between py-2 md:py-3 hover:opacity-60 transition-opacity focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm">
+                <a href={item.link} className="flex justify-between py-1.5 md:py-2 hover:opacity-60 transition-opacity focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm">
                   <span>{item.name}</span>
                   <span>{item.page}</span>
                 </a>
@@ -72,7 +72,7 @@ export default function Hero() {
       </div>
 
       {/* Right Panel - Charcoal */}
-      <div className="bg-charcoal text-cream p-6 md:p-12 3xl:p-24 flex flex-col h-full relative pt-6 md:pt-32 3xl:pt-40 min-h-0">
+      <div className="bg-charcoal text-cream px-6 pb-4 pt-6 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col h-full relative min-h-0">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold shrink-0">
           <span>Perfil da Agência</span>
           <span className="hidden md:inline">2026</span>
