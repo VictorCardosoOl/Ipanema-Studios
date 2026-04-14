@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -55,8 +58,25 @@ export default function Portfolio() {
     }
   }, [currentSlide]);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        snap: {
+          snapTo: 0.5, // Snaps to the exact center of the section
+          duration: { min: 0.2, max: 0.6 },
+          ease: "power2.inOut"
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="portfolio" ref={sectionRef} className="relative w-full h-[110dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10">
+    <section id="portfolio" ref={sectionRef} className="relative w-full h-[100dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10">
       <div className="relative w-full h-full overflow-hidden">
         {/* Background Images */}
         {projects.map((project, idx) => (
