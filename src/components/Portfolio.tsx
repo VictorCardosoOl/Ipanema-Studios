@@ -56,7 +56,7 @@ export default function Portfolio() {
   }, [currentSlide]);
 
   return (
-    <section id="portfolio" ref={sectionRef} className="relative w-full h-[100dvh] bg-[#0a0a0a] flex items-center justify-center p-4 md:p-8 lg:p-10">
+    <section id="portfolio" ref={sectionRef} className="relative w-full h-[110dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10">
       <div className="relative w-full h-full overflow-hidden">
         {/* Background Images */}
         {projects.map((project, idx) => (
