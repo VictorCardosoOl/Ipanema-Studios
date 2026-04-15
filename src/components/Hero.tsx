@@ -52,7 +52,7 @@ export default function Hero() {
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
-          <ul className="text-xs md:text-sm 3xl:text-base font-medium tracking-wide">
+          <ul className="text-[10px] md:text-xs 3xl:text-sm font-medium tracking-wide">
             {[
               { name: 'Trabalhos', link: '#portfolio', page: '02' },
               { name: 'Serviços', link: '#services', page: '03' },
@@ -60,8 +60,8 @@ export default function Hero() {
               { name: 'Valores', link: '#values', page: '05' },
               { name: 'Contato', link: '#contact', page: '06' },
             ].map((item, i) => (
-              <li key={i} className="border-b border-charcoal/30 last:border-0">
-                <a href={item.link} className="flex justify-between py-1.5 md:py-2 hover:opacity-60 transition-opacity focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm">
+              <li key={i} className="border-b border-charcoal/20 last:border-0">
+                <a href={item.link} className="flex justify-between py-1 md:py-1.5 hover:opacity-60 transition-opacity focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none rounded-sm">
                   <span>{item.name}</span>
                   <span>{item.page}</span>
                 </a>
