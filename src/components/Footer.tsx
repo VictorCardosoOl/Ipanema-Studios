@@ -28,22 +28,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Col 2: Studio (Span 2) */}
-        <div className="md:col-span-2 flex flex-col gap-4">
+        {/* Col 2: Studio (Span 4) */}
+        <div className="md:col-span-4 flex flex-col gap-4">
           <span className="text-[10px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">O ESTÚDIO</span>
           <div className="text-sm leading-relaxed">
             <p className="font-serif text-base mb-1">Estúdio Formosa</p>
             <p className="text-charcoal/70">Vila Formosa, São Paulo</p>
-            <p className="text-charcoal/70">Brasil</p>
-          </div>
-        </div>
-
-        {/* Col 3: Office (Span 2) */}
-        <div className="md:col-span-2 flex flex-col gap-4">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-charcoal/40 font-bold">ESCRITÓRIO</span>
-          <div className="text-sm leading-relaxed">
-            <p className="font-serif text-base mb-1">Escritório do Tatuapé</p>
-            <p className="text-charcoal/70">Tatuapé, São Paulo</p>
             <p className="text-charcoal/70">Brasil</p>
           </div>
         </div>
@@ -67,12 +57,8 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="flex justify-between items-end w-full max-w-[1920px] mx-auto">
-        {/* Left: Logo */}
-        <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center shrink-0">
-          <div className="w-5 h-5 border-[1.5px] border-white rounded-full flex items-center justify-center">
-            <div className="w-1.5 h-1.5 border-[1.5px] border-white rounded-full"></div>
-          </div>
-        </div>
+        {/* Left: Spacer to keep center alignment */}
+        <div className="w-[144px] hidden md:block shrink-0"></div>
 
         {/* Center: Copyright */}
         <div className="text-xs text-charcoal/40 pb-4 text-center hidden md:block">
@@ -80,7 +66,7 @@ const Footer = () => {
         </div>
 
         {/* Right: Buttons */}
-        <div className="flex gap-4 shrink-0">
+        <div className="flex gap-4 shrink-0 ml-auto md:ml-0">
           <button 
             onClick={scrollToTop}
             className="w-16 h-16 rounded-full border border-charcoal/10 bg-white flex items-center justify-center hover:bg-charcoal/5 transition-colors focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none"

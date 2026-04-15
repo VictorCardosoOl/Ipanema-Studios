@@ -89,7 +89,7 @@ export default function Contact() {
               </div>
               <div>
                 <span className="text-[10px] 3xl:text-xs uppercase tracking-widest text-charcoal/40 font-bold mb-4 block">Localização</span>
-                <p className="text-lg 3xl:text-2xl text-charcoal font-serif italic">Rio de Janeiro, BR<br/>Atendimento Global</p>
+                <p className="text-lg 3xl:text-2xl text-charcoal font-serif italic">Estúdio Formosa<br/>Vila Formosa, São Paulo<br/>Brasil</p>
               </div>
             </div>
           </div>
