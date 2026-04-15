@@ -1,52 +1,33 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { projects } from '../data/portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    title: "Tērmique",
-    description: "brand strategy, naming, visual and verbal identity, stationery and collateral design, graphic materials and social media design",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "Lumina",
-    description: "real estate platform, user experience, interface design, 3d rendering integration, digital marketing",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "Aura",
-    description: "e-commerce experience, packaging design, brand identity, art direction, social media",
-    image: "https://images.unsplash.com/photo-1615397323758-1e0e4179323c?q=80&w=2000&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "Vanguard",
-    description: "mobile application, fintech, user interface, design system, interactive prototyping",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-    link: "#"
-  }
-];
-
 export default function Portfolio() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const touchStartX = useRef(0);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % projects.length);
   }, []);
 
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  }, []);
+
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
       nextSlide();
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [nextSlide]);
+  }, [nextSlide, isPaused]);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -75,8 +56,31 @@ export default function Portfolio() {
     return () => ctx.revert();
   }, []);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    if (touchStartX.current - touchEndX > 50) {
+      nextSlide();
+    } else if (touchStartX.current - touchEndX < -50) {
+      prevSlide();
+    }
+  };
+
   return (
-    <section id="portfolio" ref={sectionRef} className="relative w-full h-[100dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10">
+    <section 
+      id="portfolio" 
+      ref={sectionRef} 
+      className="relative w-full h-[100dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="relative w-full h-full overflow-hidden">
         {/* Background Images */}
         {projects.map((project, idx) => (

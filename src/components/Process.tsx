@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { services } from '../data/services';
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -110,33 +111,16 @@ export default function Process() {
         <div className="flex-grow flex items-center md:items-end p-6 md:p-12 lg:p-16 3xl:p-24 pb-8 md:pb-16 3xl:pb-24 min-h-0 overflow-y-auto md:overflow-visible">
           <div className="process-steps-container grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 3xl:gap-x-24 gap-y-8 lg:gap-y-12 3xl:gap-y-16 w-full max-w-4xl 3xl:max-w-5xl">
             
-            <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">01 / Desenvolvimento Web</h3>
-              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Criamos plataformas digitais robustas, escaláveis e de alta performance. Utilizamos as tecnologias mais modernas para garantir que seu site seja rápido, seguro e perfeitamente adaptado a qualquer dispositivo.
-              </p>
-            </div>
-
-            <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">02 / Design UI/UX</h3>
-              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Desenhamos interfaces intuitivas e memoráveis. Nosso foco é criar jornadas de usuário fluidas que não apenas encantam visualmente, mas também convertem e engajam seu público-alvo de forma eficaz.
-              </p>
-            </div>
-
-            <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">03 / Identidade Visual</h3>
-              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Construímos marcas com propósito e presença. Desde a criação de logotipos até sistemas de design completos, garantimos que sua identidade visual comunique seus valores e se destaque no mercado.
-              </p>
-            </div>
-
-            <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">04 / Otimização & SEO</h3>
-              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
-                Maximizamos a visibilidade do seu projeto. Aplicamos as melhores práticas de SEO técnico e otimização de performance para garantir que sua plataforma seja facilmente encontrada e ranqueada pelos motores de busca.
-              </p>
-            </div>
+            {services.map((service) => (
+              <div key={service.id} className="process-step">
+                <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">
+                  {service.id} / {service.title}
+                </h3>
+                <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+                  {service.description}
+                </p>
+              </div>
+            ))}
 
           </div>
         </div>
