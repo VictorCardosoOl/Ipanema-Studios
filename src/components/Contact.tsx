@@ -1,16 +1,11 @@
-import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ArrowRight } from 'lucide-react';
-
-type FormState = 'idle' | 'loading' | 'success' | 'error';
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { useContactForm } from '../hooks/useContactForm';
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  const [formState, setFormState] = useState<FormState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const { formRef, formState, errorMessage, handleSubmit } = useContactForm();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -29,44 +24,6 @@ export default function Contact() {
     }, containerRef);
     return () => ctx.revert();
   }, []);
-
-  const isValidEmail = useCallback((email: string): boolean => EMAIL_REGEX.test(email), []);
-
-  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    
-    const name = formData.get('name')?.toString().trim();
-    const email = formData.get('email')?.toString().trim();
-    const details = formData.get('details')?.toString().trim();
-
-    if (!name || !email || !details) {
-      setErrorMessage('Preencha todos os campos obrigatórios.');
-      setFormState('error');
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      setErrorMessage('Insira um e-mail válido.');
-      setFormState('error');
-      return;
-    }
-
-    setFormState('loading');
-    setErrorMessage('');
-    
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setFormState('success');
-      setTimeout(() => {
-        setFormState('idle');
-        formRef.current?.reset();
-      }, 3000);
-    } catch {
-      setErrorMessage('Erro inesperado. Tente novamente.');
-      setFormState('error');
-    }
-  }, [isValidEmail]);
 
   return (
     <section id="contact" ref={containerRef} className="min-h-screen bg-cream text-charcoal py-32 3xl:py-48 px-8 md:px-12 3xl:px-24 flex flex-col justify-center border-t border-charcoal/10">
@@ -97,7 +54,7 @@ export default function Contact() {
           {/* Right: Minimalist Form */}
           <div className="lg:col-span-5 lg:pl-12 flex flex-col justify-center relative">
             {formState === 'success' && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-cream z-10 contact-reveal">
+              <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-center justify-center bg-cream z-10 contact-reveal">
                 <div className="w-20 h-20 rounded-full border border-charcoal/20 flex items-center justify-center mb-8">
                   <svg className="w-8 h-8 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
@@ -111,7 +68,7 @@ export default function Contact() {
             <form ref={formRef} className={`contact-reveal flex flex-col gap-12 3xl:gap-16 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit} noValidate>
               
               {formState === 'error' && (
-                <div className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm">
+                <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm">
                   {errorMessage}
                 </div>
               )}

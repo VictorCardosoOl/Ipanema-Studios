@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Image from './ui/Image';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,20 +82,17 @@ export default function Hero() {
         
         <div className="flex-grow flex items-center justify-center p-4 md:p-8 3xl:p-16 min-h-0">
           <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-sm 3xl:max-w-lg aspect-[3/4] overflow-visible bg-stone-900">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
               alt="Minimalist Architecture" 
               className="hero-image-main w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-1000"
-              referrerPolicy="no-referrer"
             />
             {/* Overlapping smaller image for editorial feel */}
             <div className="absolute -bottom-6 -left-6 md:-bottom-12 md:-left-12 w-2/3 aspect-square border-4 border-charcoal z-10 shadow-2xl overflow-hidden bg-stone-800">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800&auto=format&fit=crop" 
                 alt="" 
                 className="hero-image-sub w-full h-full object-cover scale-110 grayscale hover:grayscale-0 transition-all duration-1000"
-                referrerPolicy="no-referrer"
-                loading="lazy"
               />
             </div>
           </div>

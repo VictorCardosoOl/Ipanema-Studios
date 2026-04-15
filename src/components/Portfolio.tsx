@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../data/portfolio';
+import Image from './ui/Image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,11 +93,10 @@ export default function Portfolio() {
           >
             {/* Dark overlay for better text readability */}
             <div className="absolute inset-0 bg-black/20 z-10" />
-            <img
+            <Image
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
-              loading={idx === 0 ? "eager" : "lazy"}
             />
           </div>
         ))}

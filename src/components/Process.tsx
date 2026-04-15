@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { services } from '../data/services';
+import Image from './ui/Image';
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,22 +62,18 @@ export default function Process() {
         {/* Moodboard Composition */}
         <div className="absolute inset-0 p-6 pt-16 md:p-8 md:pt-24 flex items-center justify-center" aria-hidden="true">
            {/* Background texture */}
-           <img 
+           <Image 
               src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?q=80&w=1000&auto=format&fit=crop" 
               alt="" 
               className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
-              referrerPolicy="no-referrer"
-              loading="lazy"
            />
            
            {/* Main framed image */}
            <div className="process-image relative w-[85%] max-w-[200px] md:max-w-none md:w-[80%] aspect-[3/4] bg-white p-3 md:p-4 shadow-2xl z-10 border border-charcoal/5">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop" 
                 alt="" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                referrerPolicy="no-referrer"
-                loading="lazy"
               />
            </div>
 
