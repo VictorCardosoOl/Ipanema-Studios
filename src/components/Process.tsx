@@ -49,16 +49,16 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="services" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-cream text-charcoal border-t border-charcoal/10">
-      {/* Image Column (Left) */}
-      <div className="md:col-span-4 relative h-[50vh] md:h-screen bg-sage overflow-hidden">
+    <section id="services" ref={containerRef} className="h-[100dvh] w-full grid grid-cols-1 md:grid-cols-12 bg-cream text-charcoal border-t border-charcoal/10 overflow-hidden">
+      {/* Image Column (Left) - Made narrower (col-span-3 instead of 4) */}
+      <div className="md:col-span-3 relative h-[40vh] md:h-full bg-sage overflow-hidden min-h-0">
         {/* Top Left Label */}
-        <div className="absolute top-8 left-8 z-20 text-[10px] uppercase tracking-widest font-bold opacity-90">
+        <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20 text-[10px] uppercase tracking-widest font-bold opacity-90">
           Nossas Especialidades
         </div>
         
         {/* Moodboard Composition */}
-        <div className="absolute inset-0 p-8 pt-24 flex items-center justify-center" aria-hidden="true">
+        <div className="absolute inset-0 p-6 pt-16 md:p-8 md:pt-24 flex items-center justify-center" aria-hidden="true">
            {/* Background texture */}
            <img 
               src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?q=80&w=1000&auto=format&fit=crop" 
@@ -69,7 +69,7 @@ export default function Process() {
            />
            
            {/* Main framed image */}
-           <div className="process-image relative w-[80%] aspect-[3/4] bg-white p-4 shadow-2xl z-10 border border-charcoal/5">
+           <div className="process-image relative w-[85%] max-w-[200px] md:max-w-none md:w-[80%] aspect-[3/4] bg-white p-3 md:p-4 shadow-2xl z-10 border border-charcoal/5">
               <img 
                 src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop" 
                 alt="" 
@@ -80,8 +80,8 @@ export default function Process() {
            </div>
 
            {/* A&C Card */}
-           <div className="process-card absolute left-4 top-1/3 bg-white p-4 shadow-lg z-20 w-32 aspect-square flex flex-col border border-charcoal/5">
-              <span className="font-serif text-xl font-bold">A&C</span>
+           <div className="process-card absolute left-2 md:left-4 top-1/4 md:top-1/3 bg-white p-3 md:p-4 shadow-lg z-20 w-24 md:w-32 aspect-square flex flex-col border border-charcoal/5">
+              <span className="font-serif text-lg md:text-xl font-bold">A&C</span>
               <div className="mt-auto border-t border-charcoal/20 pt-2 text-[8px] uppercase tracking-wider">
                 Design Studio
               </div>
@@ -89,51 +89,51 @@ export default function Process() {
         </div>
       </div>
 
-      {/* Vertical Title Column (Middle) */}
-      <div className="md:col-span-2 border-y md:border-y-0 md:border-r border-charcoal/10 flex items-center justify-center py-16 md:py-0 bg-cream">
+      {/* Vertical Title Column (Middle) - Adjusted font size */}
+      <div className="md:col-span-2 border-y md:border-y-0 md:border-r border-charcoal/10 flex items-center justify-center py-8 md:py-0 bg-cream min-h-0">
         <h2 
-          className="text-7xl md:text-8xl lg:text-[10rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-20"
+          className="text-5xl md:text-6xl lg:text-[7rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-20"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
           Serviços
         </h2>
       </div>
 
-      {/* Content Column (Right) */}
-      <div className="md:col-span-6 flex flex-col min-h-[50vh] md:min-h-screen bg-cream relative">
+      {/* Content Column (Right) - Made wider (col-span-7 instead of 6) */}
+      <div className="md:col-span-7 flex flex-col h-full bg-cream relative min-h-0">
         {/* Top Right Label */}
-        <div className="absolute top-8 right-8 text-[10px] 3xl:text-xs uppercase tracking-widest font-bold opacity-90">
+        <div className="absolute top-6 right-6 md:top-8 md:right-8 text-[10px] 3xl:text-xs uppercase tracking-widest font-bold opacity-90">
           Página 03 / 06
         </div>
         
         {/* Text Grid at the bottom */}
-        <div className="flex-grow flex items-end p-8 md:p-16 3xl:p-32 pb-16 md:pb-24 3xl:pb-32">
-          <div className="process-steps-container grid grid-cols-1 md:grid-cols-2 gap-x-12 3xl:gap-x-24 gap-y-16 3xl:gap-y-24 w-full max-w-3xl 3xl:max-w-5xl">
+        <div className="flex-grow flex items-center md:items-end p-6 md:p-12 lg:p-16 3xl:p-24 pb-8 md:pb-16 3xl:pb-24 min-h-0 overflow-y-auto md:overflow-visible">
+          <div className="process-steps-container grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 3xl:gap-x-24 gap-y-8 lg:gap-y-12 3xl:gap-y-16 w-full max-w-4xl 3xl:max-w-5xl">
             
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">01 / Desenvolvimento Web</h3>
-              <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">01 / Desenvolvimento Web</h3>
+              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
                 Criamos plataformas digitais robustas, escaláveis e de alta performance. Utilizamos as tecnologias mais modernas para garantir que seu site seja rápido, seguro e perfeitamente adaptado a qualquer dispositivo.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">02 / Design UI/UX</h3>
-              <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">02 / Design UI/UX</h3>
+              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
                 Desenhamos interfaces intuitivas e memoráveis. Nosso foco é criar jornadas de usuário fluidas que não apenas encantam visualmente, mas também convertem e engajam seu público-alvo de forma eficaz.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">03 / Identidade Visual</h3>
-              <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">03 / Identidade Visual</h3>
+              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
                 Construímos marcas com propósito e presença. Desde a criação de logotipos até sistemas de design completos, garantimos que sua identidade visual comunique seus valores e se destaque no mercado.
               </p>
             </div>
 
             <div className="process-step">
-              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">04 / Otimização & SEO</h3>
-              <p className="text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+              <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">04 / Otimização & SEO</h3>
+              <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
                 Maximizamos a visibilidade do seu projeto. Aplicamos as melhores práticas de SEO técnico e otimização de performance para garantir que sua plataforma seja facilmente encontrada e ranqueada pelos motores de busca.
               </p>
             </div>
