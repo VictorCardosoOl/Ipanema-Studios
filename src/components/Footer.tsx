@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp, MessageCircle } from 'lucide-react';
+import { Heading } from './ui/Heading';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,22 +16,22 @@ const Footer = () => {
         {/* Col 1: Social & Contact (Span 5) */}
         <div className="md:col-span-5 flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold w-32 shrink-0">Redes Sociais</span>
+            <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Redes Sociais</span>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm font-sans">
-              <a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a>
-              <a href="#" className="hover:opacity-70 transition-opacity">GitHub</a>
-              <a href="#" className="hover:opacity-70 transition-opacity">Instagram</a>
+              <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">LinkedIn</a>
+              <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">GitHub</a>
+              <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Instagram</a>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold w-32 shrink-0">Diga Olá</span>
-            <a href="mailto:hello@formosastudios.com" className="text-sm font-sans hover:opacity-70 transition-opacity">hello@formosastudios.com</a>
+            <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Diga Olá</span>
+            <a href="mailto:hello@formosastudios.com" className="text-sm font-sans hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@formosastudios.com</a>
           </div>
         </div>
 
         {/* Col 2: Studio (Span 3) */}
         <div className="md:col-span-3 flex flex-col gap-4">
-          <span className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold">O Estúdio</span>
+          <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold">O Estúdio</span>
           <div className="text-sm font-sans leading-relaxed">
             <p className="font-serif text-lg italic mb-1">Estúdio Formosa</p>
             <p className="text-charcoal/70">Vila Formosa, São Paulo</p>
@@ -40,18 +41,18 @@ const Footer = () => {
 
         {/* Col 3: Navigation (Span 4) */}
         <div className="md:col-span-4 flex flex-col sm:flex-row flex-wrap justify-start md:justify-end gap-x-8 gap-y-4 text-[10px] font-bold uppercase tracking-widest">
-          <a href="#" className="hover:opacity-70 transition-opacity">Home</a>
-          <a href="#portfolio" className="hover:opacity-70 transition-opacity">Projetos</a>
-          <a href="#mission" className="hover:opacity-70 transition-opacity">Sobre</a>
-          <a href="#services" className="hover:opacity-70 transition-opacity">Serviços</a>
+          <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Home</a>
+          <a href="#portfolio" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Projetos</a>
+          <a href="#mission" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Sobre</a>
+          <a href="#services" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Serviços</a>
         </div>
       </div>
 
       {/* Middle Section: Huge Typography */}
       <div className="flex-grow flex items-center justify-center py-24 md:py-32 w-full overflow-hidden">
-        <h2 className="font-serif text-[22vw] leading-none tracking-tight text-charcoal select-none text-center w-full">
+        <Heading size="huge" className="select-none text-center w-full">
           Formosa
-        </h2>
+        </Heading>
       </div>
 
       {/* Bottom Section */}
@@ -60,7 +61,7 @@ const Footer = () => {
         <div className="w-[144px] hidden md:block shrink-0"></div>
 
         {/* Center: Copyright */}
-        <div className="text-xs text-charcoal/40 pb-4 text-center hidden md:block">
+        <div className="text-xs text-charcoal/60 pb-4 text-center hidden md:block">
           &copy; {currentYear} Formosa Studios | Design & Engenharia
         </div>
 
@@ -83,7 +84,7 @@ const Footer = () => {
       </div>
       
       {/* Mobile Copyright */}
-      <div className="text-xs text-charcoal/40 mt-8 text-center md:hidden">
+      <div className="text-xs text-charcoal/60 mt-8 text-center md:hidden">
         &copy; {currentYear} Formosa Studios | Design & Engenharia
       </div>
     </footer>

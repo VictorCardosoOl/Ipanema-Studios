@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../data/portfolio';
 import Image from './ui/Image';
+import { Button } from './ui/Button';
+import { Heading } from './ui/Heading';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +77,7 @@ export default function Portfolio() {
     <section 
       id="portfolio" 
       ref={sectionRef} 
-      className="relative w-full h-[100dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10"
+      className="relative w-full h-[100dvh] bg-white flex items-center justify-center p-4 md:p-8 lg:p-10 cursor-ew-resize"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -83,7 +85,7 @@ export default function Portfolio() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="relative w-full h-full overflow-hidden">
+      <div className="relative w-full h-full overflow-hidden rounded-sm">
         {/* Background Images */}
         {projects.map((project, idx) => (
           <div
@@ -93,7 +95,7 @@ export default function Portfolio() {
             }`}
           >
             {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/20 z-10" />
+            <div className="absolute inset-0 bg-black/30 z-10" />
             <Image
               src={project.image}
               alt={project.title}
@@ -103,30 +105,29 @@ export default function Portfolio() {
         ))}
 
         {/* Content */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full">
+        <div className="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full cursor-default">
           <div className="max-w-2xl" ref={contentRef}>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-white mb-6 tracking-tight leading-[1.1]">
+            <Heading size="h1" themeColor="white" className="mb-6">
               {projects[currentSlide].title}
-            </h2>
+            </Heading>
             <p className="text-lg md:text-xl text-white/90 mb-10 font-sans font-light leading-relaxed max-w-xl">
               {projects[currentSlide].description}
             </p>
-            <a
-              href={projects[currentSlide].link}
-              className="inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white rounded-full hover:bg-white hover:text-charcoal transition-all duration-500 text-xs font-sans uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"
-            >
-              Ver Projeto
-            </a>
+            <Button asChild variant="whiteOutline" size="lg">
+              <a href={projects[currentSlide].link}>
+                Ver Projeto
+              </a>
+            </Button>
           </div>
         </div>
 
         {/* Carousel Indicators */}
-        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-center gap-3 z-20">
+        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-center gap-3 z-20 cursor-default">
           {projects.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className="relative flex items-center justify-center w-6 h-6 focus:outline-none group"
+              className="relative flex items-center justify-center w-6 h-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-full group"
               aria-label={`Ir para o projeto ${idx + 1}`}
             >
               {currentSlide === idx && (

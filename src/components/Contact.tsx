@@ -2,6 +2,10 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ArrowRight } from 'lucide-react';
 import { useContactForm } from '../hooks/useContactForm';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Textarea } from './ui/Textarea';
+import { Heading } from './ui/Heading';
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,9 +36,9 @@ export default function Contact() {
           
           {/* Left: Huge Title */}
           <div className="lg:col-span-5 flex flex-col">
-            <h2 className="contact-reveal text-[18vw] lg:text-[7vw] leading-[0.9] font-sans font-medium tracking-tight text-charcoal">
+            <Heading size="huge" className="contact-reveal text-charcoal">
               Contato
-            </h2>
+            </Heading>
           </div>
 
           {/* Right: Content & Form */}
@@ -46,7 +50,7 @@ export default function Contact() {
             {formState === 'success' && (
               <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-start justify-center bg-cream z-10 contact-reveal">
                 <h3 className="text-3xl font-sans font-medium mb-4 text-charcoal">Mensagem Enviada</h3>
-                <p className="text-lg text-charcoal/60">Retornaremos em até 24 horas.</p>
+                <p className="text-lg text-charcoal/70">Retornaremos em até 24 horas.</p>
               </div>
             )}
 
@@ -58,38 +62,35 @@ export default function Contact() {
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <input 
+                <Input 
                   type="text" 
                   name="name" 
                   placeholder="Nome" 
                   required
-                  className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans"
                 />
-                <input 
+                <Input 
                   type="email" 
                   name="email" 
                   placeholder="E-mail" 
                   required
-                  className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans"
                 />
               </div>
-              <textarea 
+              <Textarea 
                 name="details" 
                 placeholder="Como podemos ajudar?" 
                 rows={3}
                 required
-                className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans resize-none"
               />
               
               <div className="pt-4">
-                <button 
+                <Button 
                   type="submit" 
                   disabled={formState === 'loading'}
-                  className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:opacity-60 transition-opacity disabled:opacity-50"
+                  className="gap-3"
                 >
                   {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Button>
               </div>
             </form>
 
@@ -98,7 +99,7 @@ export default function Contact() {
             {/* Contact Info (2 columns) */}
             <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-12">
               <div>
-                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal">Informações Gerais</h4>
+                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal/70">Informações Gerais</h4>
                 <div className="text-sm font-sans text-charcoal/80 space-y-6">
                   <div>
                     <p className="font-medium text-charcoal mb-1">Estúdio Formosa</p>
@@ -111,18 +112,18 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-medium text-charcoal mb-1">E-mail</p>
-                    <a href="mailto:hello@formosastudios.com" className="hover:opacity-60 transition-opacity">hello@formosastudios.com</a>
+                    <a href="mailto:hello@formosastudios.com" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@formosastudios.com</a>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal">Redes Sociais</h4>
+                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal/70">Redes Sociais</h4>
                 <ul className="text-sm font-sans text-charcoal/80 space-y-3">
-                  <li><a href="#" className="hover:opacity-60 transition-opacity">Instagram</a></li>
-                  <li><a href="#" className="hover:opacity-60 transition-opacity">Facebook</a></li>
-                  <li><a href="#" className="hover:opacity-60 transition-opacity">Twitter</a></li>
-                  <li><a href="#" className="hover:opacity-60 transition-opacity">LinkedIn</a></li>
+                  <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Instagram</a></li>
+                  <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Facebook</a></li>
+                  <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Twitter</a></li>
+                  <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">LinkedIn</a></li>
                 </ul>
               </div>
             </div>

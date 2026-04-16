@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Image from './ui/Image';
+import { Button } from './ui/Button';
+import { Heading } from './ui/Heading';
 
 const posts = [
   {
@@ -57,9 +59,9 @@ export default function Mission() {
         
         {/* Top Text */}
         <div className="max-w-5xl mb-24 md:mb-32">
-          <h2 className="mission-reveal text-3xl md:text-5xl lg:text-6xl 3xl:text-7xl font-serif font-light leading-tight text-charcoal">
+          <Heading size="h2" weight="light" className="mission-reveal">
             Bem-vindo ao Estúdio Formosa, onde a criatividade encontra a engenharia. Junte-se a nós em uma jornada de design inovador e desenvolvimento de ponta que explora os limites das experiências digitais —
-          </h2>
+          </Heading>
         </div>
 
         {/* Section Header */}
@@ -67,9 +69,9 @@ export default function Mission() {
           <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-charcoal">
             Nossos Artigos Mais Populares
           </h3>
-          <button className="bg-charcoal text-cream px-6 py-2.5 rounded-full text-xs font-medium hover:opacity-80 transition-opacity self-start sm:self-auto">
+          <Button variant="default" size="sm" className="self-start sm:self-auto">
             Ler todos
-          </button>
+          </Button>
         </div>
 
         {/* Divider */}
@@ -78,7 +80,7 @@ export default function Mission() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {posts.map((post, index) => (
-            <div key={index} className="mission-reveal flex flex-col group cursor-pointer">
+            <div key={index} className="mission-reveal flex flex-col group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm p-2 -m-2">
               <div className="w-full aspect-square overflow-hidden mb-6 bg-charcoal/5">
                 <Image 
                   src={post.image} 
@@ -87,7 +89,7 @@ export default function Mission() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold mb-3">
+                <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold mb-3">
                   {post.date}
                 </span>
                 <h4 className="text-sm md:text-base font-bold font-sans text-charcoal mb-2 leading-snug">
