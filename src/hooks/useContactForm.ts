@@ -7,23 +7,43 @@ export function useContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  const validateField = (name: string, value: string) => {
+    let error = '';
+    if (!value.trim()) {
+      error = 'Este campo é obrigatório.';
+    } else if (name === 'email' && !EMAIL_REGEX.test(value)) {
+      error = 'Insira um e-mail válido.';
+    }
+    setFieldErrors(prev => ({ ...prev, [name]: error }));
+    return !error;
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    validateField(e.target.name, e.target.value);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (fieldErrors[e.target.name]) {
+      setFieldErrors(prev => ({ ...prev, [e.target.name]: '' }));
+    }
+  };
 
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     
-    const name = formData.get('name')?.toString().trim();
-    const email = formData.get('email')?.toString().trim();
-    const details = formData.get('details')?.toString().trim();
+    const name = formData.get('name')?.toString() || '';
+    const email = formData.get('email')?.toString() || '';
+    const details = formData.get('details')?.toString() || '';
 
-    if (!name || !email || !details) {
-      setErrorMessage('Preencha todos os campos obrigatórios.');
-      setFormState('error');
-      return;
-    }
+    const isNameValid = validateField('name', name);
+    const isEmailValid = validateField('email', email);
+    const isDetailsValid = validateField('details', details);
 
-    if (!EMAIL_REGEX.test(email)) {
-      setErrorMessage('Insira um e-mail válido.');
+    if (!isNameValid || !isEmailValid || !isDetailsValid) {
+      setErrorMessage('Por favor, corrija os erros abaixo antes de enviar.');
       setFormState('error');
       return;
     }
@@ -39,12 +59,13 @@ export function useContactForm() {
       setTimeout(() => {
         setFormState('idle');
         formRef.current?.reset();
-      }, 3000);
+        setFieldErrors({});
+      }, 4000);
     } catch {
       setErrorMessage('Erro inesperado. Tente novamente.');
       setFormState('error');
     }
   }, []);
 
-  return { formRef, formState, errorMessage, handleSubmit };
+  return { formRef, formState, errorMessage, fieldErrors, handleBlur, handleChange, handleSubmit };
 }

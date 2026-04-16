@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useContactForm } from '../hooks/useContactForm';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
@@ -9,7 +9,7 @@ import { Heading } from './ui/Heading';
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { formRef, formState, errorMessage, handleSubmit } = useContactForm();
+  const { formRef, formState, errorMessage, fieldErrors, handleBlur, handleChange, handleSubmit } = useContactForm();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -49,44 +49,87 @@ export default function Contact() {
 
             {formState === 'success' && (
               <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-start justify-center bg-cream z-10 contact-reveal">
-                <h3 className="text-3xl font-sans font-medium mb-4 text-charcoal">Mensagem Enviada</h3>
-                <p className="text-lg text-charcoal/70">Retornaremos em até 24 horas.</p>
+                <div className="flex items-center gap-4 mb-4">
+                  <CheckCircle2 className="w-10 h-10 text-green-600" />
+                  <h3 className="text-3xl font-sans font-medium text-charcoal">Mensagem Enviada</h3>
+                </div>
+                <p className="text-lg text-charcoal/70">Agradecemos o contato. Retornaremos em até 24 horas.</p>
               </div>
             )}
 
             <form ref={formRef} className={`contact-reveal flex flex-col gap-8 mb-8 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit} noValidate>
-              {formState === 'error' && (
+              {formState === 'error' && errorMessage && (
                 <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm font-sans">
                   {errorMessage}
                 </div>
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Input 
-                  type="text" 
-                  name="name" 
-                  placeholder="Nome" 
-                  required
-                />
-                <Input 
-                  type="email" 
-                  name="email" 
-                  placeholder="E-mail" 
-                  required
-                />
+                <div className="flex flex-col gap-1">
+                  <Input 
+                    type="text" 
+                    name="name" 
+                    id="name"
+                    placeholder="Nome" 
+                    required
+                    aria-invalid={!!fieldErrors.name}
+                    aria-describedby={fieldErrors.name ? "name-error" : undefined}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={!!fieldErrors.name}
+                  />
+                  {fieldErrors.name && (
+                    <span id="name-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+                      {fieldErrors.name}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <Input 
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    placeholder="E-mail" 
+                    required
+                    aria-invalid={!!fieldErrors.email}
+                    aria-describedby={fieldErrors.email ? "email-error" : undefined}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={!!fieldErrors.email}
+                  />
+                  {fieldErrors.email && (
+                    <span id="email-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+                      {fieldErrors.email}
+                    </span>
+                  )}
+                </div>
               </div>
-              <Textarea 
-                name="details" 
-                placeholder="Como podemos ajudar?" 
-                rows={3}
-                required
-              />
+              <div className="flex flex-col gap-1">
+                <Textarea 
+                  name="details" 
+                  id="details"
+                  placeholder="Como podemos ajudar?" 
+                  rows={3}
+                  required
+                  aria-invalid={!!fieldErrors.details}
+                  aria-describedby={fieldErrors.details ? "details-error" : undefined}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={!!fieldErrors.details}
+                />
+                {fieldErrors.details && (
+                  <span id="details-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+                    {fieldErrors.details}
+                  </span>
+                )}
+              </div>
               
               <div className="pt-4">
                 <Button 
                   type="submit" 
                   disabled={formState === 'loading'}
                   className="gap-3"
+                  aria-disabled={formState === 'loading'}
                 >
                   {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
                   <ArrowRight className="w-4 h-4" />
