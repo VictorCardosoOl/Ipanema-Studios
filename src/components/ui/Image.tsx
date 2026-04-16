@@ -17,7 +17,9 @@ export default function Image({ src, alt, className = '', ...props }: ImageProps
       decoding="async"
       referrerPolicy="no-referrer"
       onLoad={() => setIsLoaded(true)}
-      className={`transition-opacity duration-700 bg-charcoal/5 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
+      className={`bg-charcoal/10 transition-all duration-1000 ease-out ${
+        isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
+      } ${className}`}
       {...props}
     />
   );

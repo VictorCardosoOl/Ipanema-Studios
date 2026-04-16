@@ -32,10 +32,11 @@ export default function Portfolio() {
 
   useEffect(() => {
     if (contentRef.current) {
+      const elements = contentRef.current.children;
       gsap.fromTo(
-        contentRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+        elements,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", overwrite: true }
       );
     }
   }, [currentSlide]);
@@ -104,17 +105,17 @@ export default function Portfolio() {
         {/* Content */}
         <div className="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full">
           <div className="max-w-2xl" ref={contentRef}>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-sans font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-white mb-6 tracking-tight leading-[1.1]">
               {projects[currentSlide].title}
             </h2>
-            <p className="text-lg md:text-xl text-white mb-10 font-sans font-bold leading-snug max-w-xl">
+            <p className="text-lg md:text-xl text-white/90 mb-10 font-sans font-light leading-relaxed max-w-xl">
               {projects[currentSlide].description}
             </p>
             <a
               href={projects[currentSlide].link}
-              className="inline-flex items-center justify-center px-6 py-2 border border-white text-white rounded-sm hover:bg-white hover:text-charcoal transition-colors duration-300 text-xs font-sans font-medium tracking-wide focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"
+              className="inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white rounded-full hover:bg-white hover:text-charcoal transition-all duration-500 text-xs font-sans uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal outline-none"
             >
-              view project
+              Ver Projeto
             </a>
           </div>
         </div>

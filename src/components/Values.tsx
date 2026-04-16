@@ -75,9 +75,9 @@ export default function Values() {
             ].map((keyword, i) => (
               <li 
                 key={i}
-                className="value-item font-serif text-3xl md:text-5xl lg:text-6xl 3xl:text-8xl text-cream hover:text-cream/70 transition-colors cursor-default"
+                className="value-item font-serif font-light text-3xl md:text-5xl lg:text-6xl 3xl:text-8xl text-cream/60 hover:text-cream transition-colors cursor-default"
               >
-                <span className="text-xs md:text-sm 3xl:text-lg align-top mr-2 md:mr-4 opacity-70 font-sans tracking-widest font-medium" aria-hidden="true">
+                <span className="text-xs md:text-sm 3xl:text-lg align-top mr-2 md:mr-4 opacity-50 font-sans tracking-widest font-medium" aria-hidden="true">
                   {(i + 1).toString().padStart(2, '0')}
                 </span>
                 {keyword}
