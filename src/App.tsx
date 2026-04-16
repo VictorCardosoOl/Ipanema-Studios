@@ -12,7 +12,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CardNav from './components/CardNav';
 import SmoothScroll from './components/SmoothScroll';
-import FloatingCTA from './components/FloatingCTA';
 
 export default function App() {
   const navItems = [
@@ -63,7 +62,6 @@ export default function App() {
       <Values />
       <Contact />
       <Footer />
-      <FloatingCTA />
     </main>
   );
 }
