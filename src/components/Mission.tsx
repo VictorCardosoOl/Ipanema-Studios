@@ -1,34 +1,47 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Image from './ui/Image';
+
+const posts = [
+  {
+    date: "JANEIRO 06, 2026",
+    title: "Isaac Turner — Acessibilidade na engenharia de design",
+    description: "Por que o design inclusivo é a pedra angular de produtos digitais de sucesso.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "JANEIRO 05, 2026",
+    title: "Isaac Turner — Otimizando UI/UX para performance",
+    description: "Técnicas para projetar interfaces que são rápidas, responsivas e amigáveis.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "JANEIRO 03, 2026",
+    title: "Emma Carter — A arte de equilibrar beleza e função",
+    description: "Como abordar a engenharia de design para entregar produtos visualmente impressionantes e funcionais.",
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    date: "JANEIRO 02, 2026",
+    title: "David Lee — Criando experiências com precisão",
+    description: "Explorando a interseção da engenharia e design para criar interfaces de usuário intuitivas.",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop"
+  }
+];
 
 export default function Mission() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Text reveal animation
-      gsap.from(".mission-text p", {
-        y: 30,
+      gsap.from(".mission-reveal", {
+        y: 40,
         opacity: 0,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".mission-text",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      // Image reveal with scale and blur
-      gsap.from(".mission-image-container", {
-        scale: 0.9,
-        filter: 'blur(10px)',
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".mission-image-container",
+          trigger: containerRef.current,
           start: "top 80%",
           toggleActions: "play none none none"
         }
@@ -39,60 +52,55 @@ export default function Mission() {
   }, []);
 
   return (
-    <section id="mission" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-cream text-charcoal overflow-hidden">
-      {/* Left Panel */}
-      <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
-        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
-          <h2 className="font-medium tracking-tight">Formosa Studios</h2>
-          <span className="opacity-90">Quem Somos</span>
-        </div>
+    <section id="mission" ref={containerRef} className="py-32 md:py-48 px-6 md:px-12 3xl:px-24 bg-cream text-charcoal">
+      <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
         
-        <div className="flex-grow flex flex-col justify-end pb-12 md:pb-24 3xl:pb-32 max-w-xl 3xl:max-w-3xl">
-          <div className="mission-text grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 3xl:gap-16 text-sm 3xl:text-lg leading-relaxed font-medium opacity-90">
-            <div>
-              <p className="mb-6 relative">
-                <span className="absolute -left-4 top-0 text-charcoal/70" aria-hidden="true">•</span>
-                Na Formosa Studios, não apenas construímos sites; criamos experiências digitais que ressoam. Nossa missão é unir elegância estética e engenharia robusta, entregando plataformas que não apenas impressionam visualmente, mas funcionam perfeitamente sob pressão.
-              </p>
-              <p className="relative">
-                <span className="absolute -left-4 top-0 text-charcoal/70" aria-hidden="true">•</span>
-                Acreditamos que cada pixel importa e cada linha de código deve servir a um propósito. Combinando pensamento estratégico com tecnologia de ponta, capacitamos marcas a estabelecerem uma presença dominante no cenário digital.
-              </p>
-            </div>
-            
-            <div>
-              <p className="mb-6 relative">
-                <span className="absolute -left-4 top-0 text-charcoal/70" aria-hidden="true">•</span>
-                Nossa abordagem é holística. Não olhamos apenas para os requisitos imediatos; antecipamos necessidades futuras, garantindo que as soluções que construímos hoje sejam escaláveis para os desafios de amanhã.
-              </p>
-              <p className="relative">
-                <span className="absolute -left-4 top-0 text-charcoal/70" aria-hidden="true">•</span>
-                Somos parceiros em sua jornada digital, comprometidos com a transparência, a excelência e a busca incessante pela perfeição em cada projeto que realizamos.
-              </p>
-            </div>
-          </div>
+        {/* Top Text */}
+        <div className="max-w-5xl mb-24 md:mb-32">
+          <h2 className="mission-reveal text-3xl md:text-5xl lg:text-6xl 3xl:text-7xl font-serif font-light leading-tight text-charcoal">
+            Bem-vindo ao Estúdio Formosa, onde a criatividade encontra a engenharia. Junte-se a nós em uma jornada de design inovador e desenvolvimento de ponta que explora os limites das experiências digitais —
+          </h2>
         </div>
-      </div>
 
-      {/* Right Panel */}
-      <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
-        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
-          <span>Perfil da Agência</span>
-          <span>2026</span>
-          <span>04 / 06</span>
+        {/* Section Header */}
+        <div className="mission-reveal flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
+          <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-charcoal">
+            Nossos Artigos Mais Populares
+          </h3>
+          <button className="bg-charcoal text-cream px-6 py-2.5 rounded-full text-xs font-medium hover:opacity-80 transition-opacity self-start sm:self-auto">
+            Ler todos
+          </button>
         </div>
-        
-        <div className="flex-grow flex items-center justify-center p-8 md:p-16 3xl:p-24">
-          <div className="mission-image-container w-full max-w-md 3xl:max-w-lg 4xl:max-w-2xl aspect-[4/5] overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=1000&auto=format&fit=crop" 
-              alt="Abstract minimal" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-            />
-          </div>
+
+        {/* Divider */}
+        <hr className="mission-reveal border-charcoal/20 mb-12" />
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {posts.map((post, index) => (
+            <div key={index} className="mission-reveal flex flex-col group cursor-pointer">
+              <div className="w-full aspect-square overflow-hidden mb-6 bg-charcoal/5">
+                <Image 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase tracking-widest text-charcoal/40 font-bold mb-3">
+                  {post.date}
+                </span>
+                <h4 className="text-sm md:text-base font-bold font-sans text-charcoal mb-2 leading-snug">
+                  {post.title}
+                </h4>
+                <p className="text-sm font-sans text-charcoal/70 leading-relaxed">
+                  {post.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

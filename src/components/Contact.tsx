@@ -26,87 +26,108 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" ref={containerRef} className="min-h-screen bg-cream text-charcoal py-32 3xl:py-48 px-8 md:px-12 3xl:px-24 flex flex-col justify-center border-t border-charcoal/10">
+    <section id="contact" ref={containerRef} className="min-h-screen bg-cream text-charcoal py-32 3xl:py-48 px-6 md:px-12 3xl:px-24 flex flex-col justify-center">
       <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 3xl:gap-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
-          {/* Left: Typography & Info */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="contact-reveal">
-              <span className="text-xs uppercase tracking-[0.3em] text-charcoal/40 font-bold mb-8 block">Inicie seu projeto</span>
-              <h2 className="text-[12vw] lg:text-[8vw] 3xl:text-[9rem] leading-[0.9] font-serif font-light tracking-tight mb-12 text-charcoal">
-                Vamos <br/><span className="italic text-charcoal/70">conversar.</span>
-              </h2>
-            </div>
-            
-            <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-12 mt-12 lg:mt-32">
-              <div>
-                <span className="text-[10px] 3xl:text-xs uppercase tracking-widest text-charcoal/40 font-bold mb-4 block">Novos Negócios</span>
-                <a href="mailto:hello@formosastudios.com" className="text-lg 3xl:text-2xl hover:opacity-60 transition-opacity font-serif italic text-charcoal">hello@formosastudios.com</a>
-              </div>
-              <div>
-                <span className="text-[10px] 3xl:text-xs uppercase tracking-widest text-charcoal/40 font-bold mb-4 block">Localização</span>
-                <p className="text-lg 3xl:text-2xl text-charcoal font-serif italic">Estúdio Formosa<br/>Vila Formosa, São Paulo<br/>Brasil</p>
-              </div>
-            </div>
+          {/* Left: Huge Title */}
+          <div className="lg:col-span-5 flex flex-col">
+            <h2 className="contact-reveal text-[18vw] lg:text-[7vw] leading-[0.9] font-sans font-medium tracking-tight text-charcoal">
+              Contato
+            </h2>
           </div>
 
-          {/* Right: Minimalist Form */}
-          <div className="lg:col-span-5 lg:pl-12 flex flex-col justify-center relative">
+          {/* Right: Content & Form */}
+          <div className="lg:col-span-7 flex flex-col relative">
+            <p className="contact-reveal text-lg md:text-xl lg:text-2xl font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-8">
+              Se você tem dúvidas ou precisa de informações gerais, por favor preencha este formulário para solicitar as informações necessárias. Será uma honra ajudar você.
+            </p>
+
             {formState === 'success' && (
-              <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-center justify-center bg-cream z-10 contact-reveal">
-                <div className="w-20 h-20 rounded-full border border-charcoal/20 flex items-center justify-center mb-8">
-                  <svg className="w-8 h-8 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-3xl font-serif mb-4 text-charcoal">Mensagem Enviada</h3>
-                <p className="text-base text-charcoal/60">Retornaremos em até 24 horas.</p>
+              <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-start justify-center bg-cream z-10 contact-reveal">
+                <h3 className="text-3xl font-sans font-medium mb-4 text-charcoal">Mensagem Enviada</h3>
+                <p className="text-lg text-charcoal/60">Retornaremos em até 24 horas.</p>
               </div>
             )}
 
-            <form ref={formRef} className={`contact-reveal flex flex-col gap-12 3xl:gap-16 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit} noValidate>
-              
+            <form ref={formRef} className={`contact-reveal flex flex-col gap-8 mb-8 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} onSubmit={handleSubmit} noValidate>
               {formState === 'error' && (
-                <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm">
+                <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm font-sans">
                   {errorMessage}
                 </div>
               )}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Nome" 
+                  required
+                  className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans"
+                />
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="E-mail" 
+                  required
+                  className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans"
+                />
+              </div>
+              <textarea 
+                name="details" 
+                placeholder="Como podemos ajudar?" 
+                rows={3}
+                required
+                className="w-full bg-transparent border-b border-charcoal/20 py-4 text-base md:text-lg focus:outline-none focus:border-charcoal transition-colors placeholder:text-charcoal/40 font-sans resize-none"
+              />
+              
+              <div className="pt-4">
+                <button 
+                  type="submit" 
+                  disabled={formState === 'loading'}
+                  className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:opacity-60 transition-opacity disabled:opacity-50"
+                >
+                  {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
 
-              <div className="relative group">
-                <input type="text" id="name" name="name" className="w-full bg-transparent border-b border-charcoal/20 py-4 text-xl 3xl:text-3xl focus:outline-none focus:border-charcoal transition-colors peer placeholder-transparent text-charcoal font-serif" placeholder="Nome" required />
-                <label htmlFor="name" className="absolute left-0 top-4 text-charcoal/40 text-xl 3xl:text-3xl transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-charcoal peer-focus:font-sans peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-6 peer-valid:text-xs peer-valid:text-charcoal peer-valid:font-sans peer-valid:uppercase peer-valid:tracking-widest cursor-text font-serif">Seu Nome</label>
+            <hr className="contact-reveal border-charcoal/20 mb-8" />
+
+            {/* Contact Info (2 columns) */}
+            <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div>
+                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal">Informações Gerais</h4>
+                <div className="text-sm font-sans text-charcoal/80 space-y-6">
+                  <div>
+                    <p className="font-medium text-charcoal mb-1">Estúdio Formosa</p>
+                    <p>Vila Formosa, São Paulo</p>
+                    <p>Brasil</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-charcoal mb-1">Telefone</p>
+                    <p>+55 11 99999-9999</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-charcoal mb-1">E-mail</p>
+                    <a href="mailto:hello@formosastudios.com" className="hover:opacity-60 transition-opacity">hello@formosastudios.com</a>
+                  </div>
+                </div>
               </div>
               
-              <div className="relative group">
-                <input type="email" id="email" name="email" className="w-full bg-transparent border-b border-charcoal/20 py-4 text-xl 3xl:text-3xl focus:outline-none focus:border-charcoal transition-colors peer placeholder-transparent text-charcoal font-serif" placeholder="E-mail" required />
-                <label htmlFor="email" className="absolute left-0 top-4 text-charcoal/40 text-xl 3xl:text-3xl transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-charcoal peer-focus:font-sans peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-6 peer-valid:text-xs peer-valid:text-charcoal peer-valid:font-sans peer-valid:uppercase peer-valid:tracking-widest cursor-text font-serif">Seu E-mail</label>
+              <div>
+                <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal">Redes Sociais</h4>
+                <ul className="text-sm font-sans text-charcoal/80 space-y-3">
+                  <li><a href="#" className="hover:opacity-60 transition-opacity">Instagram</a></li>
+                  <li><a href="#" className="hover:opacity-60 transition-opacity">Facebook</a></li>
+                  <li><a href="#" className="hover:opacity-60 transition-opacity">Twitter</a></li>
+                  <li><a href="#" className="hover:opacity-60 transition-opacity">LinkedIn</a></li>
+                </ul>
               </div>
+            </div>
 
-              <div className="relative group">
-                <textarea id="details" name="details" rows={1} className="w-full bg-transparent border-b border-charcoal/20 py-4 text-xl 3xl:text-3xl focus:outline-none focus:border-charcoal transition-colors peer placeholder-transparent resize-none min-h-[60px] text-charcoal font-serif" placeholder="Detalhes" required></textarea>
-                <label htmlFor="details" className="absolute left-0 top-4 text-charcoal/40 text-xl 3xl:text-3xl transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-charcoal peer-focus:font-sans peer-focus:uppercase peer-focus:tracking-widest peer-valid:-top-6 peer-valid:text-xs peer-valid:text-charcoal peer-valid:font-sans peer-valid:uppercase peer-valid:tracking-widest cursor-text font-serif">Sobre o Projeto</label>
-              </div>
-
-              <button type="submit" disabled={formState === 'loading'} className="mt-8 border border-charcoal/20 rounded-full px-12 py-5 text-xs 3xl:text-sm uppercase tracking-widest hover:bg-charcoal hover:text-cream transition-all self-start font-medium focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-cream outline-none disabled:opacity-50 flex items-center gap-4 group text-charcoal">
-                {formState === 'loading' ? (
-                  <>
-                    <svg className="animate-spin h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    Enviar Mensagem
-                    <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-                  </>
-                )}
-              </button>
-            </form>
           </div>
-
         </div>
       </div>
     </section>
