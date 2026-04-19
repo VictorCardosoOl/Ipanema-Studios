@@ -3,26 +3,31 @@ import { useState, useEffect } from 'react';
 export function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const [isAtTop, setIsAtTop] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
+    // Set initial
+    setScrollY(window.scrollY);
+
     const updateScrollDir = () => {
-      const scrollY = window.scrollY;
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
 
       // Update isAtTop state
-      setIsAtTop(scrollY < 50);
+      setIsAtTop(currentScrollY < 50);
 
       // Determine direction
-      const direction = scrollY > lastScrollY ? 'down' : 'up';
+      const direction = currentScrollY > lastScrollY ? 'down' : 'up';
       
       // Only update state if direction changes and we've scrolled a bit (threshold to avoid jitter)
-      if (direction !== scrollDirection && Math.abs(scrollY - lastScrollY) > 5) {
+      if (direction !== scrollDirection && Math.abs(currentScrollY - lastScrollY) > 5) {
         setScrollDirection(direction);
       }
       
-      lastScrollY = scrollY > 0 ? scrollY : 0;
+      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
       ticking = false;
     };
 
@@ -37,5 +42,5 @@ export function useScrollDirection() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [scrollDirection]);
 
-  return { scrollDirection, isAtTop };
+  return { scrollDirection, isAtTop, scrollY };
 }
