@@ -5,7 +5,6 @@ import { projects } from '../data/portfolio';
 import Image from './ui/Image';
 import { Button } from './ui/Button';
 import { Heading } from './ui/Heading';
-import { MagneticButton } from './ui/MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,18 +57,16 @@ export default function Portfolio() {
       >
         {projects.map((project, idx) => (
           <div key={idx} className="w-[80vw] md:w-[60vw] lg:w-[45vw] h-[70vh] mr-[5vw] flex flex-col group relative">
-            <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative cursor-explore">
+            <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative">
               <Image
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40">
-                <MagneticButton>
-                  <Button variant="whiteOutline" size="lg" className="backdrop-blur-sm bg-white/10" onClick={() => alert("Abrir Modal de Backstage: Desafios, Arquitetura, Impacto")}>
-                    Ver Backstage Técnico
-                  </Button>
-                </MagneticButton>
+                <Button variant="whiteOutline" size="lg" className="backdrop-blur-sm bg-white/10" onClick={() => alert("Abrir Modal de Backstage: Desafios, Arquitetura, Impacto")}>
+                  Ver Backstage Técnico
+                </Button>
               </div>
             </div>
             <div className="mt-8">

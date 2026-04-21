@@ -13,7 +13,6 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import SmoothScroll from './components/SmoothScroll';
 import { Preloader } from './components/ui/Preloader';
-import { CustomCursor } from './components/ui/CustomCursor';
 import { motion, useScroll } from 'motion/react';
 import { useState } from 'react';
 
@@ -65,14 +64,12 @@ export default function App() {
   const { scrollYProgress } = useScroll();
 
   return (
-    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream cursor-none md:cursor-auto">
+    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
       {/* Wayfinding: Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-[2px] bg-charcoal z-[60] origin-left"
         style={{ scaleX: scrollYProgress }}
       />
-      
-      <CustomCursor />
       
       {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
 

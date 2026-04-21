@@ -1,26 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Image from './ui/Image';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
-
-function WireframeGlobe() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.05;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.08;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={[2, -1, 0]} scale={1.5}>
-      <icosahedronGeometry args={[2, 2]} />
-      <meshBasicMaterial color="#000000" wireframe transparent opacity={0.03} />
-    </mesh>
-  );
-}
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -86,14 +66,6 @@ export default function Hero() {
     <section id="hero" ref={containerRef} className="h-[100dvh] w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 overflow-hidden">
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0 relative">
-        
-        {/* WebGL Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-            <WireframeGlobe />
-          </Canvas>
-        </div>
-
         <header className="shrink-0 relative z-10">
           <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase flex flex-wrap gap-x-2 md:gap-x-4 lg:gap-x-5">
             {"Formosa Studios".split(' ').map((word, i) => (
