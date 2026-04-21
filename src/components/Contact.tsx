@@ -1,7 +1,10 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, Bot, User } from 'lucide-react';
-import { useAiChat } from '../hooks/useAiChat';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useContactForm } from '../hooks/useContactForm';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Textarea } from './ui/Textarea';
 import { Heading } from './ui/Heading';
 
 export default function Contact() {
@@ -32,12 +35,12 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={containerRef} 
-      className="bg-cream text-charcoal py-12 md:py-16 px-6 md:px-12 3xl:px-24 flex flex-col justify-center min-h-[80vh]"
+      className="bg-cream text-charcoal py-12 md:py-16 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
     >
       <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <ContactHeader />
-          <AiChatInterface />
+          <ContactContent />
         </div>
       </div>
     </section>
@@ -47,76 +50,162 @@ export default function Contact() {
 function ContactHeader() {
   return (
     <div className="lg:col-span-5 flex flex-col">
-      <Heading size="h1" className="contact-reveal text-charcoal mb-4">
-        Scoping
+      <Heading size="h1" className="contact-reveal text-charcoal">
+        Contato
       </Heading>
-      <p className="contact-reveal text-sm md:text-base font-sans text-charcoal/70 leading-relaxed max-w-sm">
-        Converse com nossa IA de pré-scoping para nos ajudar a entender os requisitos técnicos e de engenharia do seu desafio antes de nossa reunião de alinhamento.
-      </p>
     </div>
   );
 }
 
-function AiChatInterface() {
-  const { messages, isLoading, sendMessage } = useAiChat();
-  const [input, setInput] = useState('');
-  const chatEndRef = useRef<HTMLDivElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.trim()) {
-      sendMessage(input);
-      setInput('');
-    }
-  };
-
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+function ContactContent() {
+  const contactForm = useContactForm();
 
   return (
-    <div className="lg:col-span-7 flex flex-col relative h-[500px] border border-charcoal/10 bg-white p-4 contact-reveal shadow-sm">
-      <div className="flex-1 overflow-y-auto mb-4 space-y-4 pr-2">
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-charcoal text-cream' : 'bg-sage text-charcoal'}`}>
-              {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-            </div>
-            <div className={`p-3 max-w-[80%] rounded-sm text-sm font-sans ${msg.role === 'user' ? 'bg-charcoal text-cream' : 'bg-sage text-charcoal'}`}>
-              {msg.content}
-            </div>
-          </div>
-        ))}
-        {isLoading && (
-          <div className="flex gap-3 flex-row">
-            <div className="w-8 h-8 rounded-full bg-sage flex items-center justify-center shrink-0">
-              <Bot size={16} />
-            </div>
-            <div className="p-3 max-w-[80%] rounded-sm text-sm font-sans bg-sage text-charcoal/50 flex gap-1">
-              <span className="animate-bounce">.</span><span className="animate-bounce delay-100">.</span><span className="animate-bounce delay-200">.</span>
-            </div>
-          </div>
-        )}
-        <div ref={chatEndRef} />
-      </div>
+    <div className="lg:col-span-7 flex flex-col relative">
+      <p className="contact-reveal text-base md:text-lg font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-6">
+        Tem um grande projeto em mente? Preencha o formulário abaixo e nossa equipe de especialistas entrará em contato para transformarmos sua visão em realidade.
+      </p>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        <input 
-          type="text" 
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Descreva seu projeto ou dúvida..." 
-          disabled={isLoading}
-          className="flex-1 border border-charcoal/20 px-4 py-3 text-sm focus:outline-none focus:border-charcoal disabled:opacity-50 font-sans bg-transparent"
+      {contactForm.formState === 'success' && <SuccessMessage />}
+      
+      <ContactForm {...contactForm} />
+      <ContactInfo />
+    </div>
+  );
+}
+
+function SuccessMessage() {
+  return (
+    <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-start justify-center bg-cream z-10 contact-reveal">
+      <div className="flex items-center gap-4 mb-4">
+        <CheckCircle2 className="w-10 h-10 text-green-600" />
+        <h3 className="text-3xl font-sans font-medium text-charcoal">Mensagem Enviada</h3>
+      </div>
+      <p className="text-lg text-charcoal/70">Agradecemos o contato. Retornaremos em até 24 horas.</p>
+    </div>
+  );
+}
+
+function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur, handleChange, handleSubmit }: ReturnType<typeof useContactForm>) {
+  return (
+    <form 
+      ref={formRef} 
+      className={`contact-reveal flex flex-col gap-4 mb-8 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
+      onSubmit={handleSubmit} 
+      noValidate
+    >
+      {formState === 'error' && errorMessage && (
+        <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm font-sans">
+          {errorMessage}
+        </div>
+      )}
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-1">
+          <Input 
+            type="text" 
+            name="name" 
+            id="name"
+            placeholder="Nome" 
+            required
+            aria-invalid={!!fieldErrors.name}
+            aria-describedby={fieldErrors.name ? "name-error" : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!fieldErrors.name}
+          />
+          {fieldErrors.name && (
+            <span id="name-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+              {fieldErrors.name}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-col gap-1">
+          <Input 
+            type="email" 
+            name="email" 
+            id="email"
+            placeholder="E-mail" 
+            required
+            aria-invalid={!!fieldErrors.email}
+            aria-describedby={fieldErrors.email ? "email-error" : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={!!fieldErrors.email}
+          />
+          {fieldErrors.email && (
+            <span id="email-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+              {fieldErrors.email}
+            </span>
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col gap-1">
+        <Textarea 
+          name="details" 
+          id="details"
+          placeholder="Como podemos ajudar?" 
+          rows={3}
+          required
+          aria-invalid={!!fieldErrors.details}
+          aria-describedby={fieldErrors.details ? "details-error" : undefined}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={!!fieldErrors.details}
         />
-        <button 
+        {fieldErrors.details && (
+          <span id="details-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+            {fieldErrors.details}
+          </span>
+        )}
+      </div>
+      
+      <div className="pt-4">
+        <Button 
           type="submit" 
-          disabled={isLoading || !input.trim()}
-          className="bg-charcoal text-cream px-6 py-3 flex items-center justify-center disabled:opacity-50 hover:bg-black transition-colors"
+          disabled={formState === 'loading'}
+          className="gap-3"
+          aria-disabled={formState === 'loading'}
         >
-          <ArrowRight size={18} />
-        </button>
-      </form>
+          {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
+          <ArrowRight className="w-4 h-4" />
+        </Button>
+      </div>
+    </form>
+  );
+}
+
+function ContactInfo() {
+  return (
+    <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-charcoal/20">
+      <div>
+        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Informações Gerais</h4>
+        <div className="text-sm font-sans text-charcoal/80 space-y-4">
+          <div>
+            <p className="font-medium text-charcoal mb-1">Estúdio Formosa</p>
+            <p>Vila Formosa, São Paulo</p>
+            <p>Brasil</p>
+          </div>
+          <div>
+            <p className="font-medium text-charcoal mb-1">Telefone</p>
+            <p>+55 11 99999-9999</p>
+          </div>
+          <div>
+            <p className="font-medium text-charcoal mb-1">E-mail</p>
+            <a href="mailto:hello@formosastudios.com" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@formosastudios.com</a>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Redes Sociais</h4>
+        <ul className="text-sm font-sans text-charcoal/80 space-y-2">
+          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Instagram</a></li>
+          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Facebook</a></li>
+          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Twitter</a></li>
+          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">LinkedIn</a></li>
+        </ul>
+      </div>
     </div>
   );
 }
