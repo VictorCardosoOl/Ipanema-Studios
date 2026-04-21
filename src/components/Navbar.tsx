@@ -1,5 +1,6 @@
 import React from 'react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
+import { MagneticButton } from './ui/MagneticButton';
 
 interface NavLink {
   label: string;
@@ -65,9 +66,11 @@ export default function Navbar({ items, logoText }: NavbarProps) {
 
         {/* Call to action */}
         <div className="flex items-center gap-4">
-          <a href="#contact" className="hidden sm:inline-flex items-center justify-center text-sm font-semibold bg-charcoal text-cream px-5 py-2.5 rounded-full hover:bg-black transition-colors">
-            Fale Conosco
-          </a>
+          <MagneticButton className="hidden sm:inline-block">
+            <a href="#contact" className="inline-flex items-center justify-center text-sm font-semibold bg-charcoal text-cream px-5 py-2.5 rounded-full hover:bg-black transition-colors">
+              Fale Conosco
+            </a>
+          </MagneticButton>
           
           {/* Menu Mobile Trigger */}
           <button className="md:hidden p-2 text-charcoal focus:outline-none transition-colors hover:text-black">

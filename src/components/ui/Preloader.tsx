@@ -6,9 +6,10 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
   const preloaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const body = document.body;
-    body.style.overflow = 'hidden'; // Evita scroll inicial
+    // Bloqueia o scroll enquanto o preloader está ativo
+    document.body.style.overflow = 'hidden';
 
+    // Anima o contador de 0 a 100
     const countObj = { val: 0 };
     gsap.to(countObj, {
       val: 100,
@@ -16,35 +17,31 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
       ease: "power2.inOut",
       onUpdate: () => setCounter(Math.floor(countObj.val)),
       onComplete: () => {
+        // Fade out e slide up do preloader
         gsap.to(preloaderRef.current, {
           yPercent: -100,
           opacity: 0,
-          duration: 1,
+          duration: 0.8,
           ease: "power4.inOut",
           onComplete: () => {
-            body.style.overflow = '';
+            document.body.style.overflow = '';
             onComplete();
           }
         });
       }
     });
-
-    return () => {
-      body.style.overflow = '';
-    };
   }, [onComplete]);
 
   return (
     <div 
       ref={preloaderRef}
-      className="fixed inset-0 z-[999] bg-cream flex flex-col items-center justify-center text-charcoal font-serif font-semibold tracking-tighter"
-      aria-hidden="true"
+      className="fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center text-charcoal font-serif font-semibold tracking-tighter"
     >
       <div className="text-8xl md:text-[9rem] opacity-20">
         {counter}%
       </div>
       <div className="absolute bottom-12 text-sm font-sans tracking-widest uppercase font-bold opacity-50">
-        Formosa Studios
+        Engenharia & Design
       </div>
     </div>
   );

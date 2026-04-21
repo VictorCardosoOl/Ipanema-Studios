@@ -54,39 +54,44 @@ const NAVIGATION_CONFIG: readonly NavItem[] = [
     bgColor: "#222222", 
     textColor: "#FFFFFF",
     links: [
-      { label: "Agendar Diagnóstico", ariaLabel: "Agendar Reunião", href: "#contact" },
-      { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@formosastudios.com" }
+      { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@formosastudios.com" },
+      { label: "Agendar Diagnóstico", ariaLabel: "Agendar Reunião", href: "#contact" }
     ]
   }
 ];
 
 export default function App() {
-  const [isPreloaderDone, setIsPreloaderDone] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { scrollYProgress } = useScroll();
 
   return (
-    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
-      <CustomCursor />
-      {!isPreloaderDone && <Preloader onComplete={() => setIsPreloaderDone(true)} />}
-
-      {/* Wayfinding Progress Bar */}
+    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream cursor-none md:cursor-auto">
+      {/* Wayfinding: Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-[2px] bg-charcoal z-[60] origin-left"
         style={{ scaleX: scrollYProgress }}
       />
+      
+      <CustomCursor />
+      
+      {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
 
       <SmoothScroll />
       <Navbar 
         items={NAVIGATION_CONFIG}
         logoText="Formosa"
       />
-      <Hero />
-      <Portfolio />
-      <Process />
-      <Mission />
-      <Values />
-      <Contact />
-      <Footer />
+      
+      {/* Esconde o conteúdo até o preloader acabar para não vazar layout */}
+      <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 h-[100vh] overflow-hidden'}`}>
+        <Hero />
+        <Portfolio />
+        <Process />
+        <Mission />
+        <Values />
+        <Contact />
+        <Footer />
+      </div>
     </main>
   );
 }

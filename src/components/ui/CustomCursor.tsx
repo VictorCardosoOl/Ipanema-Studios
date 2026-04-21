@@ -6,15 +6,13 @@ export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    // Esconde o cursor nativo
-    document.body.style.cursor = 'none';
-
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      // Adicione a classe 'cursor-explore' nos elementos onde o cursor deve expandir
       if (target.closest('.cursor-explore')) {
         setIsHovering(true);
       } else {
@@ -26,7 +24,6 @@ export function CustomCursor() {
     document.addEventListener('mouseover', handleMouseOver);
 
     return () => {
-      document.body.style.cursor = '';
       window.removeEventListener('mousemove', updatePosition);
       document.removeEventListener('mouseover', handleMouseOver);
     };
@@ -34,28 +31,22 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center rounded-full bg-charcoal text-cream font-sans text-[10px] uppercase font-bold tracking-widest hidden md:flex overflow-hidden"
+      className="fixed top-0 left-0 pointer-events-none z-[100] flex items-center justify-center rounded-full bg-charcoal text-cream font-sans text-[10px] uppercase font-bold tracking-widest hidden md:flex"
       animate={{
         x: position.x - (isHovering ? 40 : 8),
         y: position.y - (isHovering ? 40 : 8),
         width: isHovering ? 80 : 16,
         height: isHovering ? 80 : 16,
+        opacity: 1
       }}
       transition={{
         type: "spring",
-        stiffness: 300,
-        damping: 25,
+        stiffness: 400,
+        damping: 28,
         mass: 0.1
       }}
     >
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovering ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        className="whitespace-nowrap"
-      >
-        Explorar
-      </motion.span>
+      {isHovering ? 'Explorar' : ''}
     </motion.div>
   );
 }
