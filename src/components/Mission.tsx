@@ -54,7 +54,7 @@ export default function Mission() {
         {/* Top Text */}
         <div className="max-w-5xl mb-24 md:mb-32">
           <Heading size="h3" weight="light" className="mission-reveal">
-            Nossa agência nasceu da obsessão por escalabilidade e design de vanguarda. Preenchemos a lacuna entre a estética editorial e a engenharia de software profunda, compilando plataformas digitais complexas que convertem e dominam seus respectivos mercados.
+            Nossa agência nasceu da obsessão por <strong className="font-serif font-semibold text-charcoal">escalabilidade</strong> e <strong className="font-serif font-semibold text-charcoal">design de vanguarda</strong>. Preenchemos a lacuna entre a <strong className="font-serif font-semibold text-charcoal">estética editorial</strong> e a <strong className="font-serif font-semibold text-charcoal">engenharia de software</strong> profunda, compilando plataformas digitais complexas que convertem e dominam seus respectivos mercados.
           </Heading>
         </div>
 

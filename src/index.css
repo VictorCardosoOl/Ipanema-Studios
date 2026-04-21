@@ -42,3 +42,12 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+/* ==========================================================================
+   ACESSIBILIDADE (A11y)
+   ========================================================================== */
+*:focus-visible {
+  outline: 2px solid var(--color-charcoal);
+  outline-offset: 4px;
+  border-radius: 2px;
+}

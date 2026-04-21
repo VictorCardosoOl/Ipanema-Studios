@@ -58,7 +58,7 @@ export default function Portfolio() {
       >
         {projects.map((project, idx) => (
           <div key={idx} className="w-[80vw] md:w-[60vw] lg:w-[45vw] h-[70vh] mr-[5vw] flex flex-col group relative">
-            <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative">
+            <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative cursor-explore">
               <Image
                 src={project.image}
                 alt={project.title}
