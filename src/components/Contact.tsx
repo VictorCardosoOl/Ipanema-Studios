@@ -90,7 +90,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
   return (
     <form 
       ref={formRef} 
-      className={`contact-reveal flex flex-col gap-4 mb-8 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
+      className={`contact-reveal flex flex-col gap-8 mb-12 mt-6 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
       onSubmit={handleSubmit} 
       noValidate
     >
@@ -100,13 +100,14 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
         </div>
       )}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="flex flex-col gap-2">
           <Input 
             type="text" 
             name="name" 
             id="name"
-            placeholder="Nome" 
+            placeholder="Seu nome" 
+            className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal"
             required
             aria-invalid={!!fieldErrors.name}
             aria-describedby={fieldErrors.name ? "name-error" : undefined}
@@ -115,17 +116,18 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             error={!!fieldErrors.name}
           />
           {fieldErrors.name && (
-            <span id="name-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+            <span id="name-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
               {fieldErrors.name}
             </span>
           )}
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <Input 
             type="email" 
             name="email" 
             id="email"
-            placeholder="E-mail" 
+            placeholder="Seu e-mail profissional" 
+            className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal"
             required
             aria-invalid={!!fieldErrors.email}
             aria-describedby={fieldErrors.email ? "email-error" : undefined}
@@ -134,18 +136,19 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             error={!!fieldErrors.email}
           />
           {fieldErrors.email && (
-            <span id="email-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+            <span id="email-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
               {fieldErrors.email}
             </span>
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         <Textarea 
           name="details" 
           id="details"
-          placeholder="Como podemos ajudar?" 
-          rows={3}
+          placeholder="Conte-nos sobre o seu projeto..." 
+          rows={1}
+          className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal resize-none overflow-hidden min-h-[40px]"
           required
           aria-invalid={!!fieldErrors.details}
           aria-describedby={fieldErrors.details ? "details-error" : undefined}
@@ -154,22 +157,22 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
           error={!!fieldErrors.details}
         />
         {fieldErrors.details && (
-          <span id="details-error" className="text-xs text-red-600 font-sans mt-1" role="alert">
+          <span id="details-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
             {fieldErrors.details}
           </span>
         )}
       </div>
       
-      <div className="pt-4">
-        <Button 
+      <div className="pt-8">
+        <button 
           type="submit" 
           disabled={formState === 'loading'}
-          className="gap-3"
+          className="group flex items-center gap-4 text-xs md:text-sm uppercase tracking-widest font-bold text-charcoal hover:opacity-70 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm"
           aria-disabled={formState === 'loading'}
         >
           {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
-          <ArrowRight className="w-4 h-4" />
-        </Button>
+          <span className="w-8 h-[1px] bg-charcoal group-hover:w-12 transition-all duration-300"></span>
+        </button>
       </div>
     </form>
   );

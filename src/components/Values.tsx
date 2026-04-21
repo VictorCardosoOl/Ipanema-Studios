@@ -37,7 +37,7 @@ export default function Values() {
   }, []);
 
   return (
-    <section id="values" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-charcoal text-cream overflow-hidden">
+    <section id="values" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-white text-charcoal overflow-hidden">
       {/* Left Panel */}
       <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
@@ -75,7 +75,7 @@ export default function Values() {
             ].map((keyword, i) => (
               <li 
                 key={i}
-                className="value-item font-serif font-light text-3xl md:text-5xl lg:text-6xl 3xl:text-8xl text-cream/60 hover:text-cream transition-colors cursor-default"
+                className="value-item font-serif font-light text-3xl md:text-5xl lg:text-6xl 3xl:text-8xl text-charcoal/20 hover:text-charcoal transition-colors cursor-default"
               >
                 <span className="text-xs md:text-sm 3xl:text-lg align-top mr-2 md:mr-4 opacity-50 font-sans tracking-widest font-medium" aria-hidden="true">
                   {(i + 1).toString().padStart(2, '0')}

@@ -51,9 +51,9 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="services" ref={containerRef} className="h-[100dvh] w-full grid grid-cols-1 md:grid-cols-12 bg-cream text-charcoal border-t border-charcoal/10 overflow-hidden">
+    <section id="services" ref={containerRef} className="h-[100dvh] w-full grid grid-cols-1 md:grid-cols-12 bg-white text-charcoal overflow-hidden">
       {/* Image Column (Left) - Made narrower (col-span-3 instead of 4) */}
-      <div className="md:col-span-3 relative h-[40vh] md:h-full bg-sage overflow-hidden min-h-0">
+      <div className="md:col-span-3 relative h-[40vh] md:h-full bg-white overflow-hidden min-h-0">
         {/* Top Left Label */}
         <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20 text-[10px] uppercase tracking-widest font-bold opacity-90">
           Nossas Especialidades
@@ -88,9 +88,9 @@ export default function Process() {
       </div>
 
       {/* Vertical Title Column (Middle) - Adjusted font size */}
-      <div className="md:col-span-2 border-y md:border-y-0 md:border-r border-charcoal/10 flex items-center justify-center py-8 md:py-0 bg-cream min-h-0">
+      <div className="md:col-span-2 flex items-center justify-center py-8 md:py-0 bg-white min-h-0">
         <h2 
-          className="text-5xl md:text-6xl lg:text-[7rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-20"
+          className="text-5xl md:text-6xl lg:text-[7rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-10"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
           Serviços
@@ -98,7 +98,7 @@ export default function Process() {
       </div>
 
       {/* Content Column (Right) - Made wider (col-span-7 instead of 6) */}
-      <div className="md:col-span-7 flex flex-col h-full bg-cream relative min-h-0">
+      <div className="md:col-span-7 flex flex-col h-full bg-white relative min-h-0">
         {/* Top Right Label */}
         <div className="absolute top-6 right-6 md:top-8 md:right-8 text-[10px] 3xl:text-xs uppercase tracking-widest font-bold opacity-90">
           Página 03 / 06
@@ -110,10 +110,10 @@ export default function Process() {
             
             {services.map((service) => (
               <div key={service.id} className="process-step">
-                <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 border-b border-charcoal/10 pb-2 3xl:pb-4">
+                <h3 className="text-[10px] 3xl:text-xs font-bold tracking-widest uppercase mb-2 md:mb-4 3xl:mb-6 pb-2 3xl:pb-4 opacity-70">
                   {service.id} / {service.title}
                 </h3>
-                <p className="text-xs lg:text-sm 3xl:text-lg leading-relaxed opacity-90 text-justify font-medium">
+                <p className="text-sm lg:text-base 3xl:text-xl leading-relaxed opacity-90 text-left font-light">
                   {service.description}
                 </p>
               </div>
