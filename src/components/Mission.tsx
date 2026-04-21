@@ -30,6 +30,19 @@ export default function Mission() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.from(".mission-word", {
+        yPercent: 120,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.02,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      });
+
       gsap.from(".mission-reveal", {
         y: 40,
         opacity: 0,
@@ -37,7 +50,7 @@ export default function Mission() {
         stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: ".mission-reveal",
           start: "top 80%",
           toggleActions: "play none none none"
         }
@@ -53,8 +66,17 @@ export default function Mission() {
         
         {/* Top Text */}
         <div className="max-w-5xl mb-24 md:mb-32">
-          <Heading size="h3" weight="light" className="mission-reveal">
-            Nossa agência nasceu da obsessão por <strong className="font-serif font-semibold text-charcoal">escalabilidade</strong> e <strong className="font-serif font-semibold text-charcoal">design de vanguarda</strong>. Preenchemos a lacuna entre a <strong className="font-serif font-semibold text-charcoal">estética editorial</strong> e a <strong className="font-serif font-semibold text-charcoal">engenharia de software</strong> profunda, compilando plataformas digitais complexas que convertem e dominam seus respectivos mercados.
+          <Heading size="h3" weight="light" className="leading-tight flex flex-wrap gap-x-2 md:gap-x-3">
+            {"Nossa agência nasceu da obsessão por escalabilidade e design de vanguarda. Preenchemos a lacuna entre a estética editorial e a engenharia de software profunda, compilando plataformas digitais complexas que convertem e dominam seus respectivos mercados.".split(' ').map((word, i) => {
+              const isBold = ['escalabilidade', 'design', 'vanguarda.', 'estética', 'editorial', 'engenharia', 'software'].includes(word);
+              return (
+                <span key={i} className="overflow-hidden inline-flex pb-1">
+                  <span className={`mission-word inline-block ${isBold ? 'font-serif font-semibold text-charcoal' : ''}`}>
+                    {word}
+                  </span>
+                </span>
+              );
+            })}
           </Heading>
         </div>
 

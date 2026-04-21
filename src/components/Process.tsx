@@ -45,6 +45,17 @@ export default function Process() {
           toggleActions: "play none none none"
         }
       });
+
+      gsap.to(".process-title-vertical", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -88,9 +99,9 @@ export default function Process() {
       </div>
 
       {/* Vertical Title Column (Middle) - Adjusted font size */}
-      <div className="md:col-span-2 flex items-center justify-center py-8 md:py-0 bg-white min-h-0">
+      <div className="md:col-span-2 flex items-center justify-center py-8 md:py-0 bg-white min-h-0 overflow-hidden">
         <h2 
-          className="text-5xl md:text-6xl lg:text-[7rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-10"
+          className="process-title-vertical text-5xl md:text-6xl lg:text-[7rem] font-sans font-bold tracking-[0.15em] uppercase text-charcoal opacity-10"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
           Serviços

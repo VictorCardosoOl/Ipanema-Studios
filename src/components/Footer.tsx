@@ -3,14 +3,34 @@ import { ArrowUp, MessageCircle } from 'lucide-react';
 import { Heading } from './ui/Heading';
 
 const Footer = () => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const currentYear = new Date().getFullYear();
+
+  React.useLayoutEffect(() => {
+    const ctx = window.gsap ? window.gsap.context(() => {
+      window.gsap.from(".footer-char", {
+        yPercent: 120,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".footer-reveal-container",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+    }, containerRef) : { revert: () => {} };
+
+    return () => ctx.revert();
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-cream text-charcoal pt-16 pb-8 px-8 md:px-12 lg:px-16 flex flex-col justify-between border-t border-charcoal/10">
+    <footer ref={containerRef} className="bg-cream text-charcoal pt-16 pb-8 px-8 md:px-12 lg:px-16 flex flex-col justify-between border-t border-charcoal/10">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-12 w-full max-w-[1920px] mx-auto">
         {/* Col 1: Social & Contact (Span 5) */}
@@ -49,9 +69,15 @@ const Footer = () => {
       </div>
 
       {/* Middle Section: Huge Typography */}
-      <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden">
-        <Heading size="huge" className="select-none text-center w-full">
-          Formosa
+      <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden footer-reveal-container">
+        <Heading size="huge" className="select-none text-center w-full flex justify-center">
+          {"Formosa".split('').map((char, i) => (
+            <span key={i} className="overflow-hidden inline-flex pb-2">
+              <span className="footer-char inline-block">
+                {char}
+              </span>
+            </span>
+          ))}
         </Heading>
       </div>
 
