@@ -1,21 +1,13 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Image from './ui/Image';
+import TextType from './ui/TextType';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Title SplitText-like elegant reveal
-      gsap.from(".hero-word", {
-        yPercent: 120,
-        ease: "power4.out",
-        duration: 1.2,
-        stagger: 0.15,
-        delay: 0.1
-      });
-
       // Subtitle fade up
       gsap.from(".hero-subtitle", {
         y: 20,
@@ -67,12 +59,16 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0 relative">
         <header className="shrink-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase flex flex-wrap gap-x-2 md:gap-x-4 lg:gap-x-5">
-            {"Formosa Studios".split(' ').map((word, i) => (
-              <span key={i} className="overflow-hidden inline-block pb-2 lg:pb-4">
-                <span className="hero-word inline-block">{word}</span>
-              </span>
-            ))}
+          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase h-[1.2em]">
+            <TextType 
+              text={["Formosa Studios", "Design Premium", "Alta Performance"]}
+              typingSpeed={40}
+              deletingSpeed={30}
+              pauseDuration={1500}
+              showCursor={true}
+              cursorCharacter="_"
+              cursorBlinkDuration={0.4}
+            />
           </h1>
           <p className="hero-subtitle mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
         </header>
