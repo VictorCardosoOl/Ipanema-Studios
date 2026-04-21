@@ -35,7 +35,7 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={containerRef} 
-      className="bg-cream text-charcoal py-20 md:py-32 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
+      className="bg-cream text-charcoal py-12 md:py-16 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
     >
       <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -62,7 +62,7 @@ function ContactContent() {
 
   return (
     <div className="lg:col-span-7 flex flex-col relative">
-      <p className="contact-reveal text-lg md:text-xl font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-8">
+      <p className="contact-reveal text-base md:text-lg font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-6">
         Tem um grande projeto em mente? Preencha o formulário abaixo e nossa equipe de especialistas entrará em contato para transformarmos sua visão em realidade.
       </p>
 
@@ -90,7 +90,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
   return (
     <form 
       ref={formRef} 
-      className={`contact-reveal flex flex-col gap-8 mb-12 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
+      className={`contact-reveal flex flex-col gap-4 mb-8 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
       onSubmit={handleSubmit} 
       noValidate
     >
@@ -100,7 +100,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
         </div>
       )}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col gap-1">
           <Input 
             type="text" 
@@ -177,10 +177,10 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
 
 function ContactInfo() {
   return (
-    <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-12 pt-8 border-t border-charcoal/20">
+    <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-charcoal/20">
       <div>
-        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal/70">Informações Gerais</h4>
-        <div className="text-sm font-sans text-charcoal/80 space-y-6">
+        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Informações Gerais</h4>
+        <div className="text-sm font-sans text-charcoal/80 space-y-4">
           <div>
             <p className="font-medium text-charcoal mb-1">Estúdio Formosa</p>
             <p>Vila Formosa, São Paulo</p>
@@ -198,8 +198,8 @@ function ContactInfo() {
       </div>
       
       <div>
-        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 text-charcoal/70">Redes Sociais</h4>
-        <ul className="text-sm font-sans text-charcoal/80 space-y-3">
+        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Redes Sociais</h4>
+        <ul className="text-sm font-sans text-charcoal/80 space-y-2">
           <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Instagram</a></li>
           <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Facebook</a></li>
           <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Twitter</a></li>

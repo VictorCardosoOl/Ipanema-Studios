@@ -49,7 +49,7 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0">
         <header className="shrink-0">
-          <h1 className="text-xl 3xl:text-3xl font-medium tracking-tight">Formosa Studios</h1>
+          <h1 className="text-4xl md:text-5xl 3xl:text-7xl font-medium tracking-tight">Formosa Studios</h1>
           <p className="mt-4 text-sm md:text-base text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
         </header>
         
