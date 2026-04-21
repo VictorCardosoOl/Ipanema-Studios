@@ -1,29 +1,11 @@
 import React from 'react';
 import { ArrowUp, MessageCircle } from 'lucide-react';
 import { Heading } from './ui/Heading';
+import DecryptedText from './ui/DecryptedText';
 
 const Footer = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const currentYear = new Date().getFullYear();
-
-  React.useLayoutEffect(() => {
-    const ctx = window.gsap ? window.gsap.context(() => {
-      window.gsap.from(".footer-char", {
-        yPercent: 120,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.05,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".footer-reveal-container",
-          start: "top 85%",
-          toggleActions: "play none none none"
-        }
-      });
-    }, containerRef) : { revert: () => {} };
-
-    return () => ctx.revert();
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -69,15 +51,16 @@ const Footer = () => {
       </div>
 
       {/* Middle Section: Huge Typography */}
-      <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden footer-reveal-container">
-        <Heading size="huge" className="select-none text-center w-full flex justify-center">
-          {"Formosa".split('').map((char, i) => (
-            <span key={i} className="overflow-hidden inline-flex pb-2">
-              <span className="footer-char inline-block">
-                {char}
-              </span>
-            </span>
-          ))}
+      <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden">
+        <Heading size="huge" className="select-none text-center w-full flex justify-center uppercase">
+          <DecryptedText 
+            text="FORMOSA"
+            speed={60}
+            maxIterations={15}
+            characters="A&C1234!?"
+            animateOn="view"
+            revealDirection="center"
+          />
         </Heading>
       </div>
 
