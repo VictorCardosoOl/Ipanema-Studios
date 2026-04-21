@@ -7,6 +7,24 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // Title SplitText-like elegant reveal
+      gsap.from(".hero-word", {
+        yPercent: 120,
+        ease: "power4.out",
+        duration: 1.2,
+        stagger: 0.15,
+        delay: 0.1
+      });
+
+      // Subtitle fade up
+      gsap.from(".hero-subtitle", {
+        y: 20,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out",
+        delay: 0.5
+      });
+
       // Fade in nav items one by one
       gsap.from("nav li", {
         x: -20,
@@ -14,7 +32,7 @@ export default function Hero() {
         duration: 0.8,
         stagger: 0.1,
         ease: "power3.out",
-        delay: 0.5
+        delay: 0.8
       });
 
       // Parallax effect for images
@@ -49,8 +67,14 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0">
         <header className="shrink-0">
-          <h1 className="text-4xl md:text-5xl 3xl:text-7xl font-medium tracking-tight">Formosa Studios</h1>
-          <p className="mt-4 text-sm md:text-base text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
+          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase flex flex-wrap gap-x-2 md:gap-x-4 lg:gap-x-5">
+            {"Formosa Studios".split(' ').map((word, i) => (
+              <span key={i} className="overflow-hidden inline-block pb-2 lg:pb-4">
+                <span className="hero-word inline-block">{word}</span>
+              </span>
+            ))}
+          </h1>
+          <p className="hero-subtitle mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
