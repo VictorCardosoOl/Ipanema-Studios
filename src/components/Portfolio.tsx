@@ -40,7 +40,7 @@ export default function Portfolio() {
     <section 
       id="portfolio" 
       ref={sectionRef} 
-      className="relative w-full h-[100dvh] bg-charcoal text-cream overflow-hidden"
+      className="relative w-full h-[100dvh] bg-white text-charcoal overflow-hidden"
     >
       {/* Background static texture */}
       <div className="absolute inset-0 opacity-5 pointer-events-none z-0">
@@ -70,13 +70,13 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="mt-8">
-              <span className="text-[10px] uppercase tracking-widest text-cream/50 mb-2 block border-b border-cream/10 pb-2">
+              <span className="text-[10px] uppercase tracking-widest text-charcoal/50 mb-2 block border-b border-charcoal/10 pb-2">
                 0{idx + 1} &mdash; {project.title}
               </span>
-              <Heading size="h3" weight="normal" className="mt-4 leading-tight group-hover:text-white transition-colors duration-300">
+              <Heading size="h3" weight="normal" className="mt-4 leading-tight group-hover:text-charcoal/80 transition-colors duration-300">
                 {project.title}
               </Heading>
-              <p className="mt-3 text-sm md:text-base font-sans font-light tracking-wide text-cream/70 max-w-sm line-clamp-2">
+              <p className="mt-3 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm line-clamp-2">
                 {project.description}
               </p>
             </div>

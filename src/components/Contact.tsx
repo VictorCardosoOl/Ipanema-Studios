@@ -107,7 +107,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             name="name" 
             id="name"
             placeholder="Seu nome" 
-            className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal"
+            className="text-lg font-light"
             required
             aria-invalid={!!fieldErrors.name}
             aria-describedby={fieldErrors.name ? "name-error" : undefined}
@@ -127,7 +127,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             name="email" 
             id="email"
             placeholder="Seu e-mail profissional" 
-            className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal"
+            className="text-lg font-light"
             required
             aria-invalid={!!fieldErrors.email}
             aria-describedby={fieldErrors.email ? "email-error" : undefined}
@@ -147,8 +147,8 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
           name="details" 
           id="details"
           placeholder="Conte-nos sobre o seu projeto..." 
-          rows={1}
-          className="text-lg pb-2 px-0 border-charcoal/50 focus-visible:border-charcoal placeholder:text-charcoal/60 font-light text-charcoal resize-none overflow-hidden min-h-[40px]"
+          rows={3}
+          className="text-lg font-light"
           required
           aria-invalid={!!fieldErrors.details}
           aria-describedby={fieldErrors.details ? "details-error" : undefined}

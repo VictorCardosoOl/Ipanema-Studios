@@ -66,21 +66,28 @@ export default function Values() {
           <span>05 / 06</span>
         </div>
         
-        <div className="flex-grow flex flex-col justify-center items-end text-right">
-          <ul className="values-list space-y-2 md:space-y-4 3xl:space-y-6" aria-label="Core Values List">
+        <div className="flex-grow flex flex-col justify-center items-start mt-12 md:mt-0">
+          <ul className="values-list space-y-8 md:space-y-12 w-full max-w-xl" aria-label="Core Values List">
             {[
-              'Estratégia', 'Engenharia', 'Design', 'Desempenho', 
-              'Escalabilidade', 'Inovação', 'Elegância', 'Precisão', 
-              'Confiabilidade', 'Visão', 'Impacto'
-            ].map((keyword, i) => (
+              { title: 'Engenharia de Ponta', desc: 'Sistemas arquitetados para performance extrema e escalabilidade infinita.' },
+              { title: 'Design Editorial', desc: 'Estética de alto padrão que comunica autoridade e eleva o valor percebido da sua marca.' },
+              { title: 'Precisão Absoluta', desc: 'Atenção obsessiva aos mínimos detalhes, em cada linha de código e em cada pixel da tela.' }
+            ].map((item, i) => (
               <li 
                 key={i}
-                className="value-item font-serif font-light text-3xl md:text-5xl lg:text-6xl 3xl:text-8xl text-charcoal/20 hover:text-charcoal transition-colors cursor-default"
+                className="value-item flex flex-col md:flex-row gap-4 md:gap-8 border-b border-charcoal/10 pb-8 group"
               >
-                <span className="text-xs md:text-sm 3xl:text-lg align-top mr-2 md:mr-4 opacity-50 font-sans tracking-widest font-medium" aria-hidden="true">
-                  {(i + 1).toString().padStart(2, '0')}
+                <span className="text-xs font-bold tracking-widest text-charcoal/30 pt-1 shrink-0" aria-hidden="true">
+                  0{i + 1}
                 </span>
-                {keyword}
+                <div>
+                  <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-charcoal mb-3 group-hover:opacity-70 transition-opacity">
+                    {item.title}
+                  </h3>
+                  <p className="font-light text-sm md:text-base text-charcoal/70 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
