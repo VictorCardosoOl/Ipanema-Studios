@@ -54,7 +54,7 @@ export default function Mission() {
         {/* Top Text */}
         <div className="max-w-5xl mb-24 md:mb-32">
           <Heading size="h3" weight="light" className="mission-reveal">
-            O Estúdio Formosa nasceu da união de três especialistas apaixonados por inovação. Nossa missão é preencher a lacuna entre o design excepcional e a engenharia de software de alta performance, entregando produtos digitais que encantam e convertem.
+            O Estúdio Formosa nasceu da união de três especialistas apaixonados por <strong className="font-serif font-semibold text-charcoal">inovação</strong>. Nossa missão é preencher a lacuna entre o <strong className="font-serif font-semibold text-charcoal">design excepcional</strong> e a <strong className="font-serif font-semibold text-charcoal">engenharia de software</strong> de alta performance, entregando produtos digitais que encantam e convertem.
           </Heading>
         </div>
 

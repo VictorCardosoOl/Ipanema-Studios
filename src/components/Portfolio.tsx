@@ -90,7 +90,7 @@ export default function Portfolio() {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out cursor-explore ${
               currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
           >
