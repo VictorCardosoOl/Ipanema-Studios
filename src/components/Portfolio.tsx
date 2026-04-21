@@ -19,7 +19,7 @@ export default function Portfolio() {
 
       const totalWidth = container.scrollWidth - window.innerWidth;
 
-      gsap.to(container, {
+      const horizontalAnim = gsap.to(container, {
         x: -totalWidth,
         ease: "none",
         scrollTrigger: {
@@ -30,6 +30,24 @@ export default function Portfolio() {
           end: () => `+=${totalWidth}`,
           invalidateOnRefresh: true,
         }
+      });
+
+      // Animação de revelação do texto para cada projeto
+      gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card) => {
+        const textElements = card.querySelectorAll('.portfolio-text-reveal');
+        gsap.from(textElements, {
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: horizontalAnim,
+            start: "left 85%",
+            toggleActions: "play none none none"
+          }
+        });
       });
     }, sectionRef);
 
@@ -56,7 +74,7 @@ export default function Portfolio() {
         className="flex h-full w-max items-center px-[10vw] relative z-10"
       >
         {projects.map((project, idx) => (
-          <div key={idx} className="w-[80vw] md:w-[60vw] lg:w-[45vw] h-[70vh] mr-[5vw] flex flex-col group relative">
+          <div key={idx} className="portfolio-card w-[80vw] md:w-[60vw] lg:w-[45vw] h-[70vh] mr-[5vw] flex flex-col group relative">
             <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative">
               <Image
                 src={project.image}
@@ -69,7 +87,7 @@ export default function Portfolio() {
                 </Button>
               </div>
             </div>
-            <div className="mt-8">
+            <div className="mt-8 portfolio-text-reveal">
               <span className="text-[10px] uppercase tracking-widest text-charcoal/50 mb-2 block border-b border-charcoal/10 pb-2">
                 0{idx + 1} &mdash; {project.title}
               </span>

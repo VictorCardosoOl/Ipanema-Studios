@@ -59,12 +59,12 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0 relative">
         <header className="shrink-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
+          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-medium tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
             <TextType 
-              text={["Formosa Studios", "Design Premium", "Alta Performance"]}
-              typingSpeed={40}
-              deletingSpeed={30}
-              pauseDuration={1500}
+              text={["Formosa Studios"]}
+              typingSpeed={100}
+              initialDelay={1000}
+              loop={false}
               showCursor={true}
               cursorCharacter="_"
               cursorBlinkDuration={0.4}
