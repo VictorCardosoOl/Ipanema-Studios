@@ -59,7 +59,7 @@ export default function Hero() {
       {/* Left Panel - Cream */}
       <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0 relative">
         <header className="shrink-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase h-[1.2em]">
+          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-semibold tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
             <TextType 
               text={["Formosa Studios", "Design Premium", "Alta Performance"]}
               typingSpeed={40}
@@ -70,7 +70,7 @@ export default function Hero() {
               cursorBlinkDuration={0.4}
             />
           </h1>
-          <p className="hero-subtitle mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
+          <p className="hero-subtitle mt-4 md:mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
