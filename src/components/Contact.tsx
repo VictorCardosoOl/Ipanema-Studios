@@ -90,7 +90,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
   return (
     <form 
       ref={formRef} 
-      className={`contact-reveal flex flex-col gap-8 mb-12 mt-6 transition-opacity duration-500 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
+      className={`contact-reveal flex flex-col gap-8 mb-12 mt-6 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
       onSubmit={handleSubmit} 
       noValidate
     >
@@ -107,7 +107,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             name="name" 
             id="name"
             placeholder="Seu nome" 
-            className="text-lg font-light"
+            className="text-lg md:text-xl"
             required
             aria-invalid={!!fieldErrors.name}
             aria-describedby={fieldErrors.name ? "name-error" : undefined}
@@ -127,7 +127,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
             name="email" 
             id="email"
             placeholder="Seu e-mail profissional" 
-            className="text-lg font-light"
+            className="text-lg md:text-xl"
             required
             aria-invalid={!!fieldErrors.email}
             aria-describedby={fieldErrors.email ? "email-error" : undefined}
@@ -148,7 +148,7 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
           id="details"
           placeholder="Conte-nos sobre o seu projeto..." 
           rows={3}
-          className="text-lg font-light"
+          className="text-lg md:text-xl"
           required
           aria-invalid={!!fieldErrors.details}
           aria-describedby={fieldErrors.details ? "details-error" : undefined}
