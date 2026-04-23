@@ -17,17 +17,21 @@ export default function Portfolio() {
       const container = scrollContainerRef.current;
       if (!container) return;
 
-      const totalWidth = container.scrollWidth - window.innerWidth;
+      const getScrollAmount = () => {
+        const amount = container.scrollWidth - window.innerWidth;
+        // Fallback robusto se o scrollWidth por algum motivo falhar no cálculo
+        return Math.max(amount, window.innerWidth * (projects.length - 1));
+      };
 
       const horizontalAnim = gsap.to(container, {
-        x: -totalWidth,
+        x: () => -getScrollAmount(),
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
           scrub: 1,
           start: "top top",
-          end: () => `+=${totalWidth}`,
+          end: () => `+=${getScrollAmount()}`,
           invalidateOnRefresh: true,
         }
       });
@@ -49,6 +53,11 @@ export default function Portfolio() {
           }
         });
       });
+      // Força um recálculo para garantir que o tamanho dos projetos seja lido corretamente
+      // após a remoção da tela de loading.
+      setTimeout(() => ScrollTrigger.refresh(), 500);
+      setTimeout(() => ScrollTrigger.refresh(), 1500);
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -71,10 +80,10 @@ export default function Portfolio() {
 
       <div 
         ref={scrollContainerRef} 
-        className="flex h-full w-max items-center px-[5vw] relative z-10"
+        className="flex h-full w-[max-content] items-center px-[5vw] relative z-10"
       >
         {projects.map((project, idx) => (
-          <div key={idx} className="portfolio-card w-[90vw] md:w-[85vw] lg:w-[80vw] h-[80vh] mx-[5vw] relative group overflow-hidden rounded-md shadow-2xl">
+          <div key={idx} className="portfolio-card shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[80vh] mx-[5vw] relative group overflow-hidden rounded-md shadow-2xl">
             
             {/* Imagem de Fundo (Full Bleed) */}
             <Image
