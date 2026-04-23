@@ -34,12 +34,12 @@ export default function Portfolio() {
 
       // Animação de revelação do texto para cada projeto
       gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card) => {
-        const textElements = card.querySelectorAll('.portfolio-text-reveal');
+        const textElements = card.querySelectorAll('.portfolio-text-reveal > *');
         gsap.from(textElements, {
-          y: 20,
+          y: 30,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.1,
+          stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
@@ -71,37 +71,50 @@ export default function Portfolio() {
 
       <div 
         ref={scrollContainerRef} 
-        className="flex h-full w-max items-center px-[10vw] relative z-10"
+        className="flex h-full w-max items-center px-[5vw] relative z-10"
       >
         {projects.map((project, idx) => (
-          <div key={idx} className="portfolio-card w-[80vw] md:w-[60vw] lg:w-[45vw] h-[70vh] mr-[5vw] flex flex-col group relative">
-            <div className="w-full h-[60%] overflow-hidden bg-stone-900 relative">
-              <Image
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40">
-                <Button variant="whiteOutline" size="lg" className="backdrop-blur-sm bg-white/10" onClick={() => alert("Abrir Modal de Backstage: Desafios, Arquitetura, Impacto")}>
-                  Ver Backstage Técnico
+          <div key={idx} className="portfolio-card w-[90vw] md:w-[85vw] lg:w-[80vw] h-[80vh] mx-[5vw] relative group overflow-hidden rounded-md shadow-2xl">
+            
+            {/* Imagem de Fundo (Full Bleed) */}
+            <Image
+              src={project.image}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out z-0"
+            />
+            
+            {/* Overlay para contraste do texto */}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-700 z-0" />
+
+            {/* Conteúdo Sobreposto (Esquerda) */}
+            <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-16 lg:p-24 portfolio-text-reveal z-10 w-full md:w-[80%] lg:w-[60%]">
+              {/* Opcional: Número e título menor (mantido para contexto, mas com estilo clean) */}
+              <span className="text-[10px] md:text-xs uppercase tracking-widest text-white/70 mb-4 block font-bold">
+                0{idx + 1}
+              </span>
+              
+              {/* Título Principal (Estilo Imagem de Referência) */}
+              <Heading size="h2" weight="bold" className="leading-tight text-white drop-shadow-lg">
+                {project.title}
+              </Heading>
+              
+              {/* Descrição Opcional (Se quiser manter da versão anterior) */}
+              <p className="mt-6 text-base md:text-lg font-sans font-light tracking-wide text-white/90 max-w-xl leading-relaxed drop-shadow-md">
+                {project.description}
+              </p>
+              
+              {/* Botão (Estilo Imagem de Referência) */}
+              <div className="mt-10">
+                <Button variant="whiteOutline" size="lg" className="rounded-none lowercase px-10 py-6 text-sm" onClick={() => alert("Abrir Modal de Backstage: Desafios, Arquitetura, Impacto")}>
+                  view project
                 </Button>
               </div>
             </div>
-            <div className="mt-8 portfolio-text-reveal">
-              <span className="text-[10px] uppercase tracking-widest text-charcoal/50 mb-2 block border-b border-charcoal/10 pb-2">
-                0{idx + 1} &mdash; {project.title}
-              </span>
-              <Heading size="h3" weight="normal" className="mt-4 leading-tight group-hover:text-charcoal/80 transition-colors duration-300">
-                {project.title}
-              </Heading>
-              <p className="mt-3 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm line-clamp-2">
-                {project.description}
-              </p>
-            </div>
+            
           </div>
         ))}
         {/* Extra spacing at the end */}
-        <div className="w-[10vw] h-full flex-shrink-0" />
+        <div className="w-[5vw] h-full flex-shrink-0" />
       </div>
     </section>
   );
