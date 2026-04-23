@@ -18,9 +18,7 @@ export default function Portfolio() {
       if (!container) return;
 
       const getScrollAmount = () => {
-        const amount = container.scrollWidth - window.innerWidth;
-        // Fallback robusto se o scrollWidth por algum motivo falhar no cálculo
-        return Math.max(amount, window.innerWidth * (projects.length - 1));
+        return window.innerWidth * (projects.length - 1);
       };
 
       const horizontalAnim = gsap.to(container, {
@@ -80,10 +78,12 @@ export default function Portfolio() {
 
       <div 
         ref={scrollContainerRef} 
-        className="flex h-full w-[max-content] items-center px-[5vw] relative z-10"
+        className="flex h-full items-center relative z-10"
+        style={{ width: `${projects.length * 100}vw` }}
       >
         {projects.map((project, idx) => (
-          <div key={idx} className="portfolio-card shrink-0 w-[90vw] md:w-[85vw] lg:w-[80vw] h-[80vh] mx-[5vw] relative group overflow-hidden rounded-md shadow-2xl">
+          <div key={idx} className="flex items-center justify-center w-[100vw] h-full shrink-0">
+            <div className="portfolio-card w-[90vw] md:w-[85vw] lg:w-[80vw] h-[80vh] relative group overflow-hidden rounded-md shadow-2xl bg-stone-900">
             
             {/* Imagem de Fundo (Full Bleed) */}
             <Image
@@ -119,11 +119,9 @@ export default function Portfolio() {
                 </Button>
               </div>
             </div>
-            
           </div>
+        </div>
         ))}
-        {/* Extra spacing at the end */}
-        <div className="w-[5vw] h-full flex-shrink-0" />
       </div>
     </section>
   );
