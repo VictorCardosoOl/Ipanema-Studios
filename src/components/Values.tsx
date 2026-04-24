@@ -6,18 +6,6 @@ export default function Values() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax for the image
-      gsap.to(".values-image", {
-        yPercent: 15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-
       // Staggered entrance for keywords
       gsap.from(".value-item", {
         x: 40,

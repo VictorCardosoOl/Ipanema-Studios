@@ -8,18 +8,6 @@ export default function Process() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".process-image", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".process-image",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-
       gsap.from(".process-card", {
         x: -40,
         opacity: 0,

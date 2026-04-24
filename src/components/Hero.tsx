@@ -26,29 +26,6 @@ export default function Hero() {
         ease: "power3.out",
         delay: 0.8
       });
-
-      // Parallax effect for images
-      gsap.to(".hero-image-main", {
-        yPercent: 10,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-
-      gsap.to(".hero-image-sub", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
     }, containerRef);
 
     return () => ctx.revert();

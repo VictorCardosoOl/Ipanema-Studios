@@ -96,7 +96,7 @@ export default function Mission() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
           {founders.map((founder, index) => (
-            <div key={index} className="mission-reveal flex flex-col group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm p-2 -m-2">
+            <div key={index} className="flex flex-col group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm p-2 -m-2">
               <div className="w-full aspect-square overflow-hidden mb-6 bg-charcoal/5">
                 <Image 
                   src={founder.image} 
