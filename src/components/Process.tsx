@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { services } from '../data/services';
 import Image from './ui/Image';
@@ -6,7 +6,8 @@ import Image from './ui/Image';
 export default function Process() {
   const [activeService, setActiveService] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const floatingImageRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,7 +36,7 @@ export default function Process() {
           stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: ".services-list",
+            trigger: listRef.current,
             start: "top 80%",
           }
         }
@@ -45,17 +46,67 @@ export default function Process() {
     return () => ctx.revert();
   }, []);
 
-  useLayoutEffect(() => {
-    if (imageRef.current) {
-       gsap.fromTo(imageRef.current, 
-         { scale: 1.15, opacity: 0, filter: "blur(20px)" }, 
-         { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "expo.out", overwrite: "auto" }
-       );
+  // Floating Image Mouse Follower Logic
+  useEffect(() => {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (!isDesktop) return;
+
+    const moveImage = (e: MouseEvent) => {
+      if (floatingImageRef.current) {
+         // Center the floating image on the cursor (assuming image width is 400px and height is 500px)
+         gsap.to(floatingImageRef.current, {
+            x: e.clientX,
+            y: e.clientY,
+            xPercent: -50,
+            yPercent: -50,
+            duration: 0.8,
+            ease: "power3.out",
+            overwrite: "auto"
+         });
+      }
+    };
+
+    const handleMouseEnter = () => {
+      gsap.to(floatingImageRef.current, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(floatingImageRef.current, { scale: 0.8, autoAlpha: 0, duration: 0.5, ease: "power3.out" });
+    };
+
+    const listElement = listRef.current;
+    if (listElement) {
+      listElement.addEventListener('mousemove', moveImage);
+      listElement.addEventListener('mouseenter', handleMouseEnter);
+      listElement.addEventListener('mouseleave', handleMouseLeave);
     }
+
+    return () => {
+      if (listElement) {
+        listElement.removeEventListener('mousemove', moveImage);
+        listElement.removeEventListener('mouseenter', handleMouseEnter);
+        listElement.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, []);
+
+  // Animação de troca de imagem (Parallax / Blur interno)
+  useLayoutEffect(() => {
+    const images = gsap.utils.toArray('.floating-img');
+    images.forEach((img: any, idx: number) => {
+      if (idx === activeService) {
+        gsap.fromTo(img, 
+          { scale: 1.2, opacity: 0, filter: "blur(10px)" }, 
+          { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out", zIndex: 10 }
+        );
+      } else {
+        gsap.to(img, { opacity: 0, scale: 0.9, duration: 0.5, zIndex: 0 });
+      }
+    });
   }, [activeService]);
 
   return (
-    <section id="services" ref={containerRef} className="min-h-screen w-full bg-[#0a0a0a] text-[#f5f5f0] py-24 md:py-32 flex flex-col relative overflow-x-hidden">
+    <section id="services" ref={containerRef} className="min-h-screen w-full bg-[#0a0a0a] text-[#f5f5f0] py-24 md:py-32 flex flex-col relative overflow-hidden">
       {/* Background Noise/Texture */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }}></div>
 
@@ -73,38 +124,47 @@ export default function Process() {
           </div>
         </div>
 
-        {/* Content Split */}
-        <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-start relative">
+        {/* Content Area */}
+        <div className="w-full relative">
           
-          {/* List - Left Side */}
-          <div className="lg:col-span-7 services-list flex flex-col w-full pb-32">
+          {/* List - Full Width on Desktop to allow mouse-follow */}
+          <div ref={listRef} className="w-full lg:w-3/4 mx-auto services-list flex flex-col pb-32 z-20 relative">
             {services.map((service, index) => {
               const isActive = activeService === index;
               return (
                 <div 
                   key={service.id} 
-                  className={`service-item group relative cursor-pointer flex flex-col border-b border-white/10 py-8 first:pt-0 last:border-b-0 transition-all duration-700`}
+                  className={`service-item group relative cursor-pointer flex flex-col border-b border-white/10 py-10 first:pt-0 last:border-b-0 transition-colors duration-500 hover:border-white/40`}
                   onMouseEnter={() => setActiveService(index)}
                   onClick={() => setActiveService(index)}
                 >
-                  <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 w-full">
+                  <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-12 w-full">
                     {/* Number */}
-                    <span className={`text-sm md:text-lg font-mono font-bold shrink-0 mt-2 transition-opacity duration-500 ${isActive ? 'opacity-100 text-white' : 'opacity-40 group-hover:opacity-70'}`}>
+                    <span className={`text-sm md:text-xl font-mono font-bold shrink-0 mt-2 transition-opacity duration-500 ${isActive ? 'opacity-100 text-white' : 'opacity-40 group-hover:opacity-70'}`}>
                       {service.id}
                     </span>
                     
-                    {/* Title */}
+                    {/* Title & Mobile Image */}
                     <div className="flex flex-col w-full">
-                      <h3 className={`text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight transition-all duration-500 ease-out ${isActive ? 'translate-x-4 text-white' : 'text-white/40 group-hover:text-white/70'}`}>
+                      <h3 className={`text-4xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter transition-all duration-500 ease-out ${isActive ? 'translate-x-4 text-white' : 'text-white/40 group-hover:text-white/70'}`}>
                         {service.title}
                       </h3>
                       
+                      {/* Mobile Image (Visible only on small screens) */}
+                      <div className={`block lg:hidden w-full h-[40vh] mt-6 overflow-hidden rounded-lg transition-all duration-700 ${isActive ? 'max-h-[40vh] opacity-100' : 'max-h-0 opacity-0'}`}>
+                         <Image 
+                           src={service.image} 
+                           alt={service.title}
+                           className="w-full h-full object-cover grayscale"
+                         />
+                      </div>
+
                       {/* Expanded description */}
                       <div 
-                        className={`overflow-hidden transition-all duration-700 ease-in-out ${isActive ? 'max-h-[400px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'}`}
+                        className={`overflow-hidden transition-all duration-700 ease-in-out ${isActive ? 'max-h-[400px] opacity-100 mt-6 lg:mt-8' : 'max-h-0 opacity-0 mt-0'}`}
                       >
-                        <div className="pl-0 md:pl-4">
-                          <p className="text-base md:text-xl lg:text-2xl opacity-80 max-w-2xl font-light leading-relaxed">
+                        <div className="pl-0 lg:pl-6">
+                          <p className="text-base md:text-xl lg:text-3xl opacity-80 max-w-3xl font-light leading-relaxed">
                             {service.description}
                           </p>
                           
@@ -130,31 +190,33 @@ export default function Process() {
             })}
           </div>
 
-          {/* Image - Right Side (Sticky) */}
-          <div className="lg:col-span-5 h-[50vh] lg:h-[70vh] w-full block overflow-hidden rounded-xl bg-[#111] sticky top-[15vh]">
-            <div ref={imageRef} className="absolute inset-0 w-full h-full">
-               <Image 
-                  src={services[activeService].image} 
-                  alt={services[activeService].title}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[1.5s]"
-               />
-            </div>
-            {/* Overlay Gradient for premium feel */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
-            
-            {/* Tag/Label */}
-            <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end mix-blend-difference text-white">
-              <div className="text-xs uppercase tracking-[0.3em] font-bold opacity-90">
-                Index / {services[activeService].id}
-              </div>
-              <div className="text-xs uppercase tracking-[0.2em] font-bold opacity-90 text-right max-w-[50%]">
-                {services[activeService].title}
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
+
+      {/* Floating Image (Follows Mouse on Desktop) */}
+      <div 
+        ref={floatingImageRef} 
+        className="hidden lg:block fixed top-0 left-0 w-[450px] aspect-[4/5] pointer-events-none z-10 opacity-0 scale-75 overflow-hidden rounded-xl shadow-2xl bg-stone-900"
+      >
+        {services.map((service, idx) => (
+          <Image 
+            key={idx}
+            src={service.image} 
+            alt={service.title}
+            className="floating-img absolute inset-0 w-full h-full object-cover grayscale opacity-0"
+          />
+        ))}
+        {/* Tag on floating image */}
+        <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end mix-blend-difference text-white z-20">
+           <div className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-90">
+             Index / {services[activeService]?.id}
+           </div>
+           <div className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-90 text-right">
+             {services[activeService]?.title}
+           </div>
+        </div>
+      </div>
+
     </section>
   );
 }

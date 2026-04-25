@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Hero from './components/Hero';
-import Portfolio from './components/Portfolio';
+import HeroPortfolio from './components/HeroPortfolio';
 import Process from './components/Process';
 import Mission from './components/Mission';
 import Values from './components/Values';
@@ -81,8 +80,7 @@ export default function App() {
       
       {/* Esconde o conteúdo até o preloader acabar para não vazar layout */}
       <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 h-[100vh] overflow-hidden'}`}>
-        <Hero />
-        <Portfolio />
+        <HeroPortfolio />
         <Process />
         <Mission />
         <Values />
