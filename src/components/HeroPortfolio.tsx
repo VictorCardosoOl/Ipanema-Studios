@@ -1,14 +1,17 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../data/portfolio';
 import Image from './ui/Image';
 import TextType from './ui/TextType';
 import { Button } from './ui/Button';
+import { motion } from 'motion/react';
+import ProjectModal from './ProjectModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroPortfolio() {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const containerRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -217,11 +220,13 @@ export default function HeroPortfolio() {
              
              {/* Background Image with Clip-Path Reveal */}
              <div className="portfolio-image-wrapper absolute inset-0 w-full h-full z-0">
-                <Image 
-                  className="portfolio-image absolute inset-0 w-[130%] h-full object-cover opacity-60 hover:opacity-90 grayscale hover:grayscale-0 transition-all duration-1000" 
-                  src={project.image} 
-                  alt={project.title}
-                />
+                <motion.div layoutId={`image-${project.title}`} className="absolute inset-0 w-full h-full">
+                  <Image 
+                    className="portfolio-image absolute inset-0 w-[130%] h-full object-cover opacity-60 hover:opacity-90 grayscale hover:grayscale-0 transition-all duration-1000" 
+                    src={project.image} 
+                    alt={project.title}
+                  />
+                </motion.div>
                 <div className="absolute inset-0 bg-black/40" />
              </div>
              
@@ -230,14 +235,18 @@ export default function HeroPortfolio() {
                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-cream/60 font-bold">
                     0{idx + 1} / Trabalhos
                  </span>
-                 <h2 className="text-5xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
+                 <motion.h2 layoutId={`title-${project.title}`} className="text-5xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
                     {project.title}
-                 </h2>
+                 </motion.h2>
                  <div className="flex flex-col md:flex-row md:items-end justify-between mt-8 md:mt-12 gap-8">
                     <p className="text-sm md:text-lg font-light max-w-md text-cream/90">
                        {project.description}
                     </p>
-                    <Button variant="whiteOutline" className="rounded-full px-8 py-6 text-xs lowercase">
+                    <Button 
+                       variant="whiteOutline" 
+                       className="rounded-full px-8 py-6 text-xs lowercase"
+                       onClick={() => setSelectedProject(project)}
+                    >
                        view project
                     </Button>
                  </div>
@@ -247,6 +256,13 @@ export default function HeroPortfolio() {
         ))}
 
       </div>
+
+      <ProjectModal 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+        project={selectedProject} 
+      />
+
     </section>
   );
 }
