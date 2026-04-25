@@ -81,58 +81,81 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             }}
           >
             {/* Container de Scroll para o Lenis */}
-            <div ref={modalContainerRef} className="h-full w-full overflow-y-auto hidden-scrollbar">
-               <div ref={modalContentRef} className="pb-32">
+            <div ref={modalContainerRef} className="h-full w-full overflow-y-auto hidden-scrollbar bg-[#f4f2ee] text-[#111111]">
+               <div ref={modalContentRef} className="pb-32 flex flex-col items-center">
                   
-                  {/* Hero Image do Modal com layoutId */}
-                  <div className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden">
-                     <motion.div layoutId={`image-${project.id || project.title}`} className="absolute inset-0 w-full h-full">
-                        <Image 
-                          src={project.image} 
-                          alt={project.title}
-                          className="w-full h-full object-cover"
-                        />
-                     </motion.div>
-                     <div className="absolute inset-0 bg-black/40" />
+                  {/* Fundo com Tipografia Gigante (Estética Don Molinico) */}
+                  <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none flex justify-center pt-20 md:pt-32 opacity-5 select-none">
+                     <span className="text-[15vw] font-bold uppercase tracking-tighter whitespace-nowrap">
+                        {project.title}
+                     </span>
                   </div>
 
-                  {/* Detalhes (Reveal Animado) */}
-                  <div className="container mx-auto px-6 md:px-12 lg:px-24 -mt-20 md:-mt-32 relative z-10">
+                  {/* Detalhes / Header Centralizado */}
+                  <div className="container mx-auto px-6 mt-24 md:mt-40 mb-12 flex flex-col items-center text-center relative z-10">
+                     <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8 }}
+                        className="flex gap-4 items-center mb-6 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-[#E30613]" // Vermelho Don Molinico accent
+                     >
+                        <span>Projeto</span>
+                        <span className="w-1 h-1 rounded-full bg-[#E30613]"></span>
+                        <span>2026</span>
+                     </motion.div>
+
                      <motion.h2 
-                       layoutId={`title-${project.id || project.title}`} 
-                       className="text-6xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none tracking-tighter"
+                       layoutId={`title-${project.title}`} 
+                       className="text-6xl sm:text-7xl md:text-[8rem] lg:text-[11rem] font-sans font-extrabold uppercase leading-[0.85] tracking-tighter max-w-[90vw]"
                      >
                         {project.title}
                      </motion.h2>
+                  </div>
 
+                  {/* Hero Image Flutuante com Bordas Arredondadas */}
+                  <div className="w-full max-w-[90vw] md:max-w-[75vw] xl:max-w-[65vw] aspect-[4/3] md:aspect-video relative z-20 mt-8 mb-24">
+                     <motion.div 
+                       layoutId={`image-${project.title}`} 
+                       className="absolute inset-0 w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl"
+                     >
+                        <Image 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                        />
+                     </motion.div>
+                  </div>
+
+                  {/* Conteúdo / Tipografia Secundária */}
+                  <div className="container mx-auto px-6 max-w-4xl flex flex-col items-center text-center relative z-10">
                      <motion.div 
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-12 gap-12"
+                        className="flex flex-col items-center"
                      >
-                        <div className="md:col-span-4 flex flex-col gap-8 border-t border-white/10 pt-8">
-                           <div>
-                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Cliente</h4>
-                              <p className="text-lg font-medium">{project.title} Corp</p>
+                        <p className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-16 max-w-3xl">
+                           TRADUZINDO A COMPLEXIDADE DA OPERAÇÃO EM UMA INTERFACE BRUTALMENTE MINIMALISTA E EFICIENTE.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 w-full border-t border-black/10 pt-16">
+                           <div className="flex flex-col items-center">
+                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-3 font-bold">Cliente</h4>
+                              <p className="text-lg font-medium">{project.title} Corp.</p>
                            </div>
-                           <div>
-                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Serviços</h4>
+                           <div className="flex flex-col items-center">
+                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-3 font-bold">Serviços</h4>
                               <p className="text-lg font-medium">Design System, UX/UI</p>
                            </div>
-                           <div>
-                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Ano</h4>
-                              <p className="text-lg font-medium">2026</p>
+                           <div className="flex flex-col items-center">
+                              <h4 className="text-xs uppercase tracking-[0.2em] opacity-50 mb-3 font-bold">Plataforma</h4>
+                              <p className="text-lg font-medium">Web / Kiosk</p>
                            </div>
                         </div>
-                        <div className="md:col-span-8 border-t border-white/10 pt-8">
-                           <p className="text-xl md:text-3xl font-light leading-relaxed opacity-90 mb-8">
-                              {project.description}
-                           </p>
-                           <p className="text-lg opacity-70 leading-relaxed font-light">
-                              Neste projeto, o desafio foi traduzir a complexidade da operação em uma interface brutalmente minimalista e eficiente. Criamos uma arquitetura de navegação inovadora, aliada a um sistema de design que prioriza o espaço negativo e o contraste profundo.
-                           </p>
-                        </div>
+
+                        <p className="text-lg md:text-xl opacity-70 leading-relaxed font-light mt-24 max-w-2xl text-center">
+                           {project.description} Criamos uma arquitetura de navegação inovadora, aliada a um sistema de design que prioriza o espaço negativo e o contraste profundo, entregando uma experiência imersiva inspirada nos melhores estúdios europeus.
+                        </p>
                      </motion.div>
                   </div>
 
@@ -142,7 +165,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             {/* Botão Fechar Flutuante */}
             <button 
                onClick={onClose} 
-               className="absolute top-6 right-6 md:top-8 md:right-8 z-50 w-12 h-12 bg-white/10 hover:bg-white text-white hover:text-black rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-md"
+               className="absolute top-6 right-6 md:top-8 md:right-8 z-50 w-12 h-12 bg-black/5 hover:bg-black text-black hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 backdrop-blur-md"
             >
                <X size={20} />
             </button>
