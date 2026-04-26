@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { MagneticButton } from './ui/MagneticButton';
 
@@ -22,49 +22,44 @@ interface NavbarProps {
 
 export default function Navbar({ items, logoText }: NavbarProps) {
   const { scrollDirection, scrollY } = useScrollDirection();
+  const [windowHeight, setWindowHeight] = useState<number>(0);
 
-  const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-  // Consider the Hero section past when we've scrolled down 95% of the screen height
+  useEffect(() => {
+    const handleResize = () => setWindowHeight(window.innerHeight);
+    handleResize();
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const isPastHero = scrollY > (windowHeight * 0.95);
-
-  // Focus Mode Logic: Hidden if still inside Hero, or if scrolling down past Hero
   const isHidden = !isPastHero || scrollDirection === 'down';
-
-  // Glassmorphism logic applies whenever it is visible (which is only strictly past the Hero now)
   const backgroundClass = 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 py-4';
 
   return (
     <header
-      className={`
-        fixed top-0 left-0 w-full z-50 
-        transition-all duration-300 ease-in-out
-        ${backgroundClass}
-        ${isHidden ? '-translate-y-full opacity-0 outline-none' : 'translate-y-0 opacity-100'}
-      `}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${backgroundClass} ${
+        isHidden ? '-translate-y-full opacity-0 outline-none' : 'translate-y-0 opacity-100'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        
-        {/* Brand / Logo */}
         <div className="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-75">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <span className="text-xl md:text-2xl font-bold tracking-tight text-charcoal">
               {logoText}<span className="text-blue-600">.</span>
             </span>
           </a>
         </div>
 
-        {/* Links Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm md:text-base font-medium text-charcoal/80">
           {items.map((item) => (
             <div key={item.label} className="group relative">
-              <a href={item.links[0]?.href || "#"} className="hover:text-black transition-colors py-2">
+              <a href={item.links[0]?.href ?? '#'} className="hover:text-black transition-colors py-2">
                 {item.label}
               </a>
             </div>
           ))}
         </nav>
 
-        {/* Call to action */}
         <div className="flex items-center gap-4">
           <MagneticButton className="hidden sm:inline-block">
             <a href="#contact" className="inline-flex items-center justify-center text-sm font-semibold bg-charcoal text-cream px-5 py-2.5 rounded-full hover:bg-black transition-colors">
@@ -72,12 +67,15 @@ export default function Navbar({ items, logoText }: NavbarProps) {
             </a>
           </MagneticButton>
           
-          {/* Menu Mobile Trigger */}
-          <button className="md:hidden p-2 text-charcoal focus:outline-none transition-colors hover:text-black">
+          <button 
+            type="button" 
+            aria-label="Toggle menu" 
+            className="md:hidden p-2 text-charcoal focus:outline-none transition-colors hover:text-black"
+          >
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
              </svg>
           </button>
         </div>

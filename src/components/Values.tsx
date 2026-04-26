@@ -1,12 +1,33 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
+interface CoreValue {
+  title: string;
+  description: string;
+}
+
+const CORE_VALUES: CoreValue[] = [
+  { 
+    title: 'Engenharia de Ponta', 
+    description: 'Sistemas arquitetados para performance extrema e escalabilidade infinita.' 
+  },
+  { 
+    title: 'Design Editorial', 
+    description: 'Estética de alto padrão que comunica autoridade e eleva o valor percebido da sua marca.' 
+  },
+  { 
+    title: 'Precisão Absoluta', 
+    description: 'Atenção obsessiva aos mínimos detalhes, em cada linha de código e em cada pixel da tela.' 
+  }
+];
+
 export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current) return;
+
     const ctx = gsap.context(() => {
-      // Staggered entrance for keywords
       gsap.from(".value-item", {
         x: 40,
         opacity: 0,
@@ -25,8 +46,11 @@ export default function Values() {
   }, []);
 
   return (
-    <section id="values" ref={containerRef} className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-white text-charcoal overflow-hidden">
-      {/* Left Panel */}
+    <section 
+      id="values" 
+      ref={containerRef} 
+      className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-white text-charcoal overflow-hidden"
+    >
       <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold mb-8">
           <h2 className="font-medium tracking-tight">Formosa Studios</h2>
@@ -46,7 +70,6 @@ export default function Values() {
         </div>
       </div>
 
-      {/* Right Panel */}
       <div className="p-8 md:p-12 3xl:p-24 4xl:p-32 flex flex-col min-h-[50vh] md:min-h-screen">
         <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold">
           <span>Perfil da Agência</span>
@@ -56,24 +79,20 @@ export default function Values() {
         
         <div className="flex-grow flex flex-col justify-center items-start mt-12 md:mt-0">
           <ul className="values-list space-y-8 md:space-y-12 w-full max-w-xl" aria-label="Core Values List">
-            {[
-              { title: 'Engenharia de Ponta', desc: 'Sistemas arquitetados para performance extrema e escalabilidade infinita.' },
-              { title: 'Design Editorial', desc: 'Estética de alto padrão que comunica autoridade e eleva o valor percebido da sua marca.' },
-              { title: 'Precisão Absoluta', desc: 'Atenção obsessiva aos mínimos detalhes, em cada linha de código e em cada pixel da tela.' }
-            ].map((item, i) => (
+            {CORE_VALUES.map((item, index) => (
               <li 
-                key={i}
+                key={item.title}
                 className="value-item flex flex-col md:flex-row gap-4 md:gap-8 border-b border-charcoal/10 pb-8 group"
               >
                 <span className="text-xs font-bold tracking-widest text-charcoal/30 pt-1 shrink-0" aria-hidden="true">
-                  0{i + 1}
+                  0{index + 1}
                 </span>
                 <div>
                   <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-charcoal mb-3 group-hover:opacity-70 transition-opacity">
                     {item.title}
                   </h3>
                   <p className="font-light text-sm md:text-base text-charcoal/70 leading-relaxed">
-                    {item.desc}
+                    {item.description}
                   </p>
                 </div>
               </li>
