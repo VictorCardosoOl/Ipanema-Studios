@@ -46,10 +46,6 @@ export default function Process() {
     return () => ctx.revert();
   }, []);
 
-  const setHoveredService = (index: number | null) => {
-    setActiveService(index);
-  };
-
   return (
     <section id="services" ref={containerRef} className="w-full bg-[#0a0a0a] text-[#f5f5f0] py-16 md:py-24 flex flex-col relative overflow-hidden">
       
@@ -76,9 +72,8 @@ export default function Process() {
               return (
                  <div 
                    key={service.id}
-                   className="service-row w-full border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.02] group"
-                   onMouseEnter={() => setHoveredService(index)}
-                   onMouseLeave={() => setHoveredService(null)}
+                   className="service-row w-full border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04] group cursor-pointer"
+                   onClick={() => setActiveService(isActive ? null : index)}
                  >
                     <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-10 flex flex-col">
                        {/* Header do Item */}

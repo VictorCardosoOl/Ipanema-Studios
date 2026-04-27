@@ -22,8 +22,9 @@ export default function HeroPortfolio() {
       if (!container) return;
 
       const getScrollAmount = () => {
-        // Fallback seguro matemático independente do layout do DOM no momento do load
-        return window.innerWidth * projects.length;
+        // Usa clientWidth para evitar incluir a largura da barra de rolagem (evita bordas pretas)
+        const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+        return viewportWidth * projects.length;
       };
 
       // 1. MASTER HORIZONTAL SCROLL TIMELINE
@@ -50,7 +51,7 @@ export default function HeroPortfolio() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: () => `+=${window.innerWidth}`,
+          end: () => `+=${document.documentElement.clientWidth || window.innerWidth}`,
           scrub: true,
         }
       });

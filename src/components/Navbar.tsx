@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { MagneticButton } from './ui/MagneticButton';
+import { Linkedin, MessageCircle } from 'lucide-react';
 
 interface NavLink {
   label: string;
@@ -33,7 +34,8 @@ export default function Navbar({ items, logoText }: NavbarProps) {
 
   const isPastHero = scrollY > (windowHeight * 0.95);
   const isHidden = !isPastHero || scrollDirection === 'down';
-  const backgroundClass = 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 py-4';
+  // Reduzido o padding vertical de py-4 para py-2
+  const backgroundClass = 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 py-2';
 
   return (
     <header
@@ -61,8 +63,18 @@ export default function Navbar({ items, logoText }: NavbarProps) {
         </nav>
 
         <div className="flex items-center gap-4">
+          {/* Ícones Sociais */}
+          <div className="hidden sm:flex items-center gap-3 mr-2">
+             <a href="#" aria-label="LinkedIn" className="text-charcoal/70 hover:text-charcoal transition-colors p-1">
+                <Linkedin size={20} strokeWidth={1.5} />
+             </a>
+             <a href="#" aria-label="WhatsApp" className="text-charcoal/70 hover:text-charcoal transition-colors p-1">
+                <MessageCircle size={20} strokeWidth={1.5} />
+             </a>
+          </div>
+
           <MagneticButton className="hidden sm:inline-block">
-            <a href="#contact" className="inline-flex items-center justify-center text-sm font-semibold bg-charcoal text-cream px-5 py-2.5 rounded-full hover:bg-black transition-colors">
+            <a href="#contact" className="inline-flex items-center justify-center text-xs md:text-sm font-semibold bg-charcoal text-cream px-5 py-2 md:py-2.5 rounded-full hover:bg-black transition-colors">
               Fale Conosco
             </a>
           </MagneticButton>

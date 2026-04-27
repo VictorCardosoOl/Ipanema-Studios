@@ -8,6 +8,7 @@ import Process from './components/Process';
 import Mission from './components/Mission';
 import Values from './components/Values';
 import Contact from './components/Contact';
+import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import SmoothScroll from './components/SmoothScroll';
@@ -84,6 +85,7 @@ export default function App() {
         <Process />
         <Mission />
         <Values />
+        <FAQSection />
         <Contact />
         <Footer />
       </div>
