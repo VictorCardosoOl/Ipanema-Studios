@@ -16,10 +16,17 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
   const modalContentRef = useRef<HTMLDivElement>(null);
   const scopedLenisRef = useRef<Lenis | null>(null);
 
-  // Lógica de Scroll Isolado (Lenis)
+  // Lógica de Scroll Isolado (Lenis) e Tecla ESC
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
     if (isOpen) {
       document.body.style.overflow = 'hidden'; // Trava body
+      window.addEventListener('keydown', handleKeyDown);
       
       // Inicia Lenis apenas no Modal após mount
       const timeout = setTimeout(() => {
@@ -45,13 +52,15 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
       return () => {
          clearTimeout(timeout);
          document.body.style.overflow = '';
+         window.removeEventListener('keydown', handleKeyDown);
          scopedLenisRef.current?.destroy();
       };
     } else {
       document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
       scopedLenisRef.current?.destroy();
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!project) return null;
 
