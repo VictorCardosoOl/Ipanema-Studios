@@ -1,71 +1,55 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-type FormState = 'idle' | 'loading' | 'success' | 'error';
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const contactSchema = z.object({
+  name: z.string().min(2, 'O nome deve ter no mínimo 2 caracteres.'),
+  email: z.string().email('Insira um e-mail válido.'),
+  details: z.string().min(10, 'Conte-nos um pouco mais sobre o projeto (mínimo 10 caracteres).'),
+});
+
+export type ContactFormData = z.infer<typeof contactSchema>;
+export type FormState = 'idle' | 'loading' | 'success' | 'error';
 
 export function useContactForm() {
-  const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  const validateField = (name: string, value: string) => {
-    let error = '';
-    if (!value.trim()) {
-      error = 'Este campo é obrigatório.';
-    } else if (name === 'email' && !EMAIL_REGEX.test(value)) {
-      error = 'Insira um e-mail válido.';
-    }
-    setFieldErrors(prev => ({ ...prev, [name]: error }));
-    return !error;
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: 'onBlur',
+  });
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    validateField(e.target.name, e.target.value);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (fieldErrors[e.target.name]) {
-      setFieldErrors(prev => ({ ...prev, [e.target.name]: '' }));
-    }
-  };
-
-  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    
-    const name = formData.get('name')?.toString() || '';
-    const email = formData.get('email')?.toString() || '';
-    const details = formData.get('details')?.toString() || '';
-
-    const isNameValid = validateField('name', name);
-    const isEmailValid = validateField('email', email);
-    const isDetailsValid = validateField('details', details);
-
-    if (!isNameValid || !isEmailValid || !isDetailsValid) {
-      setErrorMessage('Por favor, corrija os erros abaixo antes de enviar.');
-      setFormState('error');
-      return;
-    }
-
+  const onSubmit = async (data: ContactFormData) => {
     setFormState('loading');
     setErrorMessage('');
     
     try {
-      // Simulação de API. Em produção, seria um fetch() ou axios.post()
+      // Simulação de API.
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setFormState('success');
       
       setTimeout(() => {
         setFormState('idle');
-        formRef.current?.reset();
-        setFieldErrors({});
+        reset();
       }, 4000);
     } catch {
       setErrorMessage('Erro inesperado. Tente novamente.');
       setFormState('error');
     }
-  }, []);
+  };
 
-  return { formRef, formState, errorMessage, fieldErrors, handleBlur, handleChange, handleSubmit };
+  return { 
+    register, 
+    handleSubmit: handleSubmit(onSubmit), 
+    errors, 
+    formState, 
+    errorMessage 
+  };
 }

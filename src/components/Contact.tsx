@@ -86,10 +86,9 @@ function SuccessMessage() {
   );
 }
 
-function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur, handleChange, handleSubmit }: ReturnType<typeof useContactForm>) {
+function ContactForm({ register, formState, errorMessage, errors, handleSubmit }: ReturnType<typeof useContactForm>) {
   return (
     <form 
-      ref={formRef} 
       className={`contact-reveal flex flex-col gap-8 mb-12 mt-6 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
       onSubmit={handleSubmit} 
       noValidate
@@ -104,61 +103,52 @@ function ContactForm({ formRef, formState, errorMessage, fieldErrors, handleBlur
         <div className="flex flex-col gap-2">
           <Input 
             type="text" 
-            name="name" 
             id="name"
             placeholder="Seu nome" 
             className="text-lg md:text-xl"
-            required
-            aria-invalid={!!fieldErrors.name}
-            aria-describedby={fieldErrors.name ? "name-error" : undefined}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={!!fieldErrors.name}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            error={!!errors.name}
+            {...register('name')}
           />
-          {fieldErrors.name && (
+          {errors.name && (
             <span id="name-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-              {fieldErrors.name}
+              {errors.name.message}
             </span>
           )}
         </div>
         <div className="flex flex-col gap-2">
           <Input 
             type="email" 
-            name="email" 
             id="email"
             placeholder="Seu e-mail profissional" 
             className="text-lg md:text-xl"
-            required
-            aria-invalid={!!fieldErrors.email}
-            aria-describedby={fieldErrors.email ? "email-error" : undefined}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={!!fieldErrors.email}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            error={!!errors.email}
+            {...register('email')}
           />
-          {fieldErrors.email && (
+          {errors.email && (
             <span id="email-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-              {fieldErrors.email}
+              {errors.email.message}
             </span>
           )}
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <Textarea 
-          name="details" 
           id="details"
           placeholder="Conte-nos sobre o seu projeto..." 
           rows={3}
           className="text-lg md:text-xl"
-          required
-          aria-invalid={!!fieldErrors.details}
-          aria-describedby={fieldErrors.details ? "details-error" : undefined}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={!!fieldErrors.details}
+          aria-invalid={!!errors.details}
+          aria-describedby={errors.details ? "details-error" : undefined}
+          error={!!errors.details}
+          {...register('details')}
         />
-        {fieldErrors.details && (
+        {errors.details && (
           <span id="details-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-            {fieldErrors.details}
+            {errors.details.message}
           </span>
         )}
       </div>

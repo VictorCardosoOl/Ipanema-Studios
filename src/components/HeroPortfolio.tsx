@@ -228,7 +228,7 @@ export default function HeroPortfolio() {
                     alt={project.title}
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
              </div>
              
              {/* Text Content */}

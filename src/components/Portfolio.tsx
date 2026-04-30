@@ -93,7 +93,7 @@ export default function Portfolio() {
             />
             
             {/* Overlay para contraste do texto */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-700 z-0" />
+            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-700 z-0" />
 
             {/* Conteúdo Sobreposto (Esquerda) */}
             <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-16 lg:p-24 portfolio-text-reveal z-10 w-full md:w-[80%] lg:w-[60%]">
