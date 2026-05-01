@@ -197,12 +197,12 @@ const AboutMe: React.FC = () => {
           
           {/* Header Texto */}
           <div className="mb-24 md:mb-32 flex flex-col">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-sans font-light leading-[1.15] tracking-tight text-[#444] mb-20">
-              Sou <span className="font-bold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-bold text-[#111]">Análise</span> de<br className="hidden lg:block" />
-              <span className="font-bold text-[#111]">Sistemas</span> e <span className="font-bold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
-              Transformo <span className="font-bold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />
-              <span className="font-bold text-[#111]">eficiência</span> de negócio, unindo habilidades<br className="hidden lg:block" />
-              analíticas e estratégia para entregar <span className="font-bold text-[#111]">resultados</span><br className="hidden lg:block" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[3.25rem] font-sans font-light leading-[1.3] tracking-normal text-[#666] mb-20 max-w-[95%]">
+              Sou <span className="font-semibold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-semibold text-[#111]">Análise</span> de<br className="hidden lg:block" />
+              <span className="font-semibold text-[#111]">Sistemas</span> e <span className="font-semibold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
+              Transformo <span className="font-semibold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />
+              <span className="font-semibold text-[#111]">eficiência</span> de negócio, unindo habilidades<br className="hidden lg:block" />
+              analíticas e estratégia para entregar <span className="font-semibold text-[#111]">resultados</span><br className="hidden lg:block" />
               reais.
             </h2>
             
