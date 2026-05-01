@@ -1,125 +1,278 @@
-import { useLayoutEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import Image from './ui/Image';
-import { Button } from './ui/Button';
-import { Heading } from './ui/Heading';
+import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { X, Download, MapPin, ExternalLink, Globe, Award, Briefcase, Terminal, Cpu } from 'lucide-react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-const aboutMe = [
-  {
-    role: "PERFIL PROFISSIONAL",
-    name: "Análise de Sistemas",
-    description: "Especialista em transformar complexidade técnica em eficiência de negócio.",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800"
+gsap.registerPlugin(ScrollTrigger);
+
+// ============================================================================
+// DADOS (Altere aqui para o seu novo projeto)
+// ============================================================================
+const DATA = {
+  name: "Seu Nome Aqui",
+  role: "Engenheiro de Software & Designer",
+  location: "São Paulo, SP",
+  bio: "Especialista em Engenharia de Software. Transformo problemas complexos em soluções escaláveis e arte em código.",
+  resumeLink: "/seu_cv.pdf",
+  socials: { linkedin: "https://linkedin.com/in/seuperfil" },
+  experience: [
+    {
+      role: "Engenheiro Sênior",
+      company: "Tech Corp",
+      period: "2022 - Atual",
+      location: "Remoto",
+      description: ["Liderança técnica em projetos de alta escalabilidade.", "Otimização de performance e CI/CD."]
+    },
+    {
+      role: "Desenvolvedor Pleno",
+      company: "Inovação SA",
+      period: "2019 - 2022",
+      location: "São Paulo",
+      description: ["Desenvolvimento de interfaces React.", "Implementação de Design Systems."]
+    }
+  ],
+  education: [
+    { degree: "Engenharia de Computação", institution: "Universidade XYZ", period: "2015 - 2019" }
+  ],
+  skills: {
+    technical: ["React & Next.js", "TypeScript", "Node.js", "GSAP & Framer Motion", "Tailwind CSS"],
+    management: ["Liderança de Equipes", "Metodologias Ágeis", "Gestão de Produtos"]
   },
-  {
-    role: "HARD SKILLS",
-    name: "Lógica & Banco de Dados",
-    description: "Sólidos conhecimentos em SQL, Configuração de Hardware e Ferramentas de Suporte Remoto.",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    role: "MANAGEMENT",
-    name: "Liderança Operacional",
-    description: "Gestão de KPIs, liderança de equipes e treinamento corporativo com visão estratégica.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
-  }
-];
+  softSkills: ["Comunicação", "Resolução de Problemas", "Visão de Negócio", "Adaptabilidade"]
+};
 
-export default function AboutMe() {
-  const containerRef = useRef<HTMLDivElement>(null);
+// ============================================================================
+// COMPONENTE SECUNDÁRIO: CONTEÚDO DO CURRÍCULO (Resume Content)
+// ============================================================================
+const ResumeContent = () => (
+  <div className="bg-white min-h-screen pb-24">
+    {/* Header do CV */}
+    <div className="w-full bg-[#000000] text-white pt-32 pb-16 px-6 md:px-12 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-end relative z-10">
+        <div className="flex-1 pb-2">
+          <span className="px-3 py-1 bg-white/10 border border-white/10 rounded-full text-[10px] font-mono uppercase tracking-widest text-white/80 mb-4 inline-block">
+            {DATA.role}
+          </span>
+          <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-4 leading-none">
+            {DATA.name}
+          </h1>
+          <p className="text-lg md:text-xl font-light text-white/70 max-w-2xl mb-8 leading-relaxed">
+            {DATA.bio}
+          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs font-mono text-white/50 uppercase tracking-widest border-t border-white/10 pt-6">
+            <span className="flex items-center gap-2"><MapPin size={12} /> {DATA.location}</span>
+            <span className="flex items-center gap-2"><Globe size={12} /> Português / Inglês</span>
+            <a href={DATA.socials.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white hover:text-[#999999] transition-colors underline-offset-4">
+              <ExternalLink size={12} /> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".mission-word", {
-        yPercent: 120,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.02,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none"
-        }
-      });
-
-      gsap.from(".mission-reveal", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".mission-reveal",
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section id="aboutme" ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 3xl:px-24 bg-cream text-charcoal">
-      <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
+    {/* Corpo do CV */}
+    <div className="max-w-6xl mx-auto px-6 md:px-12 mt-16 md:mt-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         
-        {/* Top Text */}
-        <div className="max-w-5xl mb-24 md:mb-32">
-          <Heading size="h3" weight="light" className="leading-tight flex flex-wrap gap-x-2 md:gap-x-3">
-            {"Sou Victor Cardoso, especialista em Análise de Sistemas e Liderança Operacional. Transformo complexidade técnica em eficiência de negócio, unindo habilidades analíticas e estratégia para entregar resultados reais.".split(' ').map((word, i) => {
-              const isBold = ['Victor', 'Cardoso,', 'Análise', 'Sistemas', 'Liderança', 'Operacional.', 'complexidade', 'eficiência', 'resultados'].includes(word);
-              return (
-                <span key={i} className="overflow-hidden inline-flex pb-1">
-                  <span className={`mission-word inline-block ${isBold ? 'font-serif font-semibold text-charcoal' : ''}`}>
-                    {word}
-                  </span>
-                </span>
-              );
-            })}
-          </Heading>
+        {/* Esquerda: Experiência e Educação */}
+        <div className="lg:col-span-8 space-y-16">
+          <section>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#000000]/40 mb-10 border-b border-[#000000]/10 pb-4 flex items-center gap-2">
+              <Briefcase size={14} /> Experiência Profissional
+            </h3>
+            <div className="relative border-l border-[#000000]/10 ml-3 space-y-12">
+              {DATA.experience.map((job, idx) => (
+                <div key={idx} className="pl-8 relative group">
+                  <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#000000] border-2 border-white group-hover:scale-125 transition-transform" />
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                    <h4 className="text-xl font-serif text-[#000000] font-light">{job.role}</h4>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#999999]">{job.period}</span>
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#000000]/50 mb-4">{job.company} • {job.location}</p>
+                  <ul className="space-y-2">
+                    {job.description.map((desc, i) => (
+                      <li key={i} className="text-sm text-[#000000]/70 font-light leading-relaxed flex items-start gap-2">
+                        <span className="mt-1.5 w-1 h-1 bg-[#000000]/30 rounded-full shrink-0" /> {desc}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#000000]/40 mb-8 border-b border-[#000000]/10 pb-4 flex items-center gap-2">
+              <Award size={14} /> Formação Acadêmica
+            </h3>
+            <div className="space-y-6">
+              {DATA.education.map((edu, idx) => (
+                <div key={idx} className="bg-gray-50 p-6 rounded-sm border border-[#000000]/5">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#999999] mb-1 block">{edu.period}</span>
+                  <h4 className="text-lg font-serif font-medium text-[#000000] mb-1">{edu.degree}</h4>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#000000]/50">{edu.institution}</p>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
 
-        {/* Section Header */}
-        <div className="mission-reveal flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
-          <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-charcoal">
-            Sobre Mim
-          </h3>
-          <Button variant="default" size="sm" className="self-start sm:self-auto">
-            Baixar CV Completo
-          </Button>
-        </div>
-
-        {/* Divider */}
-        <hr className="mission-reveal border-charcoal/20 mb-12" />
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
-          {aboutMe.map((item, index) => (
-            <div key={index} className="flex flex-col group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm p-2 -m-2">
-              <div className="w-full aspect-square overflow-hidden mb-6 bg-charcoal/5">
-                <Image 
-                  src={item.image} 
-                  alt={item.name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                />
+        {/* Direita: Skills */}
+        <div className="lg:col-span-4 space-y-12">
+          <section>
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#000000]/40 mb-6 border-b border-[#000000]/10 pb-4">Competências</h3>
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-6 rounded-sm border border-[#000000]/5">
+                <div className="flex items-center gap-2 mb-4">
+                  <Terminal size={16} /> <h4 className="font-serif font-medium text-lg">Técnicas</h4>
+                </div>
+                <ul className="space-y-2">
+                  {DATA.skills.technical.map((skill, i) => (
+                    <li key={i} className="text-xs font-mono text-[#000000]/80 border-b border-[#000000]/5 pb-1">{skill}</li>
+                  ))}
+                </ul>
               </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold mb-3">
-                  {item.role}
-                </span>
-                <h4 className="text-lg md:text-xl font-bold font-sans text-charcoal mb-2 leading-snug">
-                  {item.name}
-                </h4>
-                <p className="text-sm font-sans text-charcoal/70 leading-relaxed">
-                  {item.description}
-                </p>
+              <div className="bg-gray-50 p-6 rounded-sm border border-[#000000]/5">
+                <div className="flex items-center gap-2 mb-4">
+                  <Cpu size={16} /> <h4 className="font-serif font-medium text-lg">Gestão</h4>
+                </div>
+                <ul className="space-y-2">
+                  {DATA.skills.management.map((skill, i) => (
+                    <li key={i} className="text-xs font-mono text-[#000000]/80 border-b border-[#000000]/5 pb-1">{skill}</li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ))}
+          </section>
+          
+          <div className="pt-4 sticky top-8">
+            <a href={DATA.resumeLink} download className="flex items-center justify-center gap-3 w-full px-8 py-4 bg-[#000000] text-white rounded-full hover:bg-[#111111] transition-all text-xs font-bold uppercase tracking-widest shadow-lg">
+              <Download size={16} /> Baixar CV Completo
+            </a>
+          </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </div>
+);
+
+// ============================================================================
+// COMPONENTE PRINCIPAL: ABOUT SECTION
+// ============================================================================
+const AboutMe: React.FC = () => {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const img1Ref = useRef<HTMLImageElement>(null);
+  const img2Ref = useRef<HTMLImageElement>(null);
+  const img3Ref = useRef<HTMLImageElement>(null);
+
+  // Parallax Multi-Camada
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 768px)', () => {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(img1Ref.current, { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: img1Ref.current?.parentElement, scrub: 1.2 }});
+        gsap.fromTo(img2Ref.current, { yPercent: -12 }, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: img2Ref.current?.parentElement, scrub: 1.5 }});
+        gsap.fromTo(img3Ref.current, { yPercent: -6 }, { yPercent: 14, ease: 'none', scrollTrigger: { trigger: img3Ref.current?.parentElement, scrub: 0.9 }});
+      }, sectionRef);
+      return () => ctx.revert();
+    });
+    return () => mm.revert();
+  }, []);
+
+  // Bloquear o scroll do body quando o modal abrir
+  useEffect(() => {
+    if (isResumeOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isResumeOpen]);
+
+  return (
+    <>
+      <section ref={sectionRef} id="aboutme" className="bg-white pt-12 pb-16 md:pt-16 md:pb-20 flex flex-col justify-center relative z-10">
+        <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+          
+          {/* Header Texto */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24 md:mb-32">
+            <div className="hidden md:block md:col-span-6 lg:col-span-7" />
+            <div className="md:col-span-6 lg:col-span-5 flex flex-col justify-center">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.05] tracking-tighter mb-8 uppercase">
+                <span className="text-[#111]">EU SOU VICTOR</span><br />
+                <span className="text-[#999]">CARDOSO, E EU</span><br />
+                <span className="text-[#111]">CONSTRUO</span><br />
+                <span className="text-[#999]">SISTEMAS.</span>
+              </h2>
+              <p className="text-sm md:text-base text-[#333] font-sans font-medium leading-relaxed max-w-sm">
+                Especialista em Engenharia de Software.<br />
+                Transformo problemas complexos em<br />
+                soluções escaláveis e arte em código.
+              </p>
+            </div>
+          </div>
+
+          {/* Imagens Parallax */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+            <div className="aspect-[3/4] overflow-hidden bg-gray-100">
+              <img ref={img1Ref} src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800" className="w-full h-[115%] object-cover grayscale" alt="Industrial" />
+            </div>
+
+            {/* Imagem clicável que abre o Modal */}
+            <div className="aspect-[3/4] overflow-hidden bg-gray-100 cursor-pointer group relative" onClick={() => setIsResumeOpen(true)}>
+              <img ref={img2Ref} src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800" className="w-full h-[125%] object-cover grayscale" alt="Perfil" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors duration-500 flex items-center justify-center">
+                <span className="text-white font-mono text-xs tracking-widest uppercase border border-white px-6 py-3 backdrop-blur-sm opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+                  Ver Currículo
+                </span>
+              </div>
+            </div>
+
+            <div className="aspect-[3/4] overflow-hidden bg-gray-100">
+              <img ref={img3Ref} src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800" className="w-full h-[120%] object-cover grayscale" alt="Nature" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Modal Interno (Injetado via Portal) */}
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {isResumeOpen && (
+            <>
+              {/* Overlay Escuro */}
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                onClick={() => setIsResumeOpen(false)}
+                className="fixed inset-0 z-[9998] bg-black/95 cursor-pointer"
+              />
+              
+              {/* Container Branco do Modal */}
+              <motion.div
+                initial={{ y: "100%" }} animate={{ y: "2%", transition: { type: "spring", damping: 30, stiffness: 300 } }} exit={{ y: "100%", transition: { duration: 0.4 } }}
+                className="fixed left-0 right-0 bottom-0 z-[9999] w-full bg-white shadow-2xl overflow-hidden flex flex-col h-[98vh] rounded-t-[2rem] max-w-[96vw] mx-auto"
+              >
+                {/* Botão Fechar */}
+                <div className="absolute top-0 right-0 z-50 p-6 md:p-8">
+                  <button onClick={() => setIsResumeOpen(false)} className="w-12 h-12 rounded-full flex items-center justify-center bg-[#000000] text-white hover:bg-[#333] transition-all">
+                    <X size={20} />
+                  </button>
+                </div>
+                
+                {/* Scroll Interno do Currículo */}
+                <div className="flex-grow h-full w-full overflow-y-auto bg-white">
+                  <ResumeContent />
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
-}
+};
+
+export default AboutMe;
