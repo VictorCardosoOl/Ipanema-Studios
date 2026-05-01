@@ -196,20 +196,21 @@ const AboutMe: React.FC = () => {
         <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           
           {/* Header Texto */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24 md:mb-32">
-            <div className="hidden md:block md:col-span-6 lg:col-span-7" />
-            <div className="md:col-span-6 lg:col-span-5 flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.05] tracking-tighter mb-8 uppercase">
-                <span className="text-[#111]">EU SOU VICTOR</span><br />
-                <span className="text-[#999]">CARDOSO, E EU</span><br />
-                <span className="text-[#111]">CONSTRUO</span><br />
-                <span className="text-[#999]">SISTEMAS.</span>
-              </h2>
-              <p className="text-sm md:text-base text-[#333] font-sans font-medium leading-relaxed max-w-sm">
-                Especialista em Engenharia de Software.<br />
-                Transformo problemas complexos em<br />
-                soluções escaláveis e arte em código.
-              </p>
+          <div className="mb-24 md:mb-32 flex flex-col">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-sans font-light leading-[1.15] tracking-tight text-[#444] mb-20">
+              Sou <span className="font-bold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-bold text-[#111]">Análise</span> de<br className="hidden lg:block" />
+              <span className="font-bold text-[#111]">Sistemas</span> e <span className="font-bold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
+              Transformo <span className="font-bold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />
+              <span className="font-bold text-[#111]">eficiência</span> de negócio, unindo habilidades<br className="hidden lg:block" />
+              analíticas e estratégia para entregar <span className="font-bold text-[#111]">resultados</span><br className="hidden lg:block" />
+              reais.
+            </h2>
+            
+            <div className="w-full mt-auto">
+              <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#111] mb-4 pl-1">
+                Sobre Mim
+              </h3>
+              <div className="w-full h-px bg-[#111]/20" />
             </div>
           </div>
 
