@@ -4,23 +4,23 @@ import Image from './ui/Image';
 import { Button } from './ui/Button';
 import { Heading } from './ui/Heading';
 
-const founders = [
+const aboutMe = [
   {
-    role: "DIRETOR DE DESIGN",
-    name: "Lucas Formosa",
-    description: "Especialista em criar interfaces minimalistas e experiências de usuário memoráveis.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+    role: "PERFIL PROFISSIONAL",
+    name: "Análise de Sistemas",
+    description: "Especialista em transformar complexidade técnica em eficiência de negócio.",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800"
   },
   {
-    role: "LÍDER DE ENGENHARIA",
-    name: "Rafael Silva",
-    description: "Arquiteto de software focado em performance, escalabilidade e código limpo.",
+    role: "HARD SKILLS",
+    name: "Lógica & Banco de Dados",
+    description: "Sólidos conhecimentos em SQL, Configuração de Hardware e Ferramentas de Suporte Remoto.",
     image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop"
   },
   {
-    role: "ESTRATEGISTA / CEO",
-    name: "Marina Costa",
-    description: "Visão de negócios e estratégia de produto para conectar marcas aos seus clientes.",
+    role: "MANAGEMENT",
+    name: "Liderança Operacional",
+    description: "Gestão de KPIs, liderança de equipes e treinamento corporativo com visão estratégica.",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
   }
 ];
@@ -67,8 +67,8 @@ export default function Mission() {
         {/* Top Text */}
         <div className="max-w-5xl mb-24 md:mb-32">
           <Heading size="h3" weight="light" className="leading-tight flex flex-wrap gap-x-2 md:gap-x-3">
-            {"Nossa agência nasceu da obsessão por escalabilidade e design de vanguarda. Preenchemos a lacuna entre a estética editorial e a engenharia de software profunda, compilando plataformas digitais complexas que convertem e dominam seus respectivos mercados.".split(' ').map((word, i) => {
-              const isBold = ['escalabilidade', 'design', 'vanguarda.', 'estética', 'editorial', 'engenharia', 'software'].includes(word);
+            {"Sou Victor Cardoso, especialista em Análise de Sistemas e Liderança Operacional. Transformo complexidade técnica em eficiência de negócio, unindo habilidades analíticas e estratégia para entregar resultados reais.".split(' ').map((word, i) => {
+              const isBold = ['Victor', 'Cardoso,', 'Análise', 'Sistemas', 'Liderança', 'Operacional.', 'complexidade', 'eficiência', 'resultados'].includes(word);
               return (
                 <span key={i} className="overflow-hidden inline-flex pb-1">
                   <span className={`mission-word inline-block ${isBold ? 'font-serif font-semibold text-charcoal' : ''}`}>
@@ -83,10 +83,10 @@ export default function Mission() {
         {/* Section Header */}
         <div className="mission-reveal flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
           <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-charcoal">
-            Nossos Fundadores
+            Sobre Mim
           </h3>
           <Button variant="default" size="sm" className="self-start sm:self-auto">
-            Conheça a equipe
+            Baixar CV Completo
           </Button>
         </div>
 
@@ -95,24 +95,24 @@ export default function Mission() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
-          {founders.map((founder, index) => (
+          {aboutMe.map((item, index) => (
             <div key={index} className="flex flex-col group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm p-2 -m-2">
               <div className="w-full aspect-square overflow-hidden mb-6 bg-charcoal/5">
                 <Image 
-                  src={founder.image} 
-                  alt={founder.name}
+                  src={item.image} 
+                  alt={item.name}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 />
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold mb-3">
-                  {founder.role}
+                  {item.role}
                 </span>
                 <h4 className="text-lg md:text-xl font-bold font-sans text-charcoal mb-2 leading-snug">
-                  {founder.name}
+                  {item.name}
                 </h4>
                 <p className="text-sm font-sans text-charcoal/70 leading-relaxed">
-                  {founder.description}
+                  {item.description}
                 </p>
               </div>
             </div>

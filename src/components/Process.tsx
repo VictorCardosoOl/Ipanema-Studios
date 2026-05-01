@@ -74,6 +74,7 @@ export default function Process() {
                    key={service.id}
                    className="service-row w-full border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04] group cursor-pointer"
                    onClick={() => setActiveService(isActive ? null : index)}
+                   onMouseEnter={() => setActiveService(index)}
                  >
                     <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-10 flex flex-col">
                        {/* Header do Item */}

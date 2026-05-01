@@ -13,7 +13,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-charcoal/10 text-charcoal",
         link: "text-charcoal underline-offset-4 hover:underline",
         white: "bg-white text-charcoal hover:bg-white/90",
-        whiteOutline: "border border-white/30 bg-transparent hover:bg-white hover:text-charcoal text-white focus-visible:ring-white",
+        whiteOutline: "border border-white/30 bg-transparent hover:border-white text-white outline-none",
       },
       size: {
         default: "h-12 px-8 py-2",
