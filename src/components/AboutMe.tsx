@@ -25,7 +25,7 @@ const aboutMe = [
   }
 ];
 
-export default function Mission() {
+export default function AboutMe() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -61,7 +61,7 @@ export default function Mission() {
   }, []);
 
   return (
-    <section id="mission" ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 3xl:px-24 bg-cream text-charcoal">
+    <section id="aboutme" ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 3xl:px-24 bg-cream text-charcoal">
       <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
         
         {/* Top Text */}

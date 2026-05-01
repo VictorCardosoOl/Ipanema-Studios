@@ -170,7 +170,7 @@ export default function HeroPortfolio() {
                     {[
                        { name: 'Trabalhos', link: '#portfolio', page: '02' },
                        { name: 'Serviços', link: '#services', page: '03' },
-                       { name: 'Quem Somos', link: '#mission', page: '04' },
+                       { name: 'Quem Somos', link: '#aboutme', page: '04' },
                        { name: 'Valores', link: '#values', page: '05' },
                        { name: 'Contato', link: '#contact', page: '06' },
                     ].map((item, i) => (

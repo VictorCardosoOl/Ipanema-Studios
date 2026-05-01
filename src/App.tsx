@@ -5,7 +5,7 @@
 
 import HeroPortfolio from './components/HeroPortfolio';
 import Process from './components/Process';
-import Mission from './components/Mission';
+import AboutMe from './components/AboutMe';
 import Values from './components/Values';
 import Contact from './components/Contact';
 import FAQSection from './components/FAQSection';
@@ -44,7 +44,7 @@ const NAVIGATION_CONFIG: readonly NavItem[] = [
     textColor: "#FFFFFF",
     links: [
       { label: "Serviços", ariaLabel: "Nossos Serviços", href: "#services" },
-      { label: "Quem Somos", ariaLabel: "Quem Somos", href: "#mission" },
+      { label: "Quem Somos", ariaLabel: "Quem Somos", href: "#aboutme" },
       { label: "Valores", ariaLabel: "Nossos Valores", href: "#values" }
     ]
   },
@@ -83,7 +83,7 @@ export default function App() {
       <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 h-[100vh] overflow-hidden'}`}>
         <HeroPortfolio />
         <Process />
-        <Mission />
+        <AboutMe />
         <Values />
         <FAQSection />
         <Contact />
