@@ -125,7 +125,7 @@ const Reveal: React.FC<RevealProps> = ({
 
   return (
     <div ref={wrapperRef} style={{ width }} className={`relative ${className}`}>
-      <div ref={innerRef}>{children}</div>
+      <div ref={innerRef} className="will-change-transform">{children}</div>
     </div>
   );
 };

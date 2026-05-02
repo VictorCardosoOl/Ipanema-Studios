@@ -10,7 +10,7 @@ export function useAiChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Olá! Sou o assistente de engenharia do Estúdio Formosa. Para podermos estruturar a melhor solução técnica para você, me conte: qual é o principal desafio que seu projeto atual enfrenta?'
+      content: 'Olá! Sou o assistente virtual do Victor Cardoso. Para podermos estruturar a melhor solução técnica para você, me conte: qual é o principal desafio que seu projeto atual enfrenta?'
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ export function useAiChat() {
 
       const ai = new GoogleGenAI({ apiKey });
       
-      const prompt = `Você é um consultor técnico de engenharia de software e UI/UX de uma agência chamada Formosa Studios.
+      const prompt = `Você é um consultor técnico de engenharia de software e UI/UX de um desenvolvedor chamado Victor Cardoso.
 Seu objetivo é fazer um pré-scoping do projeto do cliente.
 Até agora, o histórico é:
 ${messages.map(m => `${m.role}: ${m.content}`).join('\n')}
@@ -53,7 +53,7 @@ Responda de forma profissional, direta e técnica. Faça no máximo uma pergunta
       console.error(error);
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: 'No momento estou offline. Mas nossa equipe técnica adoraria entender mais. Por favor, envie um e-mail direto para hello@formosastudios.com com esses detalhes.' 
+        content: 'No momento estou offline. Mas adoraria entender mais sobre o seu projeto. Por favor, envie um e-mail direto para hello@victorcardoso.com com esses detalhes.' 
       }]);
     } finally {
       setIsLoading(false);

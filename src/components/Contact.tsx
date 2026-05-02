@@ -175,8 +175,8 @@ function ContactInfo() {
         <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Informações Gerais</h4>
         <div className="text-sm font-sans text-charcoal/80 space-y-4">
           <div>
-            <p className="font-medium text-charcoal mb-1">Estúdio Formosa</p>
-            <p>Vila Formosa, São Paulo</p>
+            <p className="font-medium text-charcoal mb-1">Victor Cardoso</p>
+            <p>São Paulo</p>
             <p>Brasil</p>
           </div>
           <div>
@@ -185,7 +185,7 @@ function ContactInfo() {
           </div>
           <div>
             <p className="font-medium text-charcoal mb-1">E-mail</p>
-            <a href="mailto:hello@formosastudios.com" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@formosastudios.com</a>
+            <a href="mailto:hello@victorcardoso.com" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@victorcardoso.com</a>
           </div>
         </div>
       </div>

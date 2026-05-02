@@ -53,7 +53,7 @@ const NAVIGATION_CONFIG: readonly NavItem[] = [
     bgColor: "#222222", 
     textColor: "#FFFFFF",
     links: [
-      { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@formosastudios.com" },
+      { label: "E-mail", ariaLabel: "Envie um e-mail", href: "mailto:hello@victorcardoso.com" },
       { label: "Agendar Diagnóstico", ariaLabel: "Agendar Reunião", href: "#contact" }
     ]
   }
@@ -76,7 +76,7 @@ export default function App() {
       <SmoothScroll />
       <Navbar 
         items={NAVIGATION_CONFIG}
-        logoText="Formosa"
+        logoText="Victor Cardoso"
       />
       
       {/* Esconde o conteúdo até o preloader acabar para não vazar layout */}

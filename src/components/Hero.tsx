@@ -38,7 +38,7 @@ export default function Hero() {
         <header className="shrink-0 relative z-10">
           <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-medium tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
             <TextType 
-              text={["Formosa Studios"]}
+              text={["Victor Cardoso"]}
               typingSpeed={100}
               initialDelay={1000}
               loop={false}

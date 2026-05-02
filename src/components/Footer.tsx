@@ -27,7 +27,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
             <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Diga Olá</span>
-            <a href="mailto:hello@formosastudios.com" className="text-sm font-sans hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@formosastudios.com</a>
+            <a href="mailto:hello@victorcardoso.com" className="text-sm font-sans hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@victorcardoso.com</a>
           </div>
         </div>
 
@@ -35,8 +35,8 @@ const Footer = () => {
         <div className="md:col-span-3 flex flex-col gap-4">
           <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold">O Estúdio</span>
           <div className="text-sm font-sans leading-relaxed">
-            <p className="font-serif text-lg italic mb-1">Estúdio Formosa</p>
-            <p className="text-charcoal/70">Vila Formosa, São Paulo</p>
+            <p className="font-serif text-lg italic mb-1">Victor Cardoso</p>
+            <p className="text-charcoal/70">São Paulo</p>
             <p className="text-charcoal/70">Brasil</p>
           </div>
         </div>
@@ -54,7 +54,7 @@ const Footer = () => {
       <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden">
         <Heading size="huge" className="select-none text-center w-full flex justify-center uppercase">
           <DecryptedText 
-            text="FORMOSA"
+            text="VICTOR CARDOSO"
             speed={60}
             maxIterations={15}
             characters="A&C1234!?"
@@ -71,7 +71,7 @@ const Footer = () => {
 
         {/* Center: Copyright */}
         <div className="text-xs text-charcoal/60 pb-4 text-center hidden md:block">
-          &copy; {currentYear} Formosa Studios | Design & Engenharia
+          &copy; {currentYear} Victor Cardoso | Design & Engenharia
         </div>
 
         {/* Right: Buttons */}
@@ -94,7 +94,7 @@ const Footer = () => {
       
       {/* Mobile Copyright */}
       <div className="text-xs text-charcoal/60 mt-8 text-center md:hidden">
-        &copy; {currentYear} Formosa Studios | Design & Engenharia
+        &copy; {currentYear} Victor Cardoso | Design & Engenharia
       </div>
     </footer>
   );
