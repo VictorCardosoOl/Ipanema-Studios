@@ -6,6 +6,7 @@
 import HeroPortfolio from './components/HeroPortfolio';
 import Process from './components/Process';
 import AboutMe from './components/AboutMe';
+import ProjectsStandalone from './components/ProjectsStandalone';
 import Values from './components/Values';
 import Contact from './components/Contact';
 import FAQSection from './components/FAQSection';
@@ -84,6 +85,7 @@ export default function App() {
         <HeroPortfolio />
         <Process />
         <AboutMe />
+        <ProjectsStandalone />
         <Values />
         <FAQSection />
         <Contact />
