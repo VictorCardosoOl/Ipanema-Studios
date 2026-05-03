@@ -61,12 +61,13 @@ export default function HeroPortfolio() {
         const image = card.querySelector('.portfolio-image');
         const textElements = card.querySelectorAll('.portfolio-text-reveal > *');
         
-        // Masking / Clip-path reveal
-        if (imageWrapper) {
-          gsap.fromTo(imageWrapper, 
-            { clipPath: "inset(0% 100% 0% 0%)" }, // Starts fully clipped on the right
+        // Masking / Clip-path reveal -> Transformed to scaleX GPU overlay
+        const revealOverlay = card.querySelector('.portfolio-reveal-overlay');
+        if (revealOverlay) {
+          gsap.fromTo(revealOverlay, 
+            { scaleX: 1 }, // Starts fully covering
             {
-              clipPath: "inset(0% 0% 0% 0%)",
+              scaleX: 0,
               ease: "power2.inOut",
               scrollTrigger: {
                 trigger: card,
@@ -212,8 +213,8 @@ export default function HeroPortfolio() {
         {projects.map((project, idx) => (
           <div key={idx} className="portfolio-card w-screen h-full shrink-0 relative flex items-center justify-center bg-charcoal text-cream overflow-hidden px-6 md:px-24">
              
-             {/* Background Image with Clip-Path Reveal */}
-             <div className="portfolio-image-wrapper absolute inset-0 w-full h-full z-0">
+             {/* Background Image with GPU Accelerated Overlay Reveal */}
+             <div className="portfolio-image-wrapper absolute inset-0 w-full h-full z-0 overflow-hidden">
                 <div className="absolute inset-0 w-full h-full">
                   <Image 
                     className="portfolio-image absolute inset-0 w-[130%] h-full object-cover opacity-60 hover:opacity-90 grayscale hover:grayscale-0 transition-all duration-1000" 
@@ -221,7 +222,9 @@ export default function HeroPortfolio() {
                     alt={project.title}
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
+                {/* Overlay Div replaces clip-path for 100% GPU acceleration */}
+                <div className="portfolio-reveal-overlay absolute inset-0 w-full h-full bg-charcoal z-10 origin-right" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 z-[5]" />
              </div>
              
              {/* Text Content */}

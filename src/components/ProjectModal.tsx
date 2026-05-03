@@ -12,6 +12,7 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
+  const modalOuterRef = useRef<HTMLDivElement>(null);
   const modalContainerRef = useRef<HTMLDivElement>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -32,7 +33,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
       
       gsap.set(wrapperRef.current, { display: 'block' });
       gsap.to(overlayRef.current, { autoAlpha: 1, duration: 0.4 });
-      gsap.fromTo(modalContainerRef.current, { y: "100%" }, { y: "2%", duration: 0.8, ease: "expo.out" });
+      gsap.fromTo(modalOuterRef.current, { y: "100%" }, { y: "2%", duration: 0.8, ease: "expo.out" });
 
       // Inicia Lenis apenas no Modal após mount
       const timeout = setTimeout(() => {
@@ -63,7 +64,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
     } else {
       if (wrapperRef.current) {
         gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.4 });
-        gsap.to(modalContainerRef.current, { y: "100%", duration: 0.5, ease: "expo.in", onComplete: () => {
+        gsap.to(modalOuterRef.current, { y: "100%", duration: 0.5, ease: "expo.in", onComplete: () => {
           gsap.set(wrapperRef.current, { display: 'none' });
         }});
       }
@@ -84,6 +85,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
       />
       
       <div
+        ref={modalOuterRef}
         className="absolute left-0 right-0 bottom-0 z-[9999] bg-[#0a0a0a] text-[#f5f5f0] rounded-t-[2rem] h-[98vh] overflow-hidden shadow-2xl translate-y-full"
       >
         {/* Container de Scroll para o Lenis */}

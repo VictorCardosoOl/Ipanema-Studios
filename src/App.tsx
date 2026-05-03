@@ -36,7 +36,19 @@ export default function App() {
         scrub: 0.1,
       }
     });
+
+    // Refresh ScrollTrigger when local fonts finish loading
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
   }, []);
+
+  // Refresh ScrollTrigger when Preloader finishes and reveals the DOM
+  useEffect(() => {
+    if (isLoaded) {
+      setTimeout(() => ScrollTrigger.refresh(), 100);
+    }
+  }, [isLoaded]);
 
   return (
     <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
@@ -55,7 +67,7 @@ export default function App() {
       />
       
       {/* O DOM renderiza no tamanho natural para o GSAP calcular, mas fica invisível e intocável até carregar */}
-      <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <ErrorBoundary>
           <HeroPortfolio />
           <Process />
