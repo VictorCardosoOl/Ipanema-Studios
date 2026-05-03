@@ -5,7 +5,6 @@ import { projects } from '../data/portfolio';
 import Image from './ui/Image';
 import TextType from './ui/TextType';
 import { Button } from './ui/Button';
-import { motion } from 'motion/react';
 import ProjectModal from './ProjectModal';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -114,12 +113,6 @@ export default function HeroPortfolio() {
         });
       });
 
-      // Refresh to ensure all widths and triggers are calculated after Preloader finishes
-      setTimeout(() => ScrollTrigger.refresh(), 500);
-      setTimeout(() => ScrollTrigger.refresh(), 1500);
-      setTimeout(() => ScrollTrigger.refresh(), 2500);
-      setTimeout(() => ScrollTrigger.refresh(), 3500);
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -221,13 +214,13 @@ export default function HeroPortfolio() {
              
              {/* Background Image with Clip-Path Reveal */}
              <div className="portfolio-image-wrapper absolute inset-0 w-full h-full z-0">
-                <motion.div layoutId={`image-${project.title}`} className="absolute inset-0 w-full h-full">
+                <div className="absolute inset-0 w-full h-full">
                   <Image 
                     className="portfolio-image absolute inset-0 w-[130%] h-full object-cover opacity-60 hover:opacity-90 grayscale hover:grayscale-0 transition-all duration-1000" 
                     src={project.image} 
                     alt={project.title}
                   />
-                </motion.div>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
              </div>
              
@@ -236,9 +229,9 @@ export default function HeroPortfolio() {
                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-cream/60 font-bold">
                     0{idx + 1} / Trabalhos
                  </span>
-                 <motion.h2 layoutId={`title-${project.title}`} className="text-5xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
+                 <h2 className="text-5xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
                     {project.title}
-                 </motion.h2>
+                 </h2>
                  <div className="flex flex-col md:flex-row md:items-end justify-between mt-8 md:mt-12 gap-8">
                     <p className="text-sm md:text-lg font-light max-w-md text-cream/90">
                        {project.description}

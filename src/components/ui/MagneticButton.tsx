@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -7,38 +7,44 @@ interface MagneticButtonProps {
   onClick?: () => void;
 }
 
-interface Position {
-  x: number;
-  y: number;
-}
-
 export function MagneticButton({ children, className = "", onClick }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
 
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+  useEffect(() => {
     if (!ref.current) return;
     
-    const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current.getBoundingClientRect();
-    
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    
-    setPosition({ x: middleX * 0.3, y: middleY * 0.3 });
-  };
+    // Create highly optimized quickTo setters for x and y
+    const xTo = gsap.quickTo(ref.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
+    const yTo = gsap.quickTo(ref.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
 
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-  };
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return;
+      const { clientX, clientY } = e;
+      const { height, width, left, top } = ref.current.getBoundingClientRect();
+      const x = clientX - (left + width / 2);
+      const y = clientY - (top + height / 2);
+      xTo(x * 0.3);
+      yTo(y * 0.3);
+    };
+
+    const handleMouseLeave = () => {
+      xTo(0);
+      yTo(0);
+    };
+
+    const el = ref.current;
+    el.addEventListener("mousemove", handleMouseMove);
+    el.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={`inline-block cursor-pointer ${className}`}
       onClick={onClick}
       role="button"
@@ -50,6 +56,6 @@ export function MagneticButton({ children, className = "", onClick }: MagneticBu
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

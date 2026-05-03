@@ -1,47 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'motion/react';
 import { X, Download, MapPin, ExternalLink, Globe, Award, Briefcase, Terminal, Cpu } from 'lucide-react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ============================================================================
-// DADOS (Altere aqui para o seu novo projeto)
-// ============================================================================
-const DATA = {
-  name: "Seu Nome Aqui",
-  role: "Engenheiro de Software & Designer",
-  location: "São Paulo, SP",
-  bio: "Especialista em Engenharia de Software. Transformo problemas complexos em soluções escaláveis e arte em código.",
-  resumeLink: "/seu_cv.pdf",
-  socials: { linkedin: "https://linkedin.com/in/seuperfil" },
-  experience: [
-    {
-      role: "Engenheiro Sênior",
-      company: "Tech Corp",
-      period: "2022 - Atual",
-      location: "Remoto",
-      description: ["Liderança técnica em projetos de alta escalabilidade.", "Otimização de performance e CI/CD."]
-    },
-    {
-      role: "Desenvolvedor Pleno",
-      company: "Inovação SA",
-      period: "2019 - 2022",
-      location: "São Paulo",
-      description: ["Desenvolvimento de interfaces React.", "Implementação de Design Systems."]
-    }
-  ],
-  education: [
-    { degree: "Engenharia de Computação", institution: "Universidade XYZ", period: "2015 - 2019" }
-  ],
-  skills: {
-    technical: ["React & Next.js", "TypeScript", "Node.js", "GSAP & Framer Motion", "Tailwind CSS"],
-    management: ["Liderança de Equipes", "Metodologias Ágeis", "Gestão de Produtos"]
-  },
-  softSkills: ["Comunicação", "Resolução de Problemas", "Visão de Negócio", "Adaptabilidade"]
-};
+import { PROFILE_DATA as DATA } from '../config/profile';
 
 // ============================================================================
 // COMPONENTE SECUNDÁRIO: CONTEÚDO DO CURRÍCULO (Resume Content)
@@ -168,6 +133,22 @@ const AboutMe: React.FC = () => {
   const img1Ref = useRef<HTMLImageElement>(null);
   const img2Ref = useRef<HTMLImageElement>(null);
   const img3Ref = useRef<HTMLImageElement>(null);
+  const modalWrapperRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isResumeOpen) {
+      gsap.set(modalWrapperRef.current, { display: 'block' });
+      gsap.to(overlayRef.current, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
+      gsap.fromTo(modalContentRef.current, { y: "100%" }, { y: "2%", duration: 0.8, ease: "expo.out" });
+    } else {
+      gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
+      gsap.to(modalContentRef.current, { y: "100%", duration: 0.5, ease: "expo.in", onComplete: () => {
+        gsap.set(modalWrapperRef.current, { display: 'none' });
+      }});
+    }
+  }, [isResumeOpen]);
 
   // Parallax Multi-Camada
   useEffect(() => {
@@ -240,36 +221,32 @@ const AboutMe: React.FC = () => {
 
       {/* Modal Interno (Injetado via Portal) */}
       {typeof window !== 'undefined' && createPortal(
-        <AnimatePresence>
-          {isResumeOpen && (
-            <>
-              {/* Overlay Escuro */}
-              <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                onClick={() => setIsResumeOpen(false)}
-                className="fixed inset-0 z-[9998] bg-black/95 cursor-pointer"
-              />
-              
-              {/* Container Branco do Modal */}
-              <motion.div
-                initial={{ y: "100%" }} animate={{ y: "2%", transition: { type: "spring", damping: 30, stiffness: 300 } }} exit={{ y: "100%", transition: { duration: 0.4 } }}
-                className="fixed left-0 right-0 bottom-0 z-[9999] w-full bg-white shadow-2xl overflow-hidden flex flex-col h-[98vh] rounded-t-[2rem] max-w-[96vw] mx-auto"
-              >
-                {/* Botão Fechar */}
-                <div className="absolute top-0 right-0 z-50 p-6 md:p-8">
-                  <button onClick={() => setIsResumeOpen(false)} className="w-12 h-12 rounded-full flex items-center justify-center bg-[#000000] text-white hover:bg-[#333] transition-all">
-                    <X size={20} />
-                  </button>
-                </div>
-                
-                {/* Scroll Interno do Currículo */}
-                <div className="flex-grow h-full w-full overflow-y-auto bg-white">
-                  <ResumeContent />
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>,
+        <div ref={modalWrapperRef} style={{ display: 'none' }} className="fixed inset-0 z-[9998]">
+          {/* Overlay Escuro */}
+          <div
+            ref={overlayRef}
+            onClick={() => setIsResumeOpen(false)}
+            className="absolute inset-0 bg-black/95 cursor-pointer opacity-0 invisible"
+          />
+          
+          {/* Container Branco do Modal */}
+          <div
+            ref={modalContentRef}
+            className="absolute left-0 right-0 bottom-0 z-[9999] w-full bg-white shadow-2xl overflow-hidden flex flex-col h-[98vh] rounded-t-[2rem] max-w-[96vw] mx-auto translate-y-full"
+          >
+            {/* Botão Fechar */}
+            <div className="absolute top-0 right-0 z-50 p-6 md:p-8">
+              <button onClick={() => setIsResumeOpen(false)} className="w-12 h-12 rounded-full flex items-center justify-center bg-[#000000] text-white hover:bg-[#333] transition-all">
+                <X size={20} />
+              </button>
+            </div>
+            
+            {/* Scroll Interno do Currículo */}
+            <div className="flex-grow h-full w-full overflow-y-auto bg-white">
+              <ResumeContent />
+            </div>
+          </div>
+        </div>,
         document.body
       )}
     </>

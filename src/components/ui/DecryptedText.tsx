@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useState, useRef, useMemo, useCallback, CSSProperties } from 'react';
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   wrapper: {
     display: 'inline-block',
     whiteSpace: 'pre-wrap'
@@ -35,7 +34,7 @@ export default function DecryptedText({
 }: any) {
   const [displayText, setDisplayText] = useState(text);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [revealedIndices, setRevealedIndices] = useState(new Set());
+  const [revealedIndices, setRevealedIndices] = useState(new Set<number>());
   const [hasAnimated, setHasAnimated] = useState(false);
   const [isDecrypted, setIsDecrypted] = useState(animateOn !== 'click');
   const [direction, setDirection] = useState('forward');
@@ -121,9 +120,9 @@ export default function DecryptedText({
     if (sequential) {
       orderRef.current = computeOrder(text.length);
       pointerRef.current = 0;
-      setRevealedIndices(new Set());
+      setRevealedIndices(new Set<number>());
     } else {
-      setRevealedIndices(new Set());
+      setRevealedIndices(new Set<number>());
     }
     setDirection('forward');
     setIsAnimating(true);
@@ -243,8 +242,8 @@ export default function DecryptedText({
               setIsAnimating(false);
               setIsDecrypted(false);
               // ensure final scrambled state
-              setDisplayText(shuffleText(text, new Set()));
-              return new Set();
+              setDisplayText(shuffleText(text, new Set<number>()));
+              return new Set<number>();
             }
             return nextSet;
           }
@@ -293,7 +292,7 @@ export default function DecryptedText({
   const triggerHoverDecrypt = useCallback(() => {
     if (isAnimating) return;
 
-    setRevealedIndices(new Set());
+    setRevealedIndices(new Set<number>());
     setIsDecrypted(false);
     setDisplayText(text);
     setDirection('forward');
@@ -303,7 +302,7 @@ export default function DecryptedText({
   const resetToPlainText = useCallback(() => {
     clearInterval(intervalRef.current);
     setIsAnimating(false);
-    setRevealedIndices(new Set());
+    setRevealedIndices(new Set<number>());
     setDisplayText(text);
     setIsDecrypted(true);
     setDirection('forward');
@@ -348,7 +347,7 @@ export default function DecryptedText({
       setDisplayText(text);
       setIsDecrypted(true);
     }
-    setRevealedIndices(new Set());
+    setRevealedIndices(new Set<number>());
     setDirection('forward');
   }, [animateOn, text, encryptInstantly]);
 
@@ -365,7 +364,7 @@ export default function DecryptedText({
         : {};
 
   return (
-    <motion.span className={parentClassName} ref={containerRef} style={styles.wrapper as any} {...animateProps} {...props}>
+    <span className={parentClassName} ref={containerRef} style={styles.wrapper} {...animateProps} {...props}>
       <span style={styles.srOnly}>{displayText}</span>
 
       <span aria-hidden="true">
@@ -379,6 +378,6 @@ export default function DecryptedText({
           );
         })}
       </span>
-    </motion.span>
+    </span>
   );
 }
