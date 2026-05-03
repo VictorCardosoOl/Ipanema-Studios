@@ -51,7 +51,7 @@ export default function App() {
   }, [isLoaded]);
 
   return (
-    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
+    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream overflow-x-hidden">
       {/* Wayfinding: Progress Bar */}
       <div 
         ref={progressRef}

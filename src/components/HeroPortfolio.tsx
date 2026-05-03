@@ -16,14 +16,20 @@ export default function HeroPortfolio() {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia(containerRef);
+
+    mm.add({
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(max-width: 1023px)"
+    }, (context) => {
+      const { conditions } = context;
+      const isDesktop = conditions?.isDesktop;
+
       const container = scrollContainerRef.current;
       if (!container) return;
 
       const getScrollAmount = () => {
-        // Usa clientWidth para evitar incluir a largura da barra de rolagem (evita bordas pretas)
-        const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-        return viewportWidth * projects.length;
+        return container.scrollWidth - window.innerWidth;
       };
 
       // 1. MASTER HORIZONTAL SCROLL TIMELINE
@@ -40,24 +46,20 @@ export default function HeroPortfolio() {
         }
       });
 
-
-
       // 3. HERO IMAGE PARALLAX
-      // The image inside the Hero moves slightly right as the container moves left
       gsap.to(".hero-image-parallax", {
         xPercent: 15,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: () => `+=${document.documentElement.clientWidth || window.innerWidth}`,
+          end: () => `+=${window.innerWidth}`,
           scrub: true,
         }
       });
 
       // 4. PROJECTS REVEAL & INTERNAL PARALLAX
       gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card) => {
-        const imageWrapper = card.querySelector('.portfolio-image-wrapper');
         const image = card.querySelector('.portfolio-image');
         const textElements = card.querySelectorAll('.portfolio-text-reveal > *');
         
@@ -72,8 +74,8 @@ export default function HeroPortfolio() {
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: horizontalAnim,
-                start: "left 85%", // Starts revealing when 15% into the screen
-                end: "left 20%",   // Fully revealed when mostly on screen
+                start: isDesktop ? "left 75%" : "left 90%", // Revela mais tarde no desktop para impacto
+                end: isDesktop ? "left 20%" : "left 15%",   
                 scrub: true,
               }
             }
@@ -100,7 +102,7 @@ export default function HeroPortfolio() {
 
         // Text reveal stagger (Split Text simulation)
         gsap.from(textElements, {
-          y: 60,
+          y: isDesktop ? 60 : 40,
           opacity: 0,
           duration: 1.2,
           stagger: 0.1,
@@ -108,15 +110,15 @@ export default function HeroPortfolio() {
           scrollTrigger: {
             trigger: card,
             containerAnimation: horizontalAnim,
-            start: "left 60%",
+            start: isDesktop ? "left 65%" : "left 75%",
             toggleActions: "play none none reverse"
           }
         });
       });
 
-    }, containerRef);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
