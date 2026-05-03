@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Core Components (Sempre carregados)
 import Navbar from './components/Navbar';
 import SmoothScroll from './components/SmoothScroll';
-import { Preloader } from './components/ui/Preloader';
 import { ErrorBoundary } from './components/ErrorBoundary';
-
-// Data / Constants
 import { NAVIGATION_CONFIG } from './config/navigation';
 
 import HeroPortfolio from './components/HeroPortfolio';
@@ -25,58 +21,55 @@ export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
 
+  // Marca como carregado logo após o mount
   useEffect(() => {
-    gsap.to(progressRef.current, {
-      scaleX: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.1,
-      }
-    });
-
-    // Refresh ScrollTrigger when local fonts finish loading
-    document.fonts.ready.then(() => {
-      ScrollTrigger.refresh();
-    });
+    const timer = setTimeout(() => setIsLoaded(true), 200);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Refresh ScrollTrigger when Preloader finishes and reveals the DOM
+  // Progress bar GSAP — só inicia quando o conteúdo estiver visível
   useEffect(() => {
-    if (isLoaded) {
-      setTimeout(() => ScrollTrigger.refresh(), 100);
-    }
+    if (!isLoaded) return;
+    const ctx = gsap.context(() => {
+      gsap.to(progressRef.current, {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.1,
+        },
+      });
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    });
+    return () => ctx.revert();
   }, [isLoaded]);
 
   return (
-    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream overflow-x-hidden">
+    <main className="w-full min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream">
       {/* Wayfinding: Progress Bar */}
-      <div 
+      <div
         ref={progressRef}
         className="fixed top-0 left-0 right-0 h-[2px] bg-charcoal z-[60] origin-left scale-x-0"
       />
-      
-      {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
 
       <SmoothScroll isLocked={!isLoaded} />
-      <Navbar 
+
+      <Navbar
         items={NAVIGATION_CONFIG}
         logoText="Victor Cardoso"
       />
-      
-      {/* O DOM renderiza no tamanho natural para o GSAP calcular, mas fica invisível e intocável até carregar */}
-      <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <ErrorBoundary>
-          <HeroPortfolio />
-          <Process />
-          <AboutMe />
-          <Values />
-          <FAQSection />
-          <Contact />
-          <Footer />
-        </ErrorBoundary>
+
+      {/* Conteúdo principal — cada seção tem seu próprio ErrorBoundary para isolar falhas */}
+      <div className={`transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <ErrorBoundary><HeroPortfolio /></ErrorBoundary>
+        <ErrorBoundary><Process /></ErrorBoundary>
+        <ErrorBoundary><AboutMe /></ErrorBoundary>
+        <ErrorBoundary><Values /></ErrorBoundary>
+        <ErrorBoundary><FAQSection /></ErrorBoundary>
+        <ErrorBoundary><Contact /></ErrorBoundary>
+        <ErrorBoundary><Footer /></ErrorBoundary>
       </div>
     </main>
   );

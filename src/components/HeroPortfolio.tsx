@@ -16,15 +16,7 @@ export default function HeroPortfolio() {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const mm = gsap.matchMedia(containerRef);
-
-    mm.add({
-      isDesktop: "(min-width: 1024px)",
-      isMobile: "(max-width: 1023px)"
-    }, (context) => {
-      const { conditions } = context;
-      const isDesktop = conditions?.isDesktop;
-
+    const ctx = gsap.context(() => {
       const container = scrollContainerRef.current;
       if (!container) return;
 
@@ -32,107 +24,33 @@ export default function HeroPortfolio() {
         return container.scrollWidth - window.innerWidth;
       };
 
-      // 1. MASTER HORIZONTAL SCROLL TIMELINE
-      const horizontalAnim = gsap.to(container, {
+      gsap.to(container, {
         x: () => -getScrollAmount(),
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 1, // Smoothing/Inertia value
+          scrub: 1,
           start: "top top",
           end: () => `+=${getScrollAmount()}`,
           invalidateOnRefresh: true,
         }
       });
+    }, containerRef);
 
-      // 3. HERO IMAGE PARALLAX
-      gsap.to(".hero-image-parallax", {
-        xPercent: 15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: () => `+=${window.innerWidth}`,
-          scrub: true,
-        }
-      });
-
-      // 4. PROJECTS REVEAL & INTERNAL PARALLAX
-      gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card) => {
-        const image = card.querySelector('.portfolio-image');
-        const textElements = card.querySelectorAll('.portfolio-text-reveal > *');
-        
-        // Masking / Clip-path reveal -> Transformed to scaleX GPU overlay
-        const revealOverlay = card.querySelector('.portfolio-reveal-overlay');
-        if (revealOverlay) {
-          gsap.fromTo(revealOverlay, 
-            { scaleX: 1 }, // Starts fully covering
-            {
-              scaleX: 0,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: horizontalAnim,
-                start: isDesktop ? "left 75%" : "left 90%", // Revela mais tarde no desktop para impacto
-                end: isDesktop ? "left 20%" : "left 15%",   
-                scrub: true,
-              }
-            }
-          );
-        }
-
-        // Internal Parallax for project images (moving X while scrolling X)
-        if (image) {
-          gsap.fromTo(image, 
-            { xPercent: -15, scale: 1.05 },
-            {
-              xPercent: 15,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: horizontalAnim,
-                start: "left right",
-                end: "right left",
-                scrub: true,
-              }
-            }
-          );
-        }
-
-        // Text reveal stagger (Split Text simulation)
-        gsap.from(textElements, {
-          y: isDesktop ? 60 : 40,
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            containerAnimation: horizontalAnim,
-            start: isDesktop ? "left 65%" : "left 75%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      });
-
-    });
-
-    return () => mm.revert();
+    return () => ctx.revert();
   }, []);
 
   return (
     <section 
-      ref={containerRef} 
+      ref={containerRef}
       className="relative w-full h-[100dvh] bg-cream text-charcoal overflow-hidden"
     >
-
-
       {/* HORIZONTAL SCROLL TRACK */}
       <div 
-         ref={scrollContainerRef} 
-         className="flex h-full z-10 relative"
-         style={{ width: `${(projects.length + 1) * 100}vw` }}
+        ref={scrollContainerRef}
+        className="flex h-full z-10 relative"
+        style={{ width: `${(projects.length + 1) * 100}vw` }}
       >
         
         {/* ========================================================= */}
@@ -224,8 +142,7 @@ export default function HeroPortfolio() {
                     alt={project.title}
                   />
                 </div>
-                {/* Overlay Div replaces clip-path for 100% GPU acceleration */}
-                <div className="portfolio-reveal-overlay absolute inset-0 w-full h-full bg-charcoal z-10 origin-right" />
+                <div className="portfolio-reveal-overlay absolute inset-0 w-full h-full bg-charcoal hidden" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 z-[5]" />
              </div>
              

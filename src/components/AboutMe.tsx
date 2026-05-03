@@ -138,31 +138,24 @@ const AboutMe: React.FC = () => {
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const wrapper = modalWrapperRef.current;
+    const overlay = overlayRef.current;
+    const content = modalContentRef.current;
+    if (!wrapper || !overlay || !content) return;
+
     if (isResumeOpen) {
-      gsap.set(modalWrapperRef.current, { display: 'block' });
-      gsap.to(overlayRef.current, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
-      gsap.fromTo(modalContentRef.current, { y: "100%" }, { y: "2%", duration: 0.8, ease: "expo.out" });
+      gsap.set(wrapper, { display: 'block' });
+      gsap.to(overlay, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
+      gsap.fromTo(content, { y: "100%" }, { y: "2%", duration: 0.8, ease: "expo.out" });
     } else {
-      gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
-      gsap.to(modalContentRef.current, { y: "100%", duration: 0.5, ease: "expo.in", onComplete: () => {
-        gsap.set(modalWrapperRef.current, { display: 'none' });
+      gsap.to(overlay, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
+      gsap.to(content, { y: "100%", duration: 0.5, ease: "expo.in", onComplete: () => {
+        gsap.set(wrapper, { display: 'none' });
       }});
     }
   }, [isResumeOpen]);
 
-  // Parallax Multi-Camada
-  useEffect(() => {
-    const mm = gsap.matchMedia();
-    mm.add('(min-width: 768px)', () => {
-      const ctx = gsap.context(() => {
-        gsap.fromTo(img1Ref.current, { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: img1Ref.current?.parentElement, scrub: 1.2 }});
-        gsap.fromTo(img2Ref.current, { yPercent: -12 }, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: img2Ref.current?.parentElement, scrub: 1.5 }});
-        gsap.fromTo(img3Ref.current, { yPercent: -6 }, { yPercent: 14, ease: 'none', scrollTrigger: { trigger: img3Ref.current?.parentElement, scrub: 0.9 }});
-      }, sectionRef);
-      return () => ctx.revert();
-    });
-    return () => mm.revert();
-  }, []);
+  // Purged GSAP for static validation
 
   // Bloquear o scroll do body quando o modal abrir
   useEffect(() => {
@@ -173,7 +166,7 @@ const AboutMe: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="aboutme" className="bg-white pt-12 pb-16 md:pt-16 md:pb-20 flex flex-col justify-center relative z-10">
+      <section ref={sectionRef} id="aboutme" className="bg-white pt-12 pb-16 md:pt-16 md:pb-20 flex flex-col justify-center relative z-10 overflow-hidden">
         <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           
           {/* Header Texto */}

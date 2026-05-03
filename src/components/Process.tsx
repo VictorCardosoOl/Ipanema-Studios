@@ -58,74 +58,11 @@ interface RevealProps {
 const Reveal: React.FC<RevealProps> = ({
   children,
   width = 'fit-content',
-  delay = 0,
-  y = 50,
   className = '',
-  variant = 'translate',
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const innerRef   = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
-    const el      = innerRef.current;
-    const wrapper = wrapperRef.current;
-    if (!el || !wrapper) return;
-
-    const delaySec = delay / 1000;
-
-    const ctx = gsap.context(() => {
-      if (variant === 'clip') {
-        gsap.set(wrapper, { overflow: 'hidden' });
-        gsap.fromTo(el, { yPercent: 105 }, {
-          yPercent: 0, duration: 1.0, delay: delaySec, ease: 'power3.out',
-          scrollTrigger: { trigger: wrapper, start: 'top 88%', once: true },
-        });
-        return;
-      }
-      if (variant === 'chars') {
-        const textNode = el.querySelector('[data-chars]') ?? el.firstElementChild ?? el;
-        const text = (textNode as HTMLElement).textContent ?? '';
-        (textNode as HTMLElement).innerHTML = '';
-        (textNode as HTMLElement).style.overflow = 'hidden';
-
-        const spans: HTMLSpanElement[] = [];
-        text.split('').forEach((char) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          span.style.display = 'inline-block';
-          (textNode as HTMLElement).appendChild(span);
-          spans.push(span);
-        });
-
-        gsap.fromTo(spans, { yPercent: 110, opacity: 0 }, {
-          yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.025, delay: delaySec, ease: 'power3.out',
-          scrollTrigger: { trigger: wrapper, start: 'top 88%', once: true },
-        });
-        return;
-      }
-      if (variant === 'blur') {
-        gsap.fromTo(el, { opacity: 0, scale: 1.06, filter: 'blur(10px)' }, {
-          opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.0, delay: delaySec, ease: 'power3.out',
-          scrollTrigger: { trigger: wrapper, start: 'top 88%', once: true },
-        });
-        return;
-      }
-      // 'translate' (padrão)
-      gsap.fromTo(el, { opacity: 0, y }, {
-        opacity: 1, y: 0, duration: 0.9, delay: delaySec, ease: 'power3.out',
-        scrollTrigger: { trigger: wrapper, start: 'top 90%', once: true },
-      });
-    }, wrapperRef);
-
-    return () => ctx.revert();
-  }, [variant, delay, y]);
-
   return (
-    <div ref={wrapperRef} style={{ width }} className={`relative ${className}`}>
-      <div ref={innerRef} className="will-change-transform">{children}</div>
+    <div style={{ width }} className={`relative ${className}`}>
+      <div>{children}</div>
     </div>
   );
 };
@@ -142,7 +79,7 @@ const Process: React.FC = () => {
   if (!PROCESS_STEPS || PROCESS_STEPS.length === 0) return null;
 
   return (
-    <section id="process" className="py-12 md:py-16 bg-white text-[#111] relative overflow-hidden z-10 min-h-[50vh] flex flex-col justify-center">
+    <section id="services" className="py-12 md:py-16 bg-white text-[#111] relative overflow-hidden z-10 min-h-[50vh] flex flex-col justify-center">
       <div className="max-w-[1920px] mx-auto px-6 lg:px-12 md:px-16">
         <div className="mb-12 md:mb-16 max-w-2xl">
            <Reveal>

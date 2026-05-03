@@ -21,9 +21,8 @@ export default function SmoothScroll({ isLocked = false }: { isLocked?: boolean 
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      lerp: 0.08,
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
@@ -38,7 +37,6 @@ export default function SmoothScroll({ isLocked = false }: { isLocked?: boolean 
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    // CORREÇÃO: Cria uma referência estável para a função de update
     const update = (time: number) => {
       lenis.raf(time * 1000);
     };
@@ -48,11 +46,9 @@ export default function SmoothScroll({ isLocked = false }: { isLocked?: boolean 
 
     return () => {
       lenis.destroy();
-      // CORREÇÃO: Remove a MESMA referência da função do ticker
       gsap.ticker.remove(update);
     };
   }, [prefersReducedMotion, isLocked]);
 
   return null;
 }
-
