@@ -1,32 +1,52 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFIL — Victor Cardoso
+// Atualize este arquivo com seus dados reais.
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const PROFILE_DATA = {
-  name: "Seu Nome Aqui",
-  role: "Engenheiro de Software & Designer",
-  location: "São Paulo, SP",
-  bio: "Especialista em Engenharia de Software. Transformo problemas complexos em soluções escaláveis e arte em código.",
-  resumeLink: "/seu_cv.pdf",
-  socials: { linkedin: "https://linkedin.com/in/seuperfil" },
+  name: "Victor Cardoso",
+  role: "Desenvolvedor Frontend & Designer",
+  location: "Brasil",
+  bio: "Estudante de Engenharia de Computação apaixonado por criar experiências digitais de alto padrão. Especializado em React, TypeScript e GSAP — transformo interfaces complexas em código limpo e performático.",
+  resumeLink: "/cv_victor_cardoso.pdf",
+  socials: {
+    linkedin: "https://linkedin.com/in/victorcardoso",
+    github: "https://github.com/VictorCardosoOl",
+  },
   experience: [
     {
-      role: "Engenheiro Sênior",
-      company: "Tech Corp",
-      period: "2022 - Atual",
+      role: "Desenvolvedor Frontend Freelance",
+      company: "Projetos Independentes",
+      period: "2023 - Atual",
       location: "Remoto",
-      description: ["Liderança técnica em projetos de alta escalabilidade.", "Otimização de performance e CI/CD."]
+      description: [
+        "Desenvolvimento de landing pages, sites institucionais e aplicações web para clientes de pequenas e médias empresas.",
+        "Implementação de interfaces com React, Next.js e animações GSAP para experiências de alta qualidade.",
+        "Gestão completa do ciclo de projeto: design (Figma), desenvolvimento, deploy e suporte pós-lançamento.",
+      ],
     },
-    {
-      role: "Desenvolvedor Pleno",
-      company: "Inovação SA",
-      period: "2019 - 2022",
-      location: "São Paulo",
-      description: ["Desenvolvimento de interfaces React.", "Implementação de Design Systems."]
-    }
   ],
   education: [
-    { degree: "Engenharia de Computação", institution: "Universidade XYZ", period: "2015 - 2019" }
+    {
+      degree: "Engenharia de Computação",
+      institution: "Universidade — (atualizar)",
+      period: "2023 - Cursando",
+    },
   ],
   skills: {
-    technical: ["React & Next.js", "TypeScript", "Node.js", "GSAP & Framer Motion", "Tailwind CSS"],
-    management: ["Liderança de Equipes", "Metodologias Ágeis", "Gestão de Produtos"]
+    technical: [
+      "React & Next.js",
+      "TypeScript",
+      "GSAP & ScrollTrigger",
+      "TailwindCSS",
+      "Node.js",
+      "Figma",
+    ],
+    softSkills: [
+      "Comunicação clara com clientes",
+      "Atenção obsessiva a detalhes",
+      "Entrega dentro do prazo",
+      "Visão de produto e negócio",
+    ],
   },
-  softSkills: ["Comunicação", "Resolução de Problemas", "Visão de Negócio", "Adaptabilidade"]
 };

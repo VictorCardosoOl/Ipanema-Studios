@@ -101,10 +101,10 @@ const ResumeContent = () => (
               </div>
               <div className="bg-gray-50 p-6 rounded-sm border border-[#000000]/5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Cpu size={16} /> <h4 className="font-serif font-medium text-lg">Gestão</h4>
+                  <Cpu size={16} /> <h4 className="font-serif font-medium text-lg">Soft Skills</h4>
                 </div>
                 <ul className="space-y-2">
-                  {DATA.skills.management.map((skill, i) => (
+                  {DATA.skills.softSkills.map((skill, i) => (
                     <li key={i} className="text-xs font-mono text-[#000000]/80 border-b border-[#000000]/5 pb-1">{skill}</li>
                   ))}
                 </ul>

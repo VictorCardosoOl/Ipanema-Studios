@@ -10,6 +10,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { NAVIGATION_CONFIG } from './config/navigation';
 
 import HeroPortfolio from './components/HeroPortfolio';
+import Services from './components/Services';
 import Process from './components/Process';
 import AboutMe from './components/AboutMe';
 import Values from './components/Values';
@@ -64,6 +65,7 @@ export default function App() {
       {/* Conteúdo principal — cada seção tem seu próprio ErrorBoundary para isolar falhas */}
       <div className={`transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <ErrorBoundary><HeroPortfolio /></ErrorBoundary>
+        <ErrorBoundary><Services /></ErrorBoundary>
         <ErrorBoundary><Process /></ErrorBoundary>
         <ErrorBoundary><AboutMe /></ErrorBoundary>
         <ErrorBoundary><Values /></ErrorBoundary>

@@ -74,9 +74,9 @@ export default function HeroPortfolio() {
                       cursorBlinkDuration={0.4}
                     />
                  </h1>
-                 <p className="hero-subtitle mt-4 md:mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">
-                    Criamos experiências digitais que unem estética impecável e engenharia de ponta.
-                 </p>
+                  <p className="hero-subtitle mt-4 md:mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">
+                     Crio experiências digitais que unem estética impecável e engenharia de ponta.
+                  </p>
               </header>
               
               <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
@@ -102,11 +102,11 @@ export default function HeroPortfolio() {
            {/* Right Image Area */}
            <div className="w-full md:w-1/2 h-full flex items-center justify-center p-4 md:p-8 3xl:p-16 z-10 bg-charcoal text-cream relative">
               {/* Fake header to match original right side */}
-              <div className="absolute top-6 left-6 md:top-12 md:left-12 flex justify-between w-[calc(100%-3rem)] md:w-[calc(100%-6rem)] text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold shrink-0">
-                 <span>Estúdio de Design</span>
-                 <span className="hidden md:inline">2026</span>
-                 <span>01 / 06</span>
-              </div>
+               <div className="absolute top-6 left-6 md:top-12 md:left-12 flex justify-between w-[calc(100%-3rem)] md:w-[calc(100%-6rem)] text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold shrink-0">
+                  <span>Dev &amp; Designer</span>
+                  <span className="hidden md:inline">2026</span>
+                  <span>01 / 06</span>
+               </div>
 
               <div className="relative w-full max-w-[160px] sm:max-w-[200px] md:max-w-sm 3xl:max-w-lg aspect-[3/4] overflow-visible bg-stone-900 mt-12 md:mt-0">
                  <div className="absolute inset-0 w-[130%] h-full hero-image-parallax">

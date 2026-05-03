@@ -1,26 +1,47 @@
-export const services = [
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPECIALIDADES TÉCNICAS — Victor Cardoso
+// Fonte de verdade consumida pelo componente Services.tsx
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface Specialty {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  deliverables: string[];
+}
+
+export const specialties: Specialty[] = [
   {
-    id: "01",
-    title: "Presença Digital & LPs",
-    description: "Criação de sites institucionais, Landing Pages de alta conversão e catálogos digitais. Foco em performance e usabilidade para engajar e converter seu público.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+    id: '01',
+    title: 'Frontend Avançado',
+    description:
+      'Construção de interfaces web interativas e de alta performance, com animações complexas, scroll cinematográfico e experiências de usuário que impressionam. Cada detalhe é controlado — do primeiro frame ao último pixel.',
+    technologies: ['React', 'TypeScript', 'GSAP', 'Lenis Scroll'],
+    deliverables: ['SPA / SSR', 'Animações Scroll-Triggered', 'Componentes Acessíveis', 'Design System'],
   },
   {
-    id: "02",
-    title: "Google Meu Negócio & SEO",
-    description: "Otimização para buscas locais. Posicionamos sua empresa de forma estratégica no Google para que seja encontrada exatamente onde seus clientes estão procurando.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2340&auto=format&fit=crop"
+    id: '02',
+    title: 'Soluções Web para Negócios',
+    description:
+      'Landing Pages e sistemas web otimizados para SEO e conversão. Desenvolvimento com foco em alavancar o negócio de pequenas empresas — rápido, responsivo e construído para rankear no Google.',
+    technologies: ['Next.js', 'Node.js', 'Vite', 'TailwindCSS'],
+    deliverables: ['Landing Pages', 'Sites Institucionais', 'SEO Técnico', 'Deploy & Hospedagem'],
   },
   {
-    id: "03",
-    title: "Manutenção & Evolução",
-    description: "Garantimos tranquilidade por meio de suporte contínuo. Atualizações de conteúdo, correções de bugs, performance e estabilidade para sua operação digital.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2340&auto=format&fit=crop"
+    id: '03',
+    title: 'Design de Sistemas',
+    description:
+      'Da identidade visual ao código: criação de Design Systems coerentes, componentizados e escaláveis. Transformo arquivos Figma em interfaces React robustas, mantendo fidelidade ao design e consistência entre telas.',
+    technologies: ['Figma', 'Storybook', 'Radix UI', 'CVA'],
+    deliverables: ['Figma-to-Code', 'Biblioteca de Componentes', 'Tokens de Design', 'Documentação'],
   },
   {
-    id: "04",
-    title: "Suporte & Infraestrutura TI",
-    description: "Apoio técnico especializado para a sua empresa não parar. Gerenciamento de e-mail profissional, configuração de redes, backup em nuvem e segurança de dados.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2334&auto=format&fit=crop"
-  }
+    id: '04',
+    title: 'Integrações & Infraestrutura',
+    description:
+      'Conectar o front-end ao mundo real — APIs REST, autenticação, formulários inteligentes e deploy automatizado. Entrego a solução completa, do repositório à produção, com CI/CD e boas práticas de segurança.',
+    technologies: ['Node.js', 'REST APIs', 'Vercel / Railway', 'GitHub Actions'],
+    deliverables: ['Integração de APIs', 'Autenticação (Auth.js)', 'CI/CD Pipeline', 'Monitoramento'],
+  },
 ];
