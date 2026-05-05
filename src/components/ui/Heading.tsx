@@ -7,7 +7,7 @@ const headingVariants = cva(
   {
     variants: {
       size: {
-        huge: "text-[clamp(3rem,10vw,8rem)] leading-[0.9]", // Footer, Contact
+        huge: "text-[clamp(4rem,12vw,12rem)] leading-[0.9]", // Footer
         h1: "text-[clamp(3rem,8vw,8rem)] leading-[1.1]", // Hero
         h2: "text-[clamp(2.5rem,5vw,5rem)] leading-[1.1]", // Mission, Portfolio
         h3: "text-[clamp(1.5rem,3vw,3rem)] leading-[1.2]", // Section headers

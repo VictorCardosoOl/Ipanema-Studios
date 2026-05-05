@@ -33,7 +33,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={containerRef}
-      className="bg-cream text-charcoal py-12 md:py-16 flex flex-col justify-center"
+      className="bg-cream text-charcoal py-16 md:py-24 flex flex-col justify-center"
     >
       <div className="container-fluid">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -43,7 +43,7 @@ export default function Contact() {
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-charcoal/40 mb-4 block">
               06 / Contato
             </span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-light leading-none tracking-tighter uppercase text-charcoal mb-6">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light leading-none tracking-tighter uppercase text-charcoal mb-6">
               Vamos<br />
               <span className="italic text-charcoal/30">conversar</span>
             </h2>

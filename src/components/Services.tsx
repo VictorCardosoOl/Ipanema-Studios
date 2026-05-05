@@ -75,8 +75,6 @@ export default function Services() {
         {/* ── LISTA DE ESPECIALIDADES ── */}
         <ul className="srv-list divide-y divide-cream/10">
           {specialties.map((item, i) => {
-            const isOpen = openIndex === i;
-
             return (
               <li key={item.id} className="srv-row group/item">
                 <div

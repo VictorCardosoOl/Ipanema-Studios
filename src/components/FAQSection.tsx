@@ -88,7 +88,7 @@ export default function FAQSection() {
             <span className="text-xs font-bold tracking-widest uppercase mb-6 block text-charcoal/50 dark:text-cream/50">
               Suporte
             </span>
-            <h2 className="text-3xl md:text-4xl font-sans font-light mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl md:text-6xl font-serif font-light mb-6 leading-[0.9] tracking-tight">
               Dúvidas <br/> 
               <span className="italic opacity-60">Frequentes</span>
             </h2>
@@ -117,7 +117,7 @@ export default function FAQSection() {
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-answer-${item.id}`}
               >
-                <h3 className={`text-base md:text-lg font-sans font-normal transition-all duration-500 pr-8
+                <h3 className={`text-xl md:text-2xl font-serif font-light transition-all duration-500 pr-8
                    ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
                  >
                   {item.question}
@@ -133,7 +133,7 @@ export default function FAQSection() {
                 className={`overflow-hidden transition-all duration-500 ease-in-out
                   ${openIndex === idx ? 'max-h-96 opacity-100 pb-10' : 'max-h-0 opacity-0 pb-0'}`}
               >
-                <p className="text-fluid-p opacity-70 max-w-2xl font-light leading-relaxed pl-2 md:pl-4 border-l border-charcoal/20 dark:border-cream/20">
+                <p className="text-sm md:text-base opacity-70 max-w-2xl font-light leading-relaxed pl-2 md:pl-4 border-l border-charcoal/20 dark:border-cream/20">
                   {item.answer}
                 </p>
               </div>
