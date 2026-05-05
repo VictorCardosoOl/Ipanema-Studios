@@ -53,7 +53,7 @@ export default function Services() {
     >
       <div className="h-px bg-cream/10" />
 
-      <div className="max-w-[1920px] mx-auto px-6 md:px-12 3xl:px-24 py-20 md:py-28">
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 3xl:px-24 py-24 md:py-32 3xl:py-40">
 
         {/* ── HEADER ── */}
         <div className="srv-header flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">

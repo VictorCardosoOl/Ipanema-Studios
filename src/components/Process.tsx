@@ -79,8 +79,8 @@ const Process: React.FC = () => {
   if (!PROCESS_STEPS || PROCESS_STEPS.length === 0) return null;
 
   return (
-    <section id="process" className="py-12 md:py-16 bg-white text-[#111] relative overflow-hidden z-10 min-h-[50vh] flex flex-col justify-center">
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12 md:px-16">
+    <section id="process" className="py-16 md:py-24 3xl:py-32 bg-white text-[#111] relative overflow-hidden z-10 min-h-[50vh] flex flex-col justify-center">
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 3xl:px-24">
         <div className="mb-12 md:mb-16 max-w-2xl">
            <Reveal>
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#111] leading-[0.9] tracking-tighter uppercase mt-4">

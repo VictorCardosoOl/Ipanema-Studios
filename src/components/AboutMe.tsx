@@ -15,7 +15,7 @@ const ResumeContent = () => (
   <div className="bg-white min-h-screen pb-24">
     {/* Header do CV */}
     <div className="w-full bg-[#000000] text-white pt-32 pb-16 px-6 md:px-12 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-end relative z-10">
+      <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row gap-10 items-end relative z-10 3xl:px-12">
         <div className="flex-1 pb-2">
           <span className="px-3 py-1 bg-white/10 border border-white/10 rounded-full text-[10px] font-mono uppercase tracking-widest text-white/80 mb-4 inline-block">
             {DATA.role}
@@ -38,7 +38,7 @@ const ResumeContent = () => (
     </div>
 
     {/* Corpo do CV */}
-    <div className="max-w-6xl mx-auto px-6 md:px-12 mt-16 md:mt-24">
+    <div className="max-w-[1920px] mx-auto px-6 md:px-12 3xl:px-24 mt-24 md:mt-32 3xl:mt-40">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         
         {/* Esquerda: Experiência e Educação */}
@@ -166,12 +166,12 @@ const AboutMe: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="aboutme" className="bg-white pt-12 pb-16 md:pt-16 md:pb-20 flex flex-col justify-center relative z-10 overflow-hidden">
-        <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+      <section ref={sectionRef} id="aboutme" className="bg-white pt-16 pb-20 md:pt-24 md:pb-32 3xl:pt-32 3xl:pb-40 flex flex-col justify-center relative z-10 overflow-hidden">
+        <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 3xl:px-24 relative z-10">
           
           {/* Header Texto */}
           <div className="mb-16 md:mb-20 flex flex-col">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-sans font-light leading-[1.3] tracking-tight text-[#666] mb-12 max-w-[95%]">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] 3xl:text-6xl font-sans font-light leading-[1.3] tracking-tight text-[#666] mb-12 max-w-4xl 3xl:max-w-6xl">
               Sou <span className="font-semibold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-semibold text-[#111]">Análise</span> de<br className="hidden lg:block" />
               <span className="font-semibold text-[#111]">Sistemas</span> e <span className="font-semibold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
               Transformo <span className="font-semibold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />
@@ -189,7 +189,7 @@ const AboutMe: React.FC = () => {
           </div>
 
           {/* Imagens Parallax */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-10 max-w-screen-2xl 3xl:max-w-[1600px] mx-auto">
             <div className="aspect-[3/4] overflow-hidden bg-gray-100">
               <img ref={img1Ref} src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800" className="w-full h-[115%] object-cover grayscale will-change-transform" alt="Industrial" />
             </div>

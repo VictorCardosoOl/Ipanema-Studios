@@ -43,7 +43,7 @@ export default function Navbar({ items, logoText }: NavbarProps) {
         isHidden ? '-translate-y-full opacity-0 outline-none' : 'translate-y-0 opacity-100'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <div className="max-w-[1920px] mx-auto px-6 lg:px-12 3xl:px-24 flex items-center justify-between">
         <div className="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-75">
           <a href="/" className="flex items-center">
             <span className="text-xl md:text-2xl font-bold tracking-tight text-charcoal">

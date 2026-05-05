@@ -79,7 +79,7 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" ref={containerRef} className="py-24 md:py-32 px-6 lg:px-12 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
+    <section id="faq" ref={containerRef} className="py-24 md:py-32 3xl:py-40 px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
       <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
         
         {/* COLUNA ESQUERDA (Sticky) */}

@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={containerRef} className="bg-cream text-charcoal pt-16 pb-8 px-8 md:px-12 lg:px-16 flex flex-col justify-between border-t border-charcoal/10">
+    <footer ref={containerRef} className="bg-cream text-charcoal pt-16 md:pt-24 3xl:pt-32 pb-8 px-8 md:px-12 lg:px-16 3xl:px-24 flex flex-col justify-between border-t border-charcoal/10">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-12 w-full max-w-[1920px] mx-auto">
         {/* Col 1: Social & Contact (Span 5) */}

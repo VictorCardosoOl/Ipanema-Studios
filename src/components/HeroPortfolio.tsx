@@ -147,7 +147,7 @@ export default function HeroPortfolio() {
              </div>
              
              {/* Text Content */}
-             <div className="relative z-10 w-full max-w-7xl flex flex-col justify-center portfolio-text-reveal">
+             <div className="relative z-10 w-full max-w-[1920px] mx-auto 3xl:px-24 flex flex-col justify-center portfolio-text-reveal">
                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-cream/60 font-bold">
                     0{idx + 1} / Trabalhos
                  </span>

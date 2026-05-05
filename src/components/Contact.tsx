@@ -35,7 +35,7 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={containerRef} 
-      className="bg-cream text-charcoal py-12 md:py-16 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
+      className="bg-cream text-charcoal py-16 md:py-24 3xl:py-32 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
     >
       <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
