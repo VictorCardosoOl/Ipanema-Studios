@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { specialties } from '../data/services';
@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -61,13 +62,13 @@ export default function Services() {
               </span>
             </div>
             <div className="overflow-hidden">
-              <h2 className="srv-header-line text-fluid-h2 font-serif font-light leading-none tracking-tighter uppercase text-cream">
+              <h2 className="srv-header-line text-5xl md:text-7xl lg:text-8xl font-serif font-light leading-none tracking-tighter uppercase text-cream">
                 Serviços
               </h2>
             </div>
           </div>
 
-          <p className="text-fluid-p font-light leading-relaxed text-cream/50 pb-2 md:self-end max-w-xs md:max-w-sm">
+          <p className="text-sm md:text-base font-light leading-relaxed text-cream/50 pb-2 md:self-end max-w-xs md:max-w-sm">
             Combinando engenharia sólida com sensibilidade de design para entregar produtos digitais que impressionam e performam.
           </p>
         </div>
@@ -75,19 +76,23 @@ export default function Services() {
         {/* ── LISTA DE ESPECIALIDADES ── */}
         <ul className="srv-list divide-y divide-cream/10">
           {specialties.map((item, i) => {
+            const isHovered = hoveredIndex === i;
             return (
-              <li key={item.id} className="srv-row group/item">
-                <div
-                  id={`specialty-btn-${item.id}`}
-                  className="group/item w-full flex items-center gap-6 md:gap-10 py-5 md:py-6 text-left"
-                >
+              <li
+                key={item.id}
+                className="srv-row"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Row header */}
+                <div className="w-full flex items-center gap-6 md:gap-10 py-5 md:py-6">
                   {/* Number */}
                   <span className="font-serif text-sm md:text-base text-cream/25 shrink-0 w-8 text-right tabular-nums">
                     {item.id}
                   </span>
 
                   {/* Title */}
-                   <span className="flex-1 text-fluid-h3 font-serif text-cream group-hover/item:text-cream/60 transition-colors duration-300 tracking-tight">
+                  <span className={`flex-1 text-2xl md:text-3xl lg:text-4xl font-serif tracking-tight transition-colors duration-300 ${isHovered ? 'text-cream/50' : 'text-cream'}`}>
                     {item.title}
                   </span>
 
@@ -105,7 +110,7 @@ export default function Services() {
 
                   {/* Toggle icon */}
                   <span
-                    className="shrink-0 ml-2 text-cream/40 transition-transform duration-500 group-hover/item:rotate-45"
+                    className={`shrink-0 ml-2 text-cream/40 transition-transform duration-500 ${isHovered ? 'rotate-45' : 'rotate-0'}`}
                     aria-hidden="true"
                   >
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -115,15 +120,12 @@ export default function Services() {
                   </span>
                 </div>
 
-                {/* Expandable panel */}
+                {/* Expandable panel — hover controlled via state */}
                 <div
-                  id={`specialty-panel-${item.id}`}
-                  role="region"
-                  aria-labelledby={`specialty-btn-${item.id}`}
-                  className="overflow-hidden max-h-0 opacity-0 group-hover/item:max-h-[400px] group-hover/item:opacity-100 transition-all duration-500 ease-in-out"
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${isHovered ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
-                  <div className="pl-14 md:pl-20 pb-10 grid md:grid-cols-2 gap-10">
-                    <p className="text-fluid-p font-light text-cream/60 leading-relaxed max-w-lg">
+                  <div className="pl-14 md:pl-20 pb-8 grid md:grid-cols-2 gap-10">
+                    <p className="text-sm md:text-base font-light text-cream/60 leading-relaxed max-w-lg">
                       {item.description}
                     </p>
 

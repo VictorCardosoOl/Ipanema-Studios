@@ -79,24 +79,24 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" ref={containerRef} className="py-12 md:py-16 px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
-      <div className="container-fluid grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+    <section id="faq" ref={containerRef} className="py-20 md:py-28 px-6 lg:px-12 3xl:px-24 bg-[#111] text-cream relative z-10 overflow-hidden">
+      <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
         
         {/* COLUNA ESQUERDA (Sticky) */}
         <div className="lg:col-span-4 relative">
-          <div ref={leftColRef} className="lg:sticky lg:top-32">
-            <span className="text-xs font-bold tracking-widest uppercase mb-6 block text-charcoal/50 dark:text-cream/50">
+          <div ref={leftColRef} className="lg:sticky lg:top-24 pt-4">
+            <span className="text-[10px] font-bold tracking-widest uppercase mb-6 block text-cream/40">
               Suporte
             </span>
-            <h2 className="text-5xl md:text-6xl font-serif font-light mb-6 leading-[0.9] tracking-tight">
+            <h2 className="text-5xl md:text-6xl font-serif font-light mb-8 leading-[0.9] tracking-tight text-cream">
               Dúvidas <br/> 
-              <span className="italic opacity-60">Frequentes</span>
+              <span className="italic text-cream/40">Frequentes</span>
             </h2>
             
             {/* Botão de Contato */}
             <div className="mt-12">
               <MagneticButton>
-                 <a href="#contact" className="inline-flex items-center justify-center text-sm font-semibold border border-charcoal/20 dark:border-cream/20 hover:bg-charcoal hover:text-cream dark:hover:bg-cream dark:hover:text-charcoal px-8 py-4 rounded-full transition-all duration-300">
+               <a href="#contact" className="inline-flex items-center justify-center text-sm font-semibold border border-cream/30 hover:bg-cream hover:text-[#111] text-cream px-8 py-4 rounded-full transition-all duration-300">
                     Ainda com dúvidas? Fale conosco
                  </a>
               </MagneticButton>
@@ -105,7 +105,7 @@ export default function FAQSection() {
         </div>
 
         {/* COLUNA DIREITA (Lista) */}
-        <div ref={listRef} className="lg:col-span-7 lg:col-start-6 mt-12 lg:mt-0">
+        <div ref={listRef} className="lg:col-span-7 lg:col-start-6 mt-8 lg:mt-0">
           {FAQ_ITEMS.map((item, idx) => (
             <div 
               key={item.id} 
@@ -113,16 +113,16 @@ export default function FAQSection() {
             >
               <button 
                 onClick={() => toggleItem(idx)}
-                className="w-full py-5 md:py-6 flex justify-between items-center text-left group focus:outline-none"
+                className="w-full py-6 md:py-8 flex justify-between items-center text-left group focus:outline-none"
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-answer-${item.id}`}
               >
                 <h3 className={`text-xl md:text-2xl font-serif font-light transition-all duration-500 pr-8
-                   ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
+                   ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-70 group-hover:opacity-100'}`}
                  >
                   {item.question}
                 </h3>
-                <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/10 dark:border-cream/10 group-hover:border-charcoal/30 dark:group-hover:border-cream/30 transition-colors">
+                <div className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-cream/20 group-hover:border-cream/50 transition-colors">
                   <Plus className={`w-5 h-5 transition-transform duration-500 ${openIndex === idx ? 'rotate-45' : ''}`} />
                 </div>
               </button>
