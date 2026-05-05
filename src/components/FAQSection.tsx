@@ -79,7 +79,7 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" ref={containerRef} className="section-padding px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
+    <section id="faq" ref={containerRef} className="py-12 md:py-16 px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
       <div className="container-fluid grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
         
         {/* COLUNA ESQUERDA (Sticky) */}
@@ -88,7 +88,7 @@ export default function FAQSection() {
             <span className="text-xs font-bold tracking-widest uppercase mb-6 block text-charcoal/50 dark:text-cream/50">
               Suporte
             </span>
-            <h2 className="text-fluid-h2 font-serif mb-8 leading-[0.9] tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-sans font-light mb-6 leading-[1.1] tracking-tight">
               Dúvidas <br/> 
               <span className="italic opacity-60">Frequentes</span>
             </h2>
@@ -113,13 +113,13 @@ export default function FAQSection() {
             >
               <button 
                 onClick={() => toggleItem(idx)}
-                className="w-full py-8 md:py-10 flex justify-between items-center text-left group focus:outline-none"
+                className="w-full py-5 md:py-6 flex justify-between items-center text-left group focus:outline-none"
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-answer-${item.id}`}
               >
-                <h3 className={`text-fluid-h3 font-serif transition-all duration-500 pr-8
-                  ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
-                >
+                <h3 className={`text-base md:text-lg font-sans font-normal transition-all duration-500 pr-8
+                   ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
+                 >
                   {item.question}
                 </h3>
                 <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/10 dark:border-cream/10 group-hover:border-charcoal/30 dark:group-hover:border-cream/30 transition-colors">

@@ -12,9 +12,9 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={containerRef} className="bg-cream text-charcoal section-padding pb-8 flex flex-col justify-between border-t border-charcoal/10">
+    <footer ref={containerRef} className="bg-cream text-charcoal pt-8 pb-6 flex flex-col justify-between border-t border-charcoal/10">
       {/* Top Section */}
-      <div className="container-fluid grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div className="container-fluid grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Col 1: Social & Contact (Span 5) */}
         <div className="md:col-span-5 flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       {/* Middle Section: Huge Typography */}
-      <div className="flex-grow flex items-center justify-center py-12 md:py-16 w-full overflow-hidden">
+      <div className="flex-grow flex items-center justify-center py-6 md:py-8 w-full overflow-hidden">
         <Heading size="huge" className="select-none text-center w-full flex justify-center uppercase">
           <DecryptedText 
             text="VICTOR CARDOSO"

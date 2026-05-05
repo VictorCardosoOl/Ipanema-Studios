@@ -72,8 +72,8 @@
 }
 
 @utility section-padding {
-  /* Espaçamento vertical de seção: 64px → 160px */
-  padding-block: clamp(4rem, 8vw, 10rem);
+  /* Espaçamento vertical de seção: 48px → 96px */
+  padding-block: clamp(3rem, 6vw, 6rem);
 }
 
 @utility container-fluid {

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { specialties } from '../data/services';
@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -43,8 +42,6 @@ export default function Services() {
     return () => ctx.revert();
   }, []);
 
-  const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i));
-
   return (
     <section
       id="services"
@@ -53,10 +50,10 @@ export default function Services() {
     >
       <div className="h-px bg-cream/10" />
 
-      <div className="container-fluid section-padding">
+      <div className="container-fluid py-12 md:py-16">
 
         {/* ── HEADER ── */}
-        <div className="srv-header flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
+        <div className="srv-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12">
           <div>
             <div className="overflow-hidden mb-4">
               <span className="srv-header-line block text-[10px] uppercase tracking-[0.3em] font-bold text-cream/40">
@@ -65,12 +62,7 @@ export default function Services() {
             </div>
             <div className="overflow-hidden">
               <h2 className="srv-header-line text-fluid-h2 font-serif font-light leading-none tracking-tighter uppercase text-cream">
-                O que eu
-              </h2>
-            </div>
-            <div className="overflow-hidden">
-              <h2 className="srv-header-line text-fluid-h2 font-serif font-light leading-none tracking-tighter uppercase text-cream/20 italic lowercase">
-                domino
+                Serviços
               </h2>
             </div>
           </div>
@@ -86,13 +78,10 @@ export default function Services() {
             const isOpen = openIndex === i;
 
             return (
-              <li key={item.id} className="srv-row">
-                <button
+              <li key={item.id} className="srv-row group/item">
+                <div
                   id={`specialty-btn-${item.id}`}
-                  aria-expanded={isOpen}
-                  aria-controls={`specialty-panel-${item.id}`}
-                  onClick={() => toggle(i)}
-                  className="group w-full flex items-center gap-6 md:gap-10 py-6 md:py-8 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] rounded-sm cursor-pointer"
+                  className="group/item w-full flex items-center gap-6 md:gap-10 py-5 md:py-6 text-left"
                 >
                   {/* Number */}
                   <span className="font-serif text-sm md:text-base text-cream/25 shrink-0 w-8 text-right tabular-nums">
@@ -100,7 +89,7 @@ export default function Services() {
                   </span>
 
                   {/* Title */}
-                   <span className="flex-1 text-fluid-h3 font-serif text-cream group-hover:text-cream/60 transition-colors duration-300 tracking-tight">
+                   <span className="flex-1 text-fluid-h3 font-serif text-cream group-hover/item:text-cream/60 transition-colors duration-300 tracking-tight">
                     {item.title}
                   </span>
 
@@ -118,7 +107,7 @@ export default function Services() {
 
                   {/* Toggle icon */}
                   <span
-                    className={`shrink-0 ml-2 text-cream/40 transition-transform duration-500 ${isOpen ? 'rotate-45' : 'rotate-0'}`}
+                    className="shrink-0 ml-2 text-cream/40 transition-transform duration-500 group-hover/item:rotate-45"
                     aria-hidden="true"
                   >
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -126,14 +115,14 @@ export default function Services() {
                       <line x1="1" y1="11" x2="21" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </span>
-                </button>
+                </div>
 
                 {/* Expandable panel */}
                 <div
                   id={`specialty-panel-${item.id}`}
                   role="region"
                   aria-labelledby={`specialty-btn-${item.id}`}
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
+                  className="overflow-hidden max-h-0 opacity-0 group-hover/item:max-h-[400px] group-hover/item:opacity-100 transition-all duration-500 ease-in-out"
                 >
                   <div className="pl-14 md:pl-20 pb-10 grid md:grid-cols-2 gap-10">
                     <p className="text-fluid-p font-light text-cream/60 leading-relaxed max-w-lg">
@@ -161,7 +150,7 @@ export default function Services() {
         </ul>
 
         {/* ── CTA ── */}
-        <div className="mt-16 md:mt-24 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           <p className="text-sm text-cream/40 font-light max-w-xs leading-relaxed">
             Cada projeto é tratado como único — sem templates, sem atalhos.
           </p>

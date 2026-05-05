@@ -166,12 +166,12 @@ const AboutMe: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="aboutme" className="bg-white section-padding flex flex-col justify-center relative z-10 overflow-hidden">
+      <section ref={sectionRef} id="aboutme" className="bg-white py-12 md:py-16 flex flex-col justify-center relative z-10 overflow-hidden">
         <div className="container-fluid relative z-10">
           
           {/* Header Texto */}
-          <div className="mb-16 md:mb-20 flex flex-col">
-            <h2 className="text-fluid-h2 font-sans font-light leading-[1.2] tracking-tight text-[#666] mb-12 max-w-4xl">
+          <div className="mb-8 md:mb-10 flex flex-col">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-sans font-light leading-[1.5] tracking-tight text-[#666] mb-8 max-w-2xl">
               Sou <span className="font-semibold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-semibold text-[#111]">Análise</span> de<br className="hidden lg:block" />
               <span className="font-semibold text-[#111]">Sistemas</span> e <span className="font-semibold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
               Transformo <span className="font-semibold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />

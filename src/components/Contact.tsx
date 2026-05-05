@@ -1,11 +1,9 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { useContactForm } from '../hooks/useContactForm';
-import { Button } from './ui/Button';
-import { Input } from './ui/Input';
-import { Textarea } from './ui/Textarea';
-import { Heading } from './ui/Heading';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,191 +12,115 @@ export default function Contact() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".contact-reveal", {
+      gsap.from('.contact-reveal', {
         y: 40,
         opacity: 0,
         duration: 1,
         stagger: 0.15,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
       });
     }, containerRef);
-    
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
-      id="contact" 
-      ref={containerRef} 
-      className="bg-cream text-charcoal section-padding flex flex-col justify-center"
+    <section
+      id="contact"
+      ref={containerRef}
+      className="bg-cream text-charcoal py-12 md:py-16 flex flex-col justify-center"
     >
       <div className="container-fluid">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          <ContactHeader />
-          <ContactContent />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+          {/* Título */}
+          <div className="lg:col-span-5 flex flex-col contact-reveal">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-charcoal/40 mb-4 block">
+              06 / Contato
+            </span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-light leading-none tracking-tighter uppercase text-charcoal mb-6">
+              Vamos<br />
+              <span className="italic text-charcoal/30">conversar</span>
+            </h2>
+            <p className="text-sm md:text-base font-sans font-light text-charcoal/60 leading-relaxed max-w-xs">
+              Disponível para projetos freelance, consultorias e oportunidades de longo prazo.
+            </p>
+          </div>
+
+          {/* Informações de contato */}
+          <div className="lg:col-span-7 flex flex-col gap-10">
+
+            {/* Links diretos */}
+            <div className="contact-reveal flex flex-col gap-4">
+              <a
+                href="mailto:hello@victorcardoso.com"
+                className="group flex items-center gap-4 py-5 border-b border-charcoal/10 hover:border-charcoal/40 transition-colors duration-300"
+              >
+                <span className="w-8 h-8 flex items-center justify-center rounded-full border border-charcoal/20 group-hover:bg-charcoal group-hover:text-cream group-hover:border-charcoal transition-all duration-300 shrink-0">
+                  <Mail size={14} />
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-0.5">E-mail</span>
+                  <span className="text-sm md:text-base font-sans text-charcoal group-hover:opacity-70 transition-opacity">
+                    hello@victorcardoso.com
+                  </span>
+                </div>
+                <span className="ml-auto text-charcoal/30 group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </a>
+
+              <a
+                href="tel:+5511999999999"
+                className="group flex items-center gap-4 py-5 border-b border-charcoal/10 hover:border-charcoal/40 transition-colors duration-300"
+              >
+                <span className="w-8 h-8 flex items-center justify-center rounded-full border border-charcoal/20 group-hover:bg-charcoal group-hover:text-cream group-hover:border-charcoal transition-all duration-300 shrink-0">
+                  <Phone size={14} />
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-0.5">Telefone</span>
+                  <span className="text-sm md:text-base font-sans text-charcoal group-hover:opacity-70 transition-opacity">
+                    +55 11 99999-9999
+                  </span>
+                </div>
+                <span className="ml-auto text-charcoal/30 group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </a>
+
+              <div className="flex items-center gap-4 py-5 border-b border-charcoal/10">
+                <span className="w-8 h-8 flex items-center justify-center rounded-full border border-charcoal/20 shrink-0">
+                  <MapPin size={14} />
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-charcoal/40 mb-0.5">Localização</span>
+                  <span className="text-sm md:text-base font-sans text-charcoal">São Paulo, Brasil</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Redes sociais */}
+            <div className="contact-reveal flex items-center gap-4">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full border border-charcoal/20 flex items-center justify-center hover:bg-charcoal hover:text-cream hover:border-charcoal transition-all duration-300"
+              >
+                <Linkedin size={16} />
+              </a>
+              <a
+                href="#"
+                aria-label="GitHub"
+                className="w-10 h-10 rounded-full border border-charcoal/20 flex items-center justify-center hover:bg-charcoal hover:text-cream hover:border-charcoal transition-all duration-300"
+              >
+                <Github size={16} />
+              </a>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ContactHeader() {
-  return (
-    <div className="lg:col-span-5 flex flex-col">
-      <Heading size="h1" className="contact-reveal text-charcoal">
-        Contato
-      </Heading>
-    </div>
-  );
-}
-
-function ContactContent() {
-  const contactForm = useContactForm();
-
-  return (
-    <div className="lg:col-span-7 flex flex-col relative">
-      <p className="contact-reveal text-fluid-p font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-6">
-        Tem um grande projeto em mente? Preencha o formulário abaixo e nossa equipe de especialistas entrará em contato para transformarmos sua visão em realidade.
-      </p>
-
-      {contactForm.formState === 'success' && <SuccessMessage />}
-      
-      <ContactForm {...contactForm} />
-      <ContactInfo />
-    </div>
-  );
-}
-
-function SuccessMessage() {
-  return (
-    <div role="status" aria-live="polite" className="absolute inset-0 flex flex-col items-start justify-center bg-cream z-10 contact-reveal">
-      <div className="flex items-center gap-4 mb-4">
-        <CheckCircle2 className="w-10 h-10 text-green-600" />
-        <h3 className="text-3xl font-sans font-medium text-charcoal">Mensagem Enviada</h3>
-      </div>
-      <p className="text-lg text-charcoal/70">Agradecemos o contato. Retornaremos em até 24 horas.</p>
-    </div>
-  );
-}
-
-function ContactForm({ register, formState, errorMessage, errors, handleSubmit }: ReturnType<typeof useContactForm>) {
-  return (
-    <form 
-      className={`contact-reveal flex flex-col gap-8 mb-12 mt-6 ${formState === 'loading' ? 'opacity-50 pointer-events-none' : ''}`} 
-      onSubmit={handleSubmit} 
-      noValidate
-    >
-      {formState === 'error' && errorMessage && (
-        <div role="alert" aria-live="polite" className="bg-red-50 border border-red-100 text-red-600 px-6 py-4 rounded-sm text-sm font-sans">
-          {errorMessage}
-        </div>
-      )}
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <div className="flex flex-col gap-2">
-          <Input 
-            type="text" 
-            id="name"
-            placeholder="Seu nome" 
-            className="text-lg md:text-xl"
-            aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "name-error" : undefined}
-            error={!!errors.name}
-            {...register('name')}
-          />
-          {errors.name && (
-            <span id="name-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-              {errors.name.message}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-col gap-2">
-          <Input 
-            type="email" 
-            id="email"
-            placeholder="Seu e-mail profissional" 
-            className="text-lg md:text-xl"
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "email-error" : undefined}
-            error={!!errors.email}
-            {...register('email')}
-          />
-          {errors.email && (
-            <span id="email-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-              {errors.email.message}
-            </span>
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <Textarea 
-          id="details"
-          placeholder="Conte-nos sobre o seu projeto..." 
-          rows={3}
-          className="text-lg md:text-xl"
-          aria-invalid={!!errors.details}
-          aria-describedby={errors.details ? "details-error" : undefined}
-          error={!!errors.details}
-          {...register('details')}
-        />
-        {errors.details && (
-          <span id="details-error" className="text-[10px] uppercase tracking-widest text-red-600 font-sans mt-1" role="alert">
-            {errors.details.message}
-          </span>
-        )}
-      </div>
-      
-      <div className="pt-8">
-        <button 
-          type="submit" 
-          disabled={formState === 'loading'}
-          className="group flex items-center gap-4 text-xs md:text-sm uppercase tracking-widest font-bold text-charcoal hover:opacity-70 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm"
-          aria-disabled={formState === 'loading'}
-        >
-          {formState === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
-          <span className="w-8 h-[1px] bg-charcoal group-hover:w-12 transition-all duration-300"></span>
-        </button>
-      </div>
-    </form>
-  );
-}
-
-function ContactInfo() {
-  return (
-    <div className="contact-reveal grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-charcoal/20">
-      <div>
-        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Informações Gerais</h4>
-        <div className="text-sm font-sans text-charcoal/80 space-y-4">
-          <div>
-            <p className="font-medium text-charcoal mb-1">Victor Cardoso</p>
-            <p>São Paulo</p>
-            <p>Brasil</p>
-          </div>
-          <div>
-            <p className="font-medium text-charcoal mb-1">Telefone</p>
-            <p>+55 11 99999-9999</p>
-          </div>
-          <div>
-            <p className="font-medium text-charcoal mb-1">E-mail</p>
-            <a href="mailto:hello@victorcardoso.com" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@victorcardoso.com</a>
-          </div>
-        </div>
-      </div>
-      
-      <div>
-        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 text-charcoal/70">Redes Sociais</h4>
-        <ul className="text-sm font-sans text-charcoal/80 space-y-2">
-          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Instagram</a></li>
-          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Facebook</a></li>
-          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Twitter</a></li>
-          <li><a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
   );
 }
