@@ -35,9 +35,9 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={containerRef} 
-      className="bg-cream text-charcoal py-16 md:py-24 3xl:py-32 px-6 md:px-12 3xl:px-24 flex flex-col justify-center"
+      className="bg-cream text-charcoal section-padding flex flex-col justify-center"
     >
-      <div className="max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto w-full">
+      <div className="container-fluid">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <ContactHeader />
           <ContactContent />
@@ -62,7 +62,7 @@ function ContactContent() {
 
   return (
     <div className="lg:col-span-7 flex flex-col relative">
-      <p className="contact-reveal text-base md:text-lg font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-6">
+      <p className="contact-reveal text-fluid-p font-sans text-charcoal/80 leading-relaxed max-w-2xl mb-6">
         Tem um grande projeto em mente? Preencha o formulário abaixo e nossa equipe de especialistas entrará em contato para transformarmos sua visão em realidade.
       </p>
 

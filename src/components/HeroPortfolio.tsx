@@ -62,7 +62,7 @@ export default function HeroPortfolio() {
               <header className="shrink-0 relative z-10">
                  <h1 
                    ref={titleRef}
-                   className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-medium tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]"
+                   className="text-fluid-h1 font-serif font-medium tracking-tighter uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]"
                  >
                     <TextType 
                       text={["Victor Cardoso"]}
@@ -74,13 +74,13 @@ export default function HeroPortfolio() {
                       cursorBlinkDuration={0.4}
                     />
                  </h1>
-                  <p className="hero-subtitle mt-4 md:mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">
+                  <p className="hero-subtitle mt-4 md:mt-6 text-fluid-p font-sans font-light tracking-wide text-charcoal/70 max-w-sm">
                      Crio experiências digitais que unem estética impecável e engenharia de ponta.
                   </p>
               </header>
               
               <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
-                 <ul className="text-[10px] md:text-xs 3xl:text-sm font-medium tracking-wide">
+                 <ul className="text-fluid-label font-medium tracking-wide">
                     {[
                        { name: 'Trabalhos', link: '#portfolio', page: '02' },
                        { name: 'Serviços', link: '#services', page: '03' },
@@ -102,7 +102,7 @@ export default function HeroPortfolio() {
            {/* Right Image Area */}
            <div className="w-full md:w-1/2 h-full flex items-center justify-center p-4 md:p-8 3xl:p-16 z-10 bg-charcoal text-cream relative">
               {/* Fake header to match original right side */}
-               <div className="absolute top-6 left-6 md:top-12 md:left-12 flex justify-between w-[calc(100%-3rem)] md:w-[calc(100%-6rem)] text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold shrink-0">
+               <div className="absolute top-6 left-6 md:top-12 md:left-12 flex justify-between w-[calc(100%-3rem)] md:w-[calc(100%-6rem)] text-fluid-label uppercase tracking-widest opacity-80 font-bold shrink-0">
                   <span>Dev &amp; Designer</span>
                   <span className="hidden md:inline">2026</span>
                   <span>01 / 06</span>
@@ -151,11 +151,11 @@ export default function HeroPortfolio() {
                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-cream/60 font-bold">
                     0{idx + 1} / Trabalhos
                  </span>
-                 <h2 className="text-5xl sm:text-7xl md:text-[9rem] font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
+                 <h2 className="text-fluid-h1 font-serif font-bold uppercase leading-none mt-4 md:mt-8 tracking-tighter">
                     {project.title}
                  </h2>
                  <div className="flex flex-col md:flex-row md:items-end justify-between mt-8 md:mt-12 gap-8">
-                    <p className="text-sm md:text-lg font-light max-w-md text-cream/90">
+                    <p className="text-fluid-p font-light max-w-md text-cream/90">
                        {project.description}
                     </p>
                     <Button 

@@ -166,12 +166,12 @@ const AboutMe: React.FC = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="aboutme" className="bg-white pt-16 pb-20 md:pt-24 md:pb-32 3xl:pt-32 3xl:pb-40 flex flex-col justify-center relative z-10 overflow-hidden">
-        <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 3xl:px-24 relative z-10">
+      <section ref={sectionRef} id="aboutme" className="bg-white section-padding flex flex-col justify-center relative z-10 overflow-hidden">
+        <div className="container-fluid relative z-10">
           
           {/* Header Texto */}
           <div className="mb-16 md:mb-20 flex flex-col">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] 3xl:text-6xl font-sans font-light leading-[1.3] tracking-tight text-[#666] mb-12 max-w-4xl 3xl:max-w-6xl">
+            <h2 className="text-fluid-h2 font-sans font-light leading-[1.2] tracking-tight text-[#666] mb-12 max-w-4xl">
               Sou <span className="font-semibold text-[#111]">Victor Cardoso</span>, especialista em <span className="font-semibold text-[#111]">Análise</span> de<br className="hidden lg:block" />
               <span className="font-semibold text-[#111]">Sistemas</span> e <span className="font-semibold text-[#111]">Liderança Operacional</span>.<br className="hidden lg:block" />
               Transformo <span className="font-semibold text-[#111]">complexidade</span> técnica em<br className="hidden lg:block" />
@@ -181,7 +181,7 @@ const AboutMe: React.FC = () => {
             </h2>
             
             <div className="w-full mt-auto">
-              <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#111] mb-4 pl-1">
+              <h3 className="text-fluid-label font-bold uppercase tracking-[0.2em] text-[#111] mb-4 pl-1">
                 Sobre Mim
               </h3>
               <div className="w-full h-px bg-[#111]/20" />

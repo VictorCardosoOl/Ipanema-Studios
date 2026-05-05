@@ -32,11 +32,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" ref={containerRef} className="h-[100dvh] w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 overflow-hidden">
+    <section id="hero" ref={containerRef} className="min-h-[100dvh] w-full grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 overflow-hidden">
       {/* Left Panel - Cream */}
-      <div className="bg-cream px-6 pb-4 pt-24 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col justify-between h-full min-h-0 relative">
+      <div className="bg-cream px-6 pb-6 pt-24 md:px-12 md:pb-8 md:pt-32 3xl:px-24 3xl:pt-40 flex flex-col justify-between min-h-[50dvh] md:min-h-full relative">
         <header className="shrink-0 relative z-10">
-          <h1 className="text-5xl sm:text-6xl md:text-[5rem] lg:text-[7rem] 3xl:text-[9rem] font-serif font-medium tracking-tighter leading-none uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
+          <h1 className="text-fluid-h1 font-serif font-medium tracking-tighter uppercase min-h-[160px] md:min-h-[180px] lg:min-h-[240px]">
             <TextType 
               text={["Victor Cardoso"]}
               typingSpeed={100}
@@ -47,11 +47,11 @@ export default function Hero() {
               cursorBlinkDuration={0.4}
             />
           </h1>
-          <p className="hero-subtitle mt-4 md:mt-6 text-sm md:text-base font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
+          <p className="hero-subtitle mt-4 md:mt-6 text-fluid-p font-sans font-light tracking-wide text-charcoal/70 max-w-sm">Criamos experiências digitais que unem estética impecável e engenharia de ponta.</p>
         </header>
         
         <nav className="w-full max-w-md 3xl:max-w-xl mt-auto shrink-0" aria-label="Main Navigation">
-          <ul className="text-[10px] md:text-xs 3xl:text-sm font-medium tracking-wide">
+          <ul className="text-fluid-label font-medium tracking-wide">
             {[
               { name: 'Trabalhos', link: '#portfolio', page: '02' },
               { name: 'Serviços', link: '#services', page: '03' },
@@ -71,8 +71,8 @@ export default function Hero() {
       </div>
 
       {/* Right Panel - Charcoal */}
-      <div className="bg-charcoal text-cream px-6 pb-4 pt-6 md:px-12 md:pb-6 md:pt-32 3xl:px-24 3xl:pb-12 3xl:pt-40 flex flex-col h-full relative min-h-0">
-        <div className="flex justify-between text-[10px] 3xl:text-xs uppercase tracking-widest opacity-80 font-bold shrink-0">
+      <div className="bg-charcoal text-cream px-6 pb-6 pt-6 md:px-12 md:pb-8 md:pt-32 3xl:px-24 3xl:pt-40 flex flex-col min-h-[50dvh] md:min-h-full relative">
+        <div className="flex justify-between text-fluid-label uppercase tracking-widest opacity-80 font-bold shrink-0">
           <span>Estúdio de Design</span>
           <span className="hidden md:inline">2026</span>
           <span>01 / 06</span>

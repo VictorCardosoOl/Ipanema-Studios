@@ -79,8 +79,8 @@ export default function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" ref={containerRef} className="py-24 md:py-32 3xl:py-40 px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
-      <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+    <section id="faq" ref={containerRef} className="section-padding px-6 lg:px-12 3xl:px-24 bg-sage dark:bg-stone-950 text-charcoal dark:text-cream relative z-10 overflow-hidden">
+      <div className="container-fluid grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
         
         {/* COLUNA ESQUERDA (Sticky) */}
         <div className="lg:col-span-4 relative">
@@ -88,7 +88,7 @@ export default function FAQSection() {
             <span className="text-xs font-bold tracking-widest uppercase mb-6 block text-charcoal/50 dark:text-cream/50">
               Suporte
             </span>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[0.85] tracking-tight">
+            <h2 className="text-fluid-h2 font-serif mb-8 leading-[0.9] tracking-tight">
               Dúvidas <br/> 
               <span className="italic opacity-60">Frequentes</span>
             </h2>
@@ -117,7 +117,7 @@ export default function FAQSection() {
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-answer-${item.id}`}
               >
-                <h3 className={`text-xl md:text-2xl lg:text-3xl font-serif transition-all duration-500 pr-8
+                <h3 className={`text-fluid-h3 font-serif transition-all duration-500 pr-8
                   ${openIndex === idx ? 'translate-x-2 md:translate-x-4 opacity-100' : 'opacity-80 group-hover:opacity-100'}`}
                 >
                   {item.question}
@@ -133,7 +133,7 @@ export default function FAQSection() {
                 className={`overflow-hidden transition-all duration-500 ease-in-out
                   ${openIndex === idx ? 'max-h-96 opacity-100 pb-10' : 'max-h-0 opacity-0 pb-0'}`}
               >
-                <p className="text-base md:text-lg opacity-70 max-w-2xl font-light leading-relaxed pl-2 md:pl-4 border-l border-charcoal/20 dark:border-cream/20">
+                <p className="text-fluid-p opacity-70 max-w-2xl font-light leading-relaxed pl-2 md:pl-4 border-l border-charcoal/20 dark:border-cream/20">
                   {item.answer}
                 </p>
               </div>

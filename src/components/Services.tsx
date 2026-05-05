@@ -53,7 +53,7 @@ export default function Services() {
     >
       <div className="h-px bg-cream/10" />
 
-      <div className="max-w-[1920px] mx-auto px-6 md:px-12 3xl:px-24 py-24 md:py-32 3xl:py-40">
+      <div className="container-fluid section-padding">
 
         {/* ── HEADER ── */}
         <div className="srv-header flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
@@ -64,18 +64,18 @@ export default function Services() {
               </span>
             </div>
             <div className="overflow-hidden">
-              <h2 className="srv-header-line font-serif text-5xl md:text-6xl lg:text-8xl 3xl:text-9xl font-light leading-none tracking-tighter uppercase text-cream">
+              <h2 className="srv-header-line text-fluid-h2 font-serif font-light leading-none tracking-tighter uppercase text-cream">
                 O que eu
               </h2>
             </div>
             <div className="overflow-hidden">
-              <h2 className="srv-header-line font-serif text-5xl md:text-6xl lg:text-8xl 3xl:text-9xl font-light leading-none tracking-tighter uppercase text-cream/20 italic lowercase">
+              <h2 className="srv-header-line text-fluid-h2 font-serif font-light leading-none tracking-tighter uppercase text-cream/20 italic lowercase">
                 domino
               </h2>
             </div>
           </div>
 
-          <p className="max-w-xs md:max-w-sm text-sm font-light leading-relaxed text-cream/50 pb-2 md:self-end">
+          <p className="text-fluid-p font-light leading-relaxed text-cream/50 pb-2 md:self-end max-w-xs md:max-w-sm">
             Combinando engenharia sólida com sensibilidade de design para entregar produtos digitais que impressionam e performam.
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function Services() {
                   </span>
 
                   {/* Title */}
-                  <span className="flex-1 font-serif text-2xl md:text-4xl lg:text-5xl 3xl:text-6xl text-cream group-hover:text-cream/60 transition-colors duration-300 tracking-tight">
+                   <span className="flex-1 text-fluid-h3 font-serif text-cream group-hover:text-cream/60 transition-colors duration-300 tracking-tight">
                     {item.title}
                   </span>
 
@@ -136,7 +136,7 @@ export default function Services() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <div className="pl-14 md:pl-20 pb-10 grid md:grid-cols-2 gap-10">
-                    <p className="text-sm md:text-base font-light text-cream/60 leading-relaxed max-w-lg">
+                    <p className="text-fluid-p font-light text-cream/60 leading-relaxed max-w-lg">
                       {item.description}
                     </p>
 

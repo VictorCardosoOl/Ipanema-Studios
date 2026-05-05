@@ -12,13 +12,13 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={containerRef} className="bg-cream text-charcoal pt-16 md:pt-24 3xl:pt-32 pb-8 px-8 md:px-12 lg:px-16 3xl:px-24 flex flex-col justify-between border-t border-charcoal/10">
+    <footer ref={containerRef} className="bg-cream text-charcoal section-padding pb-8 flex flex-col justify-between border-t border-charcoal/10">
       {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-12 w-full max-w-[1920px] mx-auto">
+      <div className="container-fluid grid grid-cols-1 md:grid-cols-12 gap-12">
         {/* Col 1: Social & Contact (Span 5) */}
         <div className="md:col-span-5 flex flex-col gap-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Redes Sociais</span>
+            <span className="text-fluid-label uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Redes Sociais</span>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm font-sans">
               <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">LinkedIn</a>
               <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">GitHub</a>
@@ -26,14 +26,14 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Diga Olá</span>
+            <span className="text-fluid-label uppercase tracking-widest text-charcoal/60 font-bold w-32 shrink-0">Diga Olá</span>
             <a href="mailto:hello@victorcardoso.com" className="text-sm font-sans hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">hello@victorcardoso.com</a>
           </div>
         </div>
 
         {/* Col 2: Studio (Span 3) */}
         <div className="md:col-span-3 flex flex-col gap-4">
-          <span className="text-[10px] uppercase tracking-widest text-charcoal/60 font-bold">O Estúdio</span>
+          <span className="text-fluid-label uppercase tracking-widest text-charcoal/60 font-bold">O Estúdio</span>
           <div className="text-sm font-sans leading-relaxed">
             <p className="font-serif text-lg italic mb-1">Victor Cardoso</p>
             <p className="text-charcoal/70">São Paulo</p>
@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
 
         {/* Col 3: Navigation (Span 4) */}
-        <div className="md:col-span-4 flex flex-col sm:flex-row flex-wrap justify-start md:justify-end gap-x-8 gap-y-4 text-[10px] font-bold uppercase tracking-widest">
+        <div className="md:col-span-4 flex flex-col sm:flex-row flex-wrap justify-start md:justify-end gap-x-8 gap-y-4 text-fluid-label font-bold uppercase tracking-widest">
           <a href="#" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Home</a>
           <a href="#portfolio" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Projetos</a>
           <a href="#mission" className="hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded-sm">Sobre</a>
